@@ -1,0 +1,19 @@
+
+development: &default
+  adapter: mysql2
+  host: localhost
+  username: root
+  password: ""
+  pool: 5
+  timeout: 5000
+  database: grid_development
+
+test:
+  <<: *default
+  database: grid_test<%= ENV['TEST_ENV_NUMBER'] %>
+
+production: &production
+  <<: *default
+  database: grid_production
+  username: <%= File.read(Rails.root.join(*%w(.. .. shared user))) rescue "" %>
+  password: <%= File.read(Rails.root.join(*%w(.. .. shared password))) rescue "" %>
