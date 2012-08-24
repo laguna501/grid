@@ -1,0 +1,7 @@
+<div id="show_by_user">
+  <div id="container">
+    <% @user.photos.each do |photo| %>
+      <div class="item"><%= link_to(image_tag(photo.images[4].source), photo.images[4].source, target: "_blank") %></div>
+    <% end %>
+  </div>
+</div>

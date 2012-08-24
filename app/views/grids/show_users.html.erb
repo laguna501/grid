@@ -1,0 +1,18 @@
+<div id="show_users">
+  <section id="options" class="clearfix">
+    <div id="layouts" class="option-set clearfix" data-option-key="layoutMode">
+      <h4>Layout: </h4>
+      <div class="layouts" data-option-value="masonry" class="selected">masonry</div>
+      <div class="layouts" data-option-value="fitRows">fitRows</div>
+      <div class="layouts" data-option-value="straightDown">straightDown</div>
+    </div>
+  </section>
+
+  <div id="container">
+    <% @user_profile_pictures.each do |username, user_profile_picture|%>
+      <div class="item">
+        <%= link_to(image_tag(user_profile_picture.images[4].source), show_by_user_grids_url(user_identifier: username), target: "_blank" ) %>
+      </div>
+    <% end %>
+  </div>
+</div>

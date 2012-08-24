@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GRID</title>
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= stylesheet_link_tag    controller_name, media: "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag controller_name %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div id="wrap">
+    <%= yield %>
+  </div>
+</body>
+</html>
