@@ -1,7 +1,12 @@
 <div id="show_by_user">
   <div id="container">
-    <% @user.photos.each do |photo| %>
-      <div class="item"><%= link_to(image_tag(photo.images[4].source), photo.images[4].source, target: "_blank") %></div>
+    <% @photos.each do |photo| %>
+      <div class="item frame"><%= link_to(image_tag(photo.images[6].source), show_photo_grids_url(photo_source: photo.images[4].source), target: "_blank") %></div>
     <% end %>
   </div>
+</div>
+
+<div id="fb">
+  <div class="fb-send" data-href="http://localhost:3000/grids/show_by_user?user_identifier=artiwarah" data-font="verdana"></div>
+  <div class="fb-comments" data-href="http://localhost:3000/grids/show_by_user?user_identifier=artiwarah" data-num-posts="2" data-width="470"></div>
 </div>

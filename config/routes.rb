@@ -5,6 +5,7 @@ GRID::Application.routes.draw do
       get :show_users
       get :get_access_token
       get :show_by_user
+      get :show_photo
     end
   end
 

@@ -9,10 +9,9 @@ class GridsController < ActionController::Base
 
     app = FbGraph::Application.new(135259466618586, :secret => '5c7369efc1f535f76e7640779cfd97e4')
     users = [
-      FbGraph::User.fetch('artiwarah', :access_token => 'AAACEdEose0cBACWJwsjtW7UdSSw1R804w5dkxwcEa1XcSM0y2ZB29bPkgyjplNsZByVuxSM7wYieC41YyvUYoyYHSRAJRyd15AfrpAPyRtxFmrG1e2'),
-      FbGraph::User.fetch('chanisa.suwannarang', :access_token => 'AAACEdEose0cBACZB5Hqkxar1qjqHoVik3qGDsSkVLkaSw5UZCVil87tZBv59crp0NMZBRxcdP1IIFJqnu2MfPrTMHhgaIz0lnzIliU1tcVryrXROnNWB'),
-      FbGraph::User.fetch('eadheat', :access_token => 'AAACEdEose0cBAPw24ZA1ROfnTnESrZBg8qY2gVFJFZCntnCZArXKFlFZBBqjL0RhftDwbrZClvDqNHRClGLKeBiemnH6dGmiOaNKavfIhUqxP9uLDG44cv'),
-      FbGraph::User.fetch('pinmanee.chaisawat', :access_token => 'AAACEdEose0cBAIjdPt6iGpYtrDPGyHE6NV3tpw5wc86ZCf93ZBAThZAQ8xBRUTxWbHdMaWs5ZBvTcoZAn2QQEqdqpZBbveGrUcVa5Bzuh3SV3jeJ7itmOS')
+      FbGraph::User.fetch('artiwarah', :access_token => 'AAACEdEose0cBAOVrt3Dtt2tNCierGDug9zO9ZC4hw1mISb7hIYGhoXdFJ13QQpFgtyI6OEZBbehaFz2QTTFLL3Q3ik9ZCRVkudwEGF2o1zdTwolSjLP'),
+      # FbGraph::User.fetch('chanisa.suwannarang', :access_token => 'AAACEdEose0cBAFJJtVDMaCvqcZCGUQCB4TXibPDjtr3dbJjmVkf9kly5PEqPlmxpQmB8zPDwXhyEGbts5gFSWeLgRzZATDFXeyEWIThWlVfCDFVZC70'),
+      # FbGraph::User.fetch('eadheat', :access_token => 'AAACEdEose0cBAJL8OVZALgVO8P1Ptih7HGnMJYUZA3YQKpFZBWVv6uefn2rzuaKTZBZCn1b8sYURU6PFy13v9W48PKeArfVXwaB4CpuJ8OUizdfHKv3I9')
     ]
 
     @user_profile_pictures = Hash.new
@@ -26,15 +25,26 @@ class GridsController < ActionController::Base
 
   def show_by_user
     access_tokens = {
-      'artiwarah' => 'AAACEdEose0cBACWJwsjtW7UdSSw1R804w5dkxwcEa1XcSM0y2ZB29bPkgyjplNsZByVuxSM7wYieC41YyvUYoyYHSRAJRyd15AfrpAPyRtxFmrG1e2',
-      'chanisa.suwannarang' => 'AAACEdEose0cBACZB5Hqkxar1qjqHoVik3qGDsSkVLkaSw5UZCVil87tZBv59crp0NMZBRxcdP1IIFJqnu2MfPrTMHhgaIz0lnzIliU1tcVryrXROnNWB',
-      'eadheat' => 'AAACEdEose0cBAPw24ZA1ROfnTnESrZBg8qY2gVFJFZCntnCZArXKFlFZBBqjL0RhftDwbrZClvDqNHRClGLKeBiemnH6dGmiOaNKavfIhUqxP9uLDG44cv',
-      'pinmanee.chaisawat' => 'AAACEdEose0cBAIjdPt6iGpYtrDPGyHE6NV3tpw5wc86ZCf93ZBAThZAQ8xBRUTxWbHdMaWs5ZBvTcoZAn2QQEqdqpZBbveGrUcVa5Bzuh3SV3jeJ7itmOS'
+      'artiwarah' => 'AAACEdEose0cBAOVrt3Dtt2tNCierGDug9zO9ZC4hw1mISb7hIYGhoXdFJ13QQpFgtyI6OEZBbehaFz2QTTFLL3Q3ik9ZCRVkudwEGF2o1zdTwolSjLP',
+      # 'chanisa.suwannarang' => 'AAACEdEose0cBAFJJtVDMaCvqcZCGUQCB4TXibPDjtr3dbJjmVkf9kly5PEqPlmxpQmB8zPDwXhyEGbts5gFSWeLgRzZATDFXeyEWIThWlVfCDFVZC70',
+      # 'eadheat' => 'AAACEdEose0cBAJL8OVZALgVO8P1Ptih7HGnMJYUZA3YQKpFZBWVv6uefn2rzuaKTZBZCn1b8sYURU6PFy13v9W48PKeArfVXwaB4CpuJ8OUizdfHKv3I9'
     }
 
     unless params[:user_identifier].blank?
-      @user = FbGraph::User.fetch(params[:user_identifier], :access_token => access_tokens[params[:user_identifier]])
+      user = FbGraph::User.fetch(params[:user_identifier], :access_token => access_tokens[params[:user_identifier]])
+      @photos = []
+      user.albums.each do |album|
+        # next unless album.name =~ /grid/
+        album.photos.each do |photo|
+          next unless photo.name =~ /#grid/
+          @photos << photo
+        end
+      end
     end
+  end
+
+  def show_photo
+    @photo_source = params['photo_source']
   end
 
   def get_access_token
