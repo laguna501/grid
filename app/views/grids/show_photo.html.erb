@@ -1,7 +1,7 @@
 <div id="photo">
-  <%= image_tag @photo_source %>
+  <%= image_tag @photo_source, class: "frame" %>
   <div>
-    <div class="fb-send" data-href="http://http://localhost:3000/grids/show_photo?photo_source=https%3A%2F%2Ffbcdn-sphotos-h-a.akamaihd.net%2Fhphotos-ak-ash3%2Fs480x480%2F558304_3125057765207_398132521_n.jpg" data-font="verdana"></div>
-    <div class="fb-comments" data-href="http://http://localhost:3000/grids/show_photo?photo_source=https%3A%2F%2Ffbcdn-sphotos-h-a.akamaihd.net%2Fhphotos-ak-ash3%2Fs480x480%2F558304_3125057765207_398132521_n.jpg" data-num-posts="2" data-width="470"></div>
+    <div class="fb-like" data-href="http://localhost:3000/grids/show_photo?photo_source=<%= @photo_source %>" data-send="true" data-width="450" data-show-faces="true" data-font="verdana"></div>
+    <div class="fb-comments" data-href="http://localhost:3000/grids/show_photo?photo_source=<%= @photo_source %>" data-num-posts="2" data-width="470"></div>
   </div>
 </div>

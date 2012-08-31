@@ -9,7 +9,7 @@ class GridsController < ActionController::Base
 
     app = FbGraph::Application.new(135259466618586, :secret => '5c7369efc1f535f76e7640779cfd97e4')
     users = [
-      FbGraph::User.fetch('artiwarah', :access_token => 'AAACEdEose0cBAOVrt3Dtt2tNCierGDug9zO9ZC4hw1mISb7hIYGhoXdFJ13QQpFgtyI6OEZBbehaFz2QTTFLL3Q3ik9ZCRVkudwEGF2o1zdTwolSjLP'),
+      FbGraph::User.fetch('artiwarah', :access_token => 'AAACEdEose0cBAEUbMXZAvjGVcCWWyNS2KeLh98MC3fX2GlJfrRljzvXWjsj6csISQV2qf0ZBu4Ac7sXaSHXqir6BeaE9NgpUVcabpLiugsk2ZCcLVGa'),
       # FbGraph::User.fetch('chanisa.suwannarang', :access_token => 'AAACEdEose0cBAFJJtVDMaCvqcZCGUQCB4TXibPDjtr3dbJjmVkf9kly5PEqPlmxpQmB8zPDwXhyEGbts5gFSWeLgRzZATDFXeyEWIThWlVfCDFVZC70'),
       # FbGraph::User.fetch('eadheat', :access_token => 'AAACEdEose0cBAJL8OVZALgVO8P1Ptih7HGnMJYUZA3YQKpFZBWVv6uefn2rzuaKTZBZCn1b8sYURU6PFy13v9W48PKeArfVXwaB4CpuJ8OUizdfHKv3I9')
     ]
@@ -19,19 +19,22 @@ class GridsController < ActionController::Base
       user.albums.each do |album|
         next unless album.name =~ /Profile Pictures/
         @user_profile_pictures[user.username] = album.photos.first
+        require 'pp'
+        pp album.photos.first
       end
     end
   end
 
   def show_by_user
     access_tokens = {
-      'artiwarah' => 'AAACEdEose0cBAOVrt3Dtt2tNCierGDug9zO9ZC4hw1mISb7hIYGhoXdFJ13QQpFgtyI6OEZBbehaFz2QTTFLL3Q3ik9ZCRVkudwEGF2o1zdTwolSjLP',
+      'artiwarah' => 'AAACEdEose0cBAEUbMXZAvjGVcCWWyNS2KeLh98MC3fX2GlJfrRljzvXWjsj6csISQV2qf0ZBu4Ac7sXaSHXqir6BeaE9NgpUVcabpLiugsk2ZCcLVGa',
       # 'chanisa.suwannarang' => 'AAACEdEose0cBAFJJtVDMaCvqcZCGUQCB4TXibPDjtr3dbJjmVkf9kly5PEqPlmxpQmB8zPDwXhyEGbts5gFSWeLgRzZATDFXeyEWIThWlVfCDFVZC70',
       # 'eadheat' => 'AAACEdEose0cBAJL8OVZALgVO8P1Ptih7HGnMJYUZA3YQKpFZBWVv6uefn2rzuaKTZBZCn1b8sYURU6PFy13v9W48PKeArfVXwaB4CpuJ8OUizdfHKv3I9'
     }
 
     unless params[:user_identifier].blank?
-      user = FbGraph::User.fetch(params[:user_identifier], :access_token => access_tokens[params[:user_identifier]])
+      @user_identifier = params[:user_identifier]
+      user = FbGraph::User.fetch(@user_identifier, :access_token => access_tokens[@user_identifier])
       @photos = []
       user.albums.each do |album|
         # next unless album.name =~ /grid/
