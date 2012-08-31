@@ -1,2 +1,9 @@
-<div><%= link_to "PRO", show_users_grids_url(type: "pro") %></div>
-<div><%= link_to "GIRL", show_users_grids_url(type: "girl") %></div>
+<div id="grid">
+  <h1>Grid</h1>
+  <%= link_to(show_users_grids_url(type: "pro")) do %>
+    <div id="pro" class="menu-panel"><h2>Pro Grid</h2></div>
+  <% end %>
+  <%= link_to(show_users_grids_url(type: "girl")) do %>
+    <div id="girl" class="menu-panel"><h2>Girl Grid</h2></div>
+  <% end %>
+</div>

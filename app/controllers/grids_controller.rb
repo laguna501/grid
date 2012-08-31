@@ -5,49 +5,45 @@ class GridsController < ActionController::Base
   def index; end
 
   def show_users
-    users = User.joins(:album).where(type: params[:type])
+    @type = params[:type]
+    users = User.joins(:album).where(type: @type)
 
     app = FbGraph::Application.new(135259466618586, :secret => '5c7369efc1f535f76e7640779cfd97e4')
-    users = [
-      FbGraph::User.fetch('artiwarah', :access_token => 'AAACEdEose0cBAEUbMXZAvjGVcCWWyNS2KeLh98MC3fX2GlJfrRljzvXWjsj6csISQV2qf0ZBu4Ac7sXaSHXqir6BeaE9NgpUVcabpLiugsk2ZCcLVGa'),
-      # FbGraph::User.fetch('chanisa.suwannarang', :access_token => 'AAACEdEose0cBAFJJtVDMaCvqcZCGUQCB4TXibPDjtr3dbJjmVkf9kly5PEqPlmxpQmB8zPDwXhyEGbts5gFSWeLgRzZATDFXeyEWIThWlVfCDFVZC70'),
-      # FbGraph::User.fetch('eadheat', :access_token => 'AAACEdEose0cBAJL8OVZALgVO8P1Ptih7HGnMJYUZA3YQKpFZBWVv6uefn2rzuaKTZBZCn1b8sYURU6PFy13v9W48PKeArfVXwaB4CpuJ8OUizdfHKv3I9')
-    ]
-
-    @user_profile_pictures = Hash.new
-    users.each do |user|
-      user.albums.each do |album|
-        next unless album.name =~ /Profile Pictures/
-        @user_profile_pictures[user.username] = album.photos.first
-        require 'pp'
-        pp album.photos.first
-      end
-    end
-  end
-
-  def show_by_user
-    access_tokens = {
-      'artiwarah' => 'AAACEdEose0cBAEUbMXZAvjGVcCWWyNS2KeLh98MC3fX2GlJfrRljzvXWjsj6csISQV2qf0ZBu4Ac7sXaSHXqir6BeaE9NgpUVcabpLiugsk2ZCcLVGa',
-      # 'chanisa.suwannarang' => 'AAACEdEose0cBAFJJtVDMaCvqcZCGUQCB4TXibPDjtr3dbJjmVkf9kly5PEqPlmxpQmB8zPDwXhyEGbts5gFSWeLgRzZATDFXeyEWIThWlVfCDFVZC70',
-      # 'eadheat' => 'AAACEdEose0cBAJL8OVZALgVO8P1Ptih7HGnMJYUZA3YQKpFZBWVv6uefn2rzuaKTZBZCn1b8sYURU6PFy13v9W48PKeArfVXwaB4CpuJ8OUizdfHKv3I9'
+    users = {
+      "artiwarah" => FbGraph::User.fetch('artiwarah', :access_token => 'AAACEdEose0cBAAcoR1ZAjcfiz9TT4PdEAIjBIRD8aEih9AtfoIIS6O0CMa8T6tdTuvZAsp6WIYEhK4jZAIb3zgEQoMmCk9QziAueZAsEZCOOseOxei81r'),
+      "chanisa.suwannarang" => FbGraph::User.fetch('chanisa.suwannarang', :access_token => 'AAACEdEose0cBAPL5x6Sagu6HPsOQnBY62z3hQcoSV1ZBJSJ6ykPfg6AgpgGCFfFiRUp4E0Ux6blBA05Xb4i3aUflFzX5bhAwJdg6f7nmOqpNBSj1M'),
+      "eadheat" => FbGraph::User.fetch('eadheat', :access_token => 'AAACEdEose0cBADlYjdlz2DFMZBJ4U0upprQNsbFD57Yds2ZCVXe94Xe7x7xP0QZAEVOpUf5ma8TcS93l7J8eLHI3vHoZBc0HVyR8wKZC7HUFjh8WsXt4N')
     }
 
-    unless params[:user_identifier].blank?
-      @user_identifier = params[:user_identifier]
-      user = FbGraph::User.fetch(@user_identifier, :access_token => access_tokens[@user_identifier])
-      @photos = []
+    @user_photos = Hash.new
+    users.each do |nickname, user|
+      @user_photos[nickname] = []
       user.albums.each do |album|
-        # next unless album.name =~ /grid/
+        next unless album.name =~ /Cover Photos/                            #fixed album name
         album.photos.each do |photo|
-          next unless photo.name =~ /#grid/
-          @photos << photo
+          next unless photo.name =~ /#grid/                                 #fixed description must have #grid word
+          @user_photos[nickname] << photo
         end
       end
     end
   end
 
   def show_photo
-    @photo_source = params['photo_source']
+    @photo_identifier = params['identifier']
+    @owner = params['owner']
+
+    access_tokens = {
+      'artiwarah' => 'AAACEdEose0cBAAcoR1ZAjcfiz9TT4PdEAIjBIRD8aEih9AtfoIIS6O0CMa8T6tdTuvZAsp6WIYEhK4jZAIb3zgEQoMmCk9QziAueZAsEZCOOseOxei81r',
+      'chanisa.suwannarang' => 'AAACEdEose0cBAPL5x6Sagu6HPsOQnBY62z3hQcoSV1ZBJSJ6ykPfg6AgpgGCFfFiRUp4E0Ux6blBA05Xb4i3aUflFzX5bhAwJdg6f7nmOqpNBSj1M',
+      'eadheat' => 'AAACEdEose0cBADlYjdlz2DFMZBJ4U0upprQNsbFD57Yds2ZCVXe94Xe7x7xP0QZAEVOpUf5ma8TcS93l7J8eLHI3vHoZBc0HVyR8wKZC7HUFjh8WsXt4N'
+    }
+
+    photo = FbGraph::Photo.fetch(@photo_identifier, :access_token => access_tokens[@owner])
+    @photo_description = photo.name
+    photo.images.each do |image|
+      next unless image.width <= 780 && 700 < image.width
+      @user_photo = image and break
+    end
   end
 
   def get_access_token

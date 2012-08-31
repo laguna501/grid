@@ -48,27 +48,53 @@
           transition-duration: 0s;
 }
 
-
-div#layouts {
-  h4, div.layouts {
+#show_users{
+  h1 {
     float: left;
-    margin: 10px;
+    margin: 0;
   }
-  div.layouts {
-    cursor: pointer;
+
+  #layouts {
+    float: right;
+
+    h4, div.layouts {
+      float: left;
+      margin: 10px;
+    }
+    div.layouts {
+      cursor: pointer;
+    }
   }
-}
 
-#container {
-  clear: both;
-}
+  #filters {
+    clear: both;
 
-#test {
-  margin: 200px auto;
-  width: 200px;
-  height: 200px;
-  border-radius: 10px;
-  background-color: black;
+    h4, div.filters {
+      float: left;
+      margin: 10px;
+    }
+
+    div.filters {
+      cursor: pointer;
+      border: solid 1px gray;
+      border-radius: 3px;
+      padding: 3px;
+    }
+  }
+
+  #container {
+    clear: both;
+  }
+
+  div.item {
+    padding: 3px;
+    margin: 2px;
+    background-color: black;
+    img {
+      border: solid 1px gray;
+      border-radius: 3px;
+    }
+  }
 }
 
 @mixin drop-shadow {
@@ -79,7 +105,6 @@ div#layouts {
 
 .frame {
   @include drop-shadow;
-  background-color: black;
   border-radius: 15px;
   border: 5px solid black;
   margin: 10px;
@@ -91,17 +116,56 @@ div#layouts {
   text-align: center;
 }
 
-div.item {
-  padding: 10px;
-}
-
 div.fb-like {
   clear: both;
   display: block;
 }
 
 #photo {
-  text-align: center;
   width: 820px;
   margin: 0 auto;
+
+  #nickname {
+    float: left;
+    h1{
+      margin: 0;
+    }
+  }
+
+  #social_plugins {
+    float: right;
+  }
+
+  #user_photo {
+    text-align: center;
+    img{
+      border: solid 1px gray;
+      border-radius: 3px;
+      padding: 3px;
+      margin: 2px;
+      background-color: black;
+    }
+  }
+
+  #photo_description{
+    width: 780px;
+    margin: 2px 20px;
+    border: solid 1px gray;
+    border-radius: 3px;
+    padding: 3px;
+  }
+
+  div.fb-comments {
+    margin: 2px 175px;
+    padding: 3px;
+  }
+}
+
+.menu-panel {
+  width: 80%;
+  text-align: center;
+  border: solid 3px gray;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 10px auto;
 }

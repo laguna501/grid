@@ -4,17 +4,26 @@ Grids = {
   layout: function() {
     Grids.changeLayoutMode($(this).attr("data-option-value"));
   },
+  filter: function() {
+    var nickname = $( this ).attr('data-option-value');
+    if(nickname == '*')
+      $('#container').isotope({ filter: '*' });
+    else
+      $('#container').isotope({ filter: '[owner="'+nickname+'"], [class="item"]' });
+    return false;
+  },
   changeLayoutMode: function(mode){
     $('#container').isotope({
       // options
       itemSelector : '.item',
       layoutMode : mode,
-      // sortBy : 'random'
+      sortBy : 'random'
     });
   },
   init: function() {
-    Grids.changeLayoutMode('fitRows');
+    Grids.changeLayoutMode('masonry');
     $('div.layouts').click(Grids.layout);
+    $('div.filters').click(Grids.filter);
 
     (function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
