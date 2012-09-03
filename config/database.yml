@@ -19,4 +19,5 @@ production: &production
   password: <%= File.read(Rails.root.join(*%w(.. .. shared password))) rescue "" %>
 
 staging: &production
+  <<: *default
   <<: *production
