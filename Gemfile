@@ -19,6 +19,7 @@ gem 'jquery-rails'
 gem 'mysql2'
 gem 'fb_graph'
 gem 'syslog-logger'
+gem 'unicorn'
 
 group :development, :test, :staging do
   # Pretty printed test output
