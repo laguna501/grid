@@ -17,3 +17,6 @@ production: &production
   database: grid_production
   username: <%= File.read(Rails.root.join(*%w(.. .. shared user))) rescue "" %>
   password: <%= File.read(Rails.root.join(*%w(.. .. shared password))) rescue "" %>
+
+staging: &production
+  <<: *production
