@@ -109,10 +109,10 @@ EOS
 task :staging do
   set :user, "rails"
   set :group, "rails"
-  set :rails_env, :production
+  set :rails_env, :staging
   set :deploy_to, File.join(*%W(/srv apps #{application}))
   set :unicorn_binary, "bundle exec unicorn"
-  set :unicorn_config, File.join(current_path, 'config', 'unicorn', 'production.rb')
+  set :unicorn_config, File.join(current_path, 'config', 'unicorn', 'staging.rb')
   set :unicorn_pid, File.join(current_path, 'tmp', 'pids', 'unicorn.pid')
   set :assets_prefix, "grid"
   set(:branch) { Capistrano::CLI.ui.ask("Tag to deploy:") }
