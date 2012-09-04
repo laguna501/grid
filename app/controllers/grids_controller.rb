@@ -1,6 +1,6 @@
 class GridsController < ActionController::Base
   layout 'application'
-  # before_filter :facebook_fetch, only: [:pro, :girl]
+  before_filter :facebook_fetch, only: [:index]
 
   def index; end
 
