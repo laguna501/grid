@@ -1,11 +1,11 @@
 <div id="show_users">
-  <h1><%= @type %> Grid</h1>
+  <h1><%= @type.to_s.titleize %> Grid</h1>
   <section id="options" class="clearfix">
     <div id="layouts" class="option-set clearfix" data-option-key="layoutMode">
       <h4>Layout: </h4>
       <div class="layouts" data-option-value="masonry" class="selected">masonry</div>
       <div class="layouts" data-option-value="fitRows">fitRows</div>
-      <div class="layouts" data-option-value="straightDown">straightDown</div>
+      <!-- <div class="layouts" data-option-value="straightDown">straightDown</div> -->
     </div>
   </section>
 

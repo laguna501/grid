@@ -1,4 +1,4 @@
-//= require jquery.isotope.min.js
+//= require jquery.isotope.js
 
 Grids = {
   layout: function() {

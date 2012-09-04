@@ -10,9 +10,9 @@ class GridsController < ActionController::Base
 
     app = FbGraph::Application.new(135259466618586, :secret => '5c7369efc1f535f76e7640779cfd97e4')
     users = {
-      "artiwarah" => FbGraph::User.fetch('artiwarah', :access_token => 'AAACEdEose0cBAAcoR1ZAjcfiz9TT4PdEAIjBIRD8aEih9AtfoIIS6O0CMa8T6tdTuvZAsp6WIYEhK4jZAIb3zgEQoMmCk9QziAueZAsEZCOOseOxei81r'),
-      "chanisa.suwannarang" => FbGraph::User.fetch('chanisa.suwannarang', :access_token => 'AAACEdEose0cBAPL5x6Sagu6HPsOQnBY62z3hQcoSV1ZBJSJ6ykPfg6AgpgGCFfFiRUp4E0Ux6blBA05Xb4i3aUflFzX5bhAwJdg6f7nmOqpNBSj1M'),
-      "eadheat" => FbGraph::User.fetch('eadheat', :access_token => 'AAACEdEose0cBADlYjdlz2DFMZBJ4U0upprQNsbFD57Yds2ZCVXe94Xe7x7xP0QZAEVOpUf5ma8TcS93l7J8eLHI3vHoZBc0HVyR8wKZC7HUFjh8WsXt4N')
+      "artiwarah" => FbGraph::User.fetch('artiwarah', :access_token => 'AAACEdEose0cBAKn1hCJfyz0f0hEwmUdkWJ2T4MZABdq91o7gcAsF5VN0yztxsRQ3FP5b7zWLIH0sZAdopm7wWrXYYqh19y2W38OnDvIF2ZA5PM51RhN'),
+      "chanisa.suwannarang" => FbGraph::User.fetch('chanisa.suwannarang', :access_token => 'AAACEdEose0cBALkX2Mv6POymslNw0BjBEbj83vaaViVmvPnPs7xrWhcDrTfMo74tMnarocZAwxYR5MSTmyZBfIjIrNnXDjTKZAf7hdYO2k7ZBziZAQIL4'),
+      "eadheat" => FbGraph::User.fetch('eadheat', :access_token => 'AAACEdEose0cBAEugnK8l278ZB90FWsUbrdT7fpcpCwZBCy8DXgRRg6it9zZBMWb5uhBTgKzaKk23MlP5TyhNl4s9XzC4TQNRERqZAw77BE2wVH4cPfPE')
     }
 
     @user_photos = Hash.new
@@ -33,15 +33,15 @@ class GridsController < ActionController::Base
     @owner = params['owner']
 
     access_tokens = {
-      'artiwarah' => 'AAACEdEose0cBAAcoR1ZAjcfiz9TT4PdEAIjBIRD8aEih9AtfoIIS6O0CMa8T6tdTuvZAsp6WIYEhK4jZAIb3zgEQoMmCk9QziAueZAsEZCOOseOxei81r',
-      'chanisa.suwannarang' => 'AAACEdEose0cBAPL5x6Sagu6HPsOQnBY62z3hQcoSV1ZBJSJ6ykPfg6AgpgGCFfFiRUp4E0Ux6blBA05Xb4i3aUflFzX5bhAwJdg6f7nmOqpNBSj1M',
-      'eadheat' => 'AAACEdEose0cBADlYjdlz2DFMZBJ4U0upprQNsbFD57Yds2ZCVXe94Xe7x7xP0QZAEVOpUf5ma8TcS93l7J8eLHI3vHoZBc0HVyR8wKZC7HUFjh8WsXt4N'
+      'artiwarah' => 'AAACEdEose0cBAKn1hCJfyz0f0hEwmUdkWJ2T4MZABdq91o7gcAsF5VN0yztxsRQ3FP5b7zWLIH0sZAdopm7wWrXYYqh19y2W38OnDvIF2ZA5PM51RhN',
+      'chanisa.suwannarang' => 'AAACEdEose0cBALkX2Mv6POymslNw0BjBEbj83vaaViVmvPnPs7xrWhcDrTfMo74tMnarocZAwxYR5MSTmyZBfIjIrNnXDjTKZAf7hdYO2k7ZBziZAQIL4',
+      'eadheat' => 'AAACEdEose0cBAEugnK8l278ZB90FWsUbrdT7fpcpCwZBCy8DXgRRg6it9zZBMWb5uhBTgKzaKk23MlP5TyhNl4s9XzC4TQNRERqZAw77BE2wVH4cPfPE'
     }
 
     photo = FbGraph::Photo.fetch(@photo_identifier, :access_token => access_tokens[@owner])
     @photo_description = photo.name
     photo.images.each do |image|
-      next unless image.width <= 780 && 700 < image.width
+      next unless image.width <= 780 && 600 < image.width
       @user_photo = image and break
     end
   end
@@ -55,10 +55,10 @@ class GridsController < ActionController::Base
   def facebook_fetch
     @fb_auth = FbGraph::Auth.new(135259466618586, '5c7369efc1f535f76e7640779cfd97e4')
     client = fb_auth.client
-    client.redirect_uri = "http://your.client.com/facebook/callback"
+    client.redirect_uri = "grid.swiftlet.co.th/callback"
 
     redirect_to client.authorization_uri(
-      :scope => [:email, :read_stream, :offline_access]
+      :scope => [:email, :read_stream, :offline_access, :albums, :photos]
     )
   end
 
