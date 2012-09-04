@@ -6,17 +6,21 @@ class GridsController < ActionController::Base
 
   def show_users
     @type = params[:type]
-    users = User.joins(:album).where(type: @type)
+    users = User.includes(:album).where(type: @type)
+    fb_users = Hash.new
+    users.each do |user|
+      fb_users[fb_users.uid] << fb_users.access_token
+    end
 
     app = FbGraph::Application.new(135259466618586, :secret => '5c7369efc1f535f76e7640779cfd97e4')
-    users = {
-      "artiwarah" => FbGraph::User.fetch('artiwarah', :access_token => 'AAACEdEose0cBAKn1hCJfyz0f0hEwmUdkWJ2T4MZABdq91o7gcAsF5VN0yztxsRQ3FP5b7zWLIH0sZAdopm7wWrXYYqh19y2W38OnDvIF2ZA5PM51RhN'),
-      "chanisa.suwannarang" => FbGraph::User.fetch('chanisa.suwannarang', :access_token => 'AAACEdEose0cBALkX2Mv6POymslNw0BjBEbj83vaaViVmvPnPs7xrWhcDrTfMo74tMnarocZAwxYR5MSTmyZBfIjIrNnXDjTKZAf7hdYO2k7ZBziZAQIL4'),
-      "eadheat" => FbGraph::User.fetch('eadheat', :access_token => 'AAACEdEose0cBAEugnK8l278ZB90FWsUbrdT7fpcpCwZBCy8DXgRRg6it9zZBMWb5uhBTgKzaKk23MlP5TyhNl4s9XzC4TQNRERqZAw77BE2wVH4cPfPE')
-    }
+    # fb_users = {
+    #   "artiwarah" => FbGraph::User.fetch('artiwarah', :access_token => 'AAACEdEose0cBAKn1hCJfyz0f0hEwmUdkWJ2T4MZABdq91o7gcAsF5VN0yztxsRQ3FP5b7zWLIH0sZAdopm7wWrXYYqh19y2W38OnDvIF2ZA5PM51RhN'),
+    #   "chanisa.suwannarang" => FbGraph::User.fetch('chanisa.suwannarang', :access_token => 'AAACEdEose0cBALkX2Mv6POymslNw0BjBEbj83vaaViVmvPnPs7xrWhcDrTfMo74tMnarocZAwxYR5MSTmyZBfIjIrNnXDjTKZAf7hdYO2k7ZBziZAQIL4'),
+    #   "eadheat" => FbGraph::User.fetch('eadheat', :access_token => 'AAACEdEose0cBAEugnK8l278ZB90FWsUbrdT7fpcpCwZBCy8DXgRRg6it9zZBMWb5uhBTgKzaKk23MlP5TyhNl4s9XzC4TQNRERqZAw77BE2wVH4cPfPE')
+    # }
 
     @user_photos = Hash.new
-    users.each do |nickname, user|
+    fb_users.each do |nickname, user|
       @user_photos[nickname] = []
       user.albums.each do |album|
         next unless album.name =~ /Cover Photos/                            #fixed album name
@@ -53,9 +57,9 @@ class GridsController < ActionController::Base
   end
 
   def facebook_fetch
-    @fb_auth = FbGraph::Auth.new(135259466618586, '5c7369efc1f535f76e7640779cfd97e4')
+    fb_auth = FbGraph::Auth.new(135259466618586, '5c7369efc1f535f76e7640779cfd97e4')
     client = fb_auth.client
-    client.redirect_uri = "grid.swiftlet.co.th/callback"
+    client.redirect_uri = "localhost:3000/callback"
 
     redirect_to client.authorization_uri(
       :scope => [:email, :read_stream, :offline_access, :albums, :photos]
@@ -65,6 +69,12 @@ class GridsController < ActionController::Base
   def callback
     client.authorization_code = params[:code]
     access_token = client.access_token! :client_auth_body # => Rack::OAuth2::AccessToken
-    FbGraph::User.me(access_token).fetch # => FbGraph::User
+    fb_user = FbGraph::User.me(access_token).fetch # => FbGraph::User
+
+    users = User.where(facebook_uid: fb_user.uid)
+    if users.count == 0
+      user = User.new(facebook_uid: fb_user.uid, email: fb_user.email, access_token: access_token, type: "pro")
+      user.save
+    end
   end
 end
