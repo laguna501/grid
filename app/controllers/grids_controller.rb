@@ -9,7 +9,7 @@ class GridsController < ActionController::Base
     users = User.includes(:album).where(type: @type)
     fb_users = Hash.new
     users.each do |user|
-      fb_users[fb_users.uid] << fb_users.access_token
+      fb_users[fb_users.uid] << FbGraph::User.fetch(fb_users.uid, :access_token => fb_users.access_token)
     end
 
     app = FbGraph::Application.new(135259466618586, :secret => '5c7369efc1f535f76e7640779cfd97e4')
@@ -36,13 +36,15 @@ class GridsController < ActionController::Base
     @photo_identifier = params['identifier']
     @owner = params['owner']
 
-    access_tokens = {
-      'artiwarah' => 'AAACEdEose0cBAKn1hCJfyz0f0hEwmUdkWJ2T4MZABdq91o7gcAsF5VN0yztxsRQ3FP5b7zWLIH0sZAdopm7wWrXYYqh19y2W38OnDvIF2ZA5PM51RhN',
-      'chanisa.suwannarang' => 'AAACEdEose0cBALkX2Mv6POymslNw0BjBEbj83vaaViVmvPnPs7xrWhcDrTfMo74tMnarocZAwxYR5MSTmyZBfIjIrNnXDjTKZAf7hdYO2k7ZBziZAQIL4',
-      'eadheat' => 'AAACEdEose0cBAEugnK8l278ZB90FWsUbrdT7fpcpCwZBCy8DXgRRg6it9zZBMWb5uhBTgKzaKk23MlP5TyhNl4s9XzC4TQNRERqZAw77BE2wVH4cPfPE'
-    }
+    user = User.where(uid: @owner)
+    photo = FbGraph::Photo.fetch(@photo_identifier, :access_token => user.access_token)
 
-    photo = FbGraph::Photo.fetch(@photo_identifier, :access_token => access_tokens[@owner])
+    # access_tokens = {
+    #   'artiwarah' => 'AAACEdEose0cBAKn1hCJfyz0f0hEwmUdkWJ2T4MZABdq91o7gcAsF5VN0yztxsRQ3FP5b7zWLIH0sZAdopm7wWrXYYqh19y2W38OnDvIF2ZA5PM51RhN',
+    #   'chanisa.suwannarang' => 'AAACEdEose0cBALkX2Mv6POymslNw0BjBEbj83vaaViVmvPnPs7xrWhcDrTfMo74tMnarocZAwxYR5MSTmyZBfIjIrNnXDjTKZAf7hdYO2k7ZBziZAQIL4',
+    #   'eadheat' => 'AAACEdEose0cBAEugnK8l278ZB90FWsUbrdT7fpcpCwZBCy8DXgRRg6it9zZBMWb5uhBTgKzaKk23MlP5TyhNl4s9XzC4TQNRERqZAw77BE2wVH4cPfPE'
+    # }
+
     @photo_description = photo.name
     photo.images.each do |image|
       next unless image.width <= 780 && 600 < image.width
