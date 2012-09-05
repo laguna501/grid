@@ -9,7 +9,7 @@ class GridsController < ActionController::Base
     users = User.includes(:album).where(type: @type)
     fb_users = Hash.new
     users.each do |user|
-      fb_users[fb_users.uid] << FbGraph::User.fetch(fb_users.uid, :access_token => fb_users.access_token)
+      fb_users[fb_users.username] << FbGraph::User.fetch(fb_users.username, :access_token => fb_users.access_token)
     end
     # fb_users = {
     #   "artiwarah" => FbGraph::User.fetch('artiwarah', :access_token => 'AAACEdEose0cBACZCOdkzmDI6NKO4qI3GgTPVpJpapF39A5GVqxo7lf6C9HMZAvGfl1E1zWr4OeHgTKtFLj8eAM3zZBrEE2bZAfqJcYB0tXee28q7PYYJ'),
@@ -36,7 +36,7 @@ class GridsController < ActionController::Base
     @photo_identifier = params['identifier']
     @owner = params['owner']
 
-    user = User.where(uid: @owner)
+    user = User.where(facebook_uid: @owner)
     photo = FbGraph::Photo.fetch(@photo_identifier, :access_token => user.access_token)
 
     # access_tokens = {
@@ -73,9 +73,9 @@ class GridsController < ActionController::Base
     access_token = client.access_token! :client_auth_body # => Rack::OAuth2::AccessToken
     fb_user = FbGraph::User.me(access_token).fetch # => FbGraph::User
 
-    users = User.where(facebook_uid: fb_user.uid)
+    users = User.where(facebook_uid: fb_user.username)
     if users.count == 0
-      user = User.new(facebook_uid: fb_user.uid, email: fb_user.email, access_token: access_token, type: "pro")
+      user = User.new(facebook_uid: fb_user.username, email: fb_user.email, access_token: access_token, type: "pro")
       user.save
     end
     render(action: "index")
