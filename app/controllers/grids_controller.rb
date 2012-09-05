@@ -53,24 +53,24 @@ class GridsController < ActionController::Base
   end
 
   def get_access_token
-    client.authorization_code = params[:code]
-    access_token = client.access_token! :client_auth_body # => Rack::OAuth2::AccessToken
+    @client.authorization_code = params[:code]
+    access_token = @client.access_token! :client_auth_body # => Rack::OAuth2::AccessToken
     @pro = FbGraph::User.me(access_token).fetch # => FbGraph::User
   end
 
   def facebook_fetch
     fb_auth = FbGraph::Auth.new(135259466618586, '5c7369efc1f535f76e7640779cfd97e4')
-    client = fb_auth.client
-    client.redirect_uri = "http://grid.swiftlet.co.th/grids/callback"
+    @client = fb_auth.client
+    @client.redirect_uri = "http://grid.swiftlet.co.th/grids/callback"
 
-    redirect_to client.authorization_uri(
+    redirect_to @client.authorization_uri(
       :scope => [:email, :user_photos, :read_stream]
     )
   end
 
   def callback
-    client.authorization_code = params[:code]
-    access_token = client.access_token! :client_auth_body # => Rack::OAuth2::AccessToken
+    @client.authorization_code = params[:code]
+    access_token = @client.access_token! :client_auth_body # => Rack::OAuth2::AccessToken
     fb_user = FbGraph::User.me(access_token).fetch # => FbGraph::User
 
     users = User.where(facebook_uid: fb_user.username)
