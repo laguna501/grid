@@ -5,6 +5,11 @@ GRID::Application.routes.draw do
       get :show_users
       get :show_by_user
       get :show_photo
+    end
+  end
+  
+  resources :manage, only: [:index] do
+    collection do
       get :callback
       get :facebook_fetch
     end
