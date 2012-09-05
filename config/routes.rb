@@ -6,7 +6,7 @@ GRID::Application.routes.draw do
       post :get_access_token
       get :show_by_user
       get :show_photo
-      post :callback
+      get :callback
     end
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120904144818) do
+ActiveRecord::Schema.define(:version => 20120905034045) do
 
   create_table "albums", :force => true do |t|
     t.integer  "facebook_aid", :null => false
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20120904144818) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.string   "access_token"
+    t.string   "nickname"
   end
 
 end

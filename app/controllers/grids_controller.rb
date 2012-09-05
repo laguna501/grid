@@ -11,13 +11,13 @@ class GridsController < ActionController::Base
     users.each do |user|
       fb_users[fb_users.uid] << FbGraph::User.fetch(fb_users.uid, :access_token => fb_users.access_token)
     end
-
-    app = FbGraph::Application.new(135259466618586, :secret => '5c7369efc1f535f76e7640779cfd97e4')
     # fb_users = {
-    #   "artiwarah" => FbGraph::User.fetch('artiwarah', :access_token => 'AAACEdEose0cBAKn1hCJfyz0f0hEwmUdkWJ2T4MZABdq91o7gcAsF5VN0yztxsRQ3FP5b7zWLIH0sZAdopm7wWrXYYqh19y2W38OnDvIF2ZA5PM51RhN'),
+    #   "artiwarah" => FbGraph::User.fetch('artiwarah', :access_token => 'AAACEdEose0cBACZCOdkzmDI6NKO4qI3GgTPVpJpapF39A5GVqxo7lf6C9HMZAvGfl1E1zWr4OeHgTKtFLj8eAM3zZBrEE2bZAfqJcYB0tXee28q7PYYJ'),
     #   "chanisa.suwannarang" => FbGraph::User.fetch('chanisa.suwannarang', :access_token => 'AAACEdEose0cBALkX2Mv6POymslNw0BjBEbj83vaaViVmvPnPs7xrWhcDrTfMo74tMnarocZAwxYR5MSTmyZBfIjIrNnXDjTKZAf7hdYO2k7ZBziZAQIL4'),
     #   "eadheat" => FbGraph::User.fetch('eadheat', :access_token => 'AAACEdEose0cBAEugnK8l278ZB90FWsUbrdT7fpcpCwZBCy8DXgRRg6it9zZBMWb5uhBTgKzaKk23MlP5TyhNl4s9XzC4TQNRERqZAw77BE2wVH4cPfPE')
     # }
+
+    app = FbGraph::Application.new(135259466618586, :secret => '5c7369efc1f535f76e7640779cfd97e4')
 
     @user_photos = Hash.new
     fb_users.each do |nickname, user|
@@ -61,7 +61,7 @@ class GridsController < ActionController::Base
   def facebook_fetch
     fb_auth = FbGraph::Auth.new(135259466618586, '5c7369efc1f535f76e7640779cfd97e4')
     client = fb_auth.client
-    client.redirect_uri = "localhost:3000/callback"
+    client.redirect_uri = "grid.swiftlet.co.th/grids/callback"
 
     redirect_to client.authorization_uri(
       :scope => [:email, :read_stream, :offline_access, :albums, :photos]
