@@ -78,5 +78,6 @@ class GridsController < ActionController::Base
       user = User.new(facebook_uid: fb_user.uid, email: fb_user.email, access_token: access_token, type: "pro")
       user.save
     end
+    render(action: "index")
   end
 end
