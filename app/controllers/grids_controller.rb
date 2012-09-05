@@ -61,10 +61,10 @@ class GridsController < ActionController::Base
   def facebook_fetch
     fb_auth = FbGraph::Auth.new(135259466618586, '5c7369efc1f535f76e7640779cfd97e4')
     client = fb_auth.client
-    client.redirect_uri = "grid.swiftlet.co.th/grids/callback"
+    client.redirect_uri = "http://grid.swiftlet.co.th/grids/callback"
 
     redirect_to client.authorization_uri(
-      :scope => [:email, :read_stream, :offline_access, :albums, :photos]
+      :scope => [:email, :read_stream, :offline_access, :user_photos]
     )
   end
 
