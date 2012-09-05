@@ -64,7 +64,7 @@ class GridsController < ActionController::Base
     client.redirect_uri = "http://grid.swiftlet.co.th/grids/callback"
 
     redirect_to client.authorization_uri(
-      :scope => [:email, :read_stream, :offline_access, :user_photos]
+      :scope => [:email, :user_photos, :read_stream]
     )
   end
 
