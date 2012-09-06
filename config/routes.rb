@@ -11,7 +11,8 @@ GRID::Application.routes.draw do
   resources :manage, only: [:index] do
     collection do
       get :callback
-      get :facebook_fetch
+      get :extend_access_token
+      get :pull_photos
     end
   end
 

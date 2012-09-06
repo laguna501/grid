@@ -5,32 +5,26 @@
       <h4>Layout: </h4>
       <div class="layouts" data-option-value="masonry" class="selected">masonry</div>
       <div class="layouts" data-option-value="fitRows">fitRows</div>
-      <!-- <div class="layouts" data-option-value="straightDown">straightDown</div> -->
     </div>
   </section>
 
   <div id="filters" class="option-set clearfix" data-option-key="filterMode">
     <div class="filters" data-option-value="*">Show all</div>
-    <% @user_photos.keys.sort.each do |nickname| %>
-      <div class="filters" data-option-value="<%= nickname %>"><%= nickname %></div>
+    <% @user_photos.keys.sort.each do |facebook_uid| %>
+      <div class="filters" data-option-value="<%= facebook_uid %>"><%= facebook_uid %></div>
     <% end %>
   </div>
 
   <div id="container">
-    <% @user_photos.each do |nickname, photos|%>
+    <% @user_photos.each do |facebook_uid, photos|%>
       <% photos.each do |photo| %>
-        <% photo.images.each do |image| %>
-          <% next if image.height < image.width && image.height > 200        #landscape: height  ~200px %>
-          <% next if image.height > image.width && image.width > 200         #portrait:  width   ~200px %>
-          <% class_name = image.height > image.width ? "portrait" : "landscape" %>
-          <div class="item <%= class_name %>" owner="<%= nickname %>">
-            <%= link_to(
-              image_tag(image.source),
-              show_photo_grids_url(owner: nickname, identifier: photo.identifier), target: "_blank"
-            ) %>
-          </div>
-          <% break %>
-        <% end %>
+        <% image = photo.thumbnail %>
+        <div class="item <%= photo.photo_type %>" owner="<%= facebook_uid %>">
+          <%= link_to(
+            image_tag(image),
+            show_photo_grids_url(owner: facebook_uid, identifier: photo.identifier), target: "_blank"
+          ) %>
+        </div>
       <% end %>
     <% end %>
   </div>
