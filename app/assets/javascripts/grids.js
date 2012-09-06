@@ -1,4 +1,5 @@
 //= require jquery.isotope.js
+//= require bootstrap.js
 
 Grids = {
   layout: function() {

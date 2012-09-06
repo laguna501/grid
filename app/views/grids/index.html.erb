@@ -1,9 +1,12 @@
 <div id="grid">
   <h1>Grid</h1>
+  <hr />
   <%= link_to(show_users_grids_url(type: "pro")) do %>
-    <div id="pro" class="menu-panel"><h2>Pro Grid</h2></div>
+    <!-- <div id="pro" class="menu-panel"><h2>Pro Grid</h2></div> -->
+    <button class="btn btn-large btn-block btn-primary" type="button"><h2>Pro Grid</h2></button>
   <% end %>
   <%= link_to(show_users_grids_url(type: "girl")) do %>
-    <div id="girl" class="menu-panel"><h2>Girl Grid</h2></div>
+    <!-- <div id="girl" class="menu-panel"><h2>Girl Grid</h2></div> -->
+    <button class="btn btn-large btn-block" type="button"><h2>Girl Grid</h2></button>
   <% end %>
 </div>

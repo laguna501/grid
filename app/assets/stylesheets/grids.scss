@@ -1,3 +1,7 @@
+//= require bootstrap
+//= require bootstrap-responsive
+@import "variables";
+
 /**** Isotope Filtering ****/
 
 .isotope-item {
@@ -168,3 +172,32 @@ div.fb-like {
   padding: 20px;
   margin: 10px auto;
 }
+
+.btn {
+  height: 100px !important;
+  margin: 10px;
+  background-color: $girl-grid-color !important;
+  background-image: -moz-linear-gradient(center top , $girl-grid-color-gradient_1, $girl-grid-color-gradient_2) !important;
+  color: $font-black-color !important;
+}
+
+.btn:hover {
+  color: $girl-font-black-color !important;
+  background-color: $girl-grid-color-gradient_2 !important;
+  *background-color: $girl-grid-color-hover !important;
+}
+
+.btn-primary {
+  color: $font-white-color !important;
+  background-color: $pro-grid-color !important;
+  background-image: -moz-linear-gradient(center top , $pro-grid-color-gradient_1, $pro-grid-color-gradient_2) !important;
+}
+
+.btn-primary:hover {
+  color: $pro-font-white-color !important;
+  background-color: $pro-grid-color-gradient_2 !important;
+  *background-color: $pro-grid-color-hover !important;
+}
+
+
+
