@@ -5,7 +5,7 @@ class GridsController < ActionController::Base
 
   def show_users
     @type = params[:type]
-    users = User.where(user_type: @type, "users.access_token IS NOT NULL")
+    users = User.where(user_type: @type).where("access_token IS NOT NULL")
     fb_users = Hash.new
     users.each do |user|
       fb_users[user.facebook_uid] = FbGraph::User.fetch(user.facebook_uid, :access_token => user.access_token)
