@@ -1,21 +1,15 @@
 class GridsController < ActionController::Base
   layout 'application'
-  # before_filter :facebook_fetch, only: [:index]
 
   def index; end
 
   def show_users
     @type = params[:type]
-    users = User.where(user_type: @type)
+    users = User.where(user_type: @type, "users.access_token IS NOT NULL")
     fb_users = Hash.new
     users.each do |user|
       fb_users[user.facebook_uid] = FbGraph::User.fetch(user.facebook_uid, :access_token => user.access_token)
     end
-    # fb_users = {
-    #   "artiwarah" => FbGraph::User.fetch('artiwarah', :access_token => 'AAACEdEose0cBACZCOdkzmDI6NKO4qI3GgTPVpJpapF39A5GVqxo7lf6C9HMZAvGfl1E1zWr4OeHgTKtFLj8eAM3zZBrEE2bZAfqJcYB0tXee28q7PYYJ'),
-    #   "chanisa.suwannarang" => FbGraph::User.fetch('chanisa.suwannarang', :access_token => 'AAACEdEose0cBALkX2Mv6POymslNw0BjBEbj83vaaViVmvPnPs7xrWhcDrTfMo74tMnarocZAwxYR5MSTmyZBfIjIrNnXDjTKZAf7hdYO2k7ZBziZAQIL4'),
-    #   "eadheat" => FbGraph::User.fetch('eadheat', :access_token => 'AAACEdEose0cBAEugnK8l278ZB90FWsUbrdT7fpcpCwZBCy8DXgRRg6it9zZBMWb5uhBTgKzaKk23MlP5TyhNl4s9XzC4TQNRERqZAw77BE2wVH4cPfPE')
-    # }
 
     app = FbGraph::Application.new(135259466618586, :secret => '5c7369efc1f535f76e7640779cfd97e4')
 
@@ -23,9 +17,8 @@ class GridsController < ActionController::Base
     fb_users.each do |nickname, user|
       @user_photos[nickname] = []
       user.albums.each do |album|
-        next unless album.name =~ /Cover Photos/                            #fixed album name
         album.photos.each do |photo|
-          next unless photo.name =~ /#grid/                                 #fixed description must have #grid word
+          next unless photo.name =~ /#grid/           #fixed description must have #grid word
           @user_photos[nickname] << photo
         end
       end
@@ -38,12 +31,6 @@ class GridsController < ActionController::Base
 
     user = User.where(facebook_uid: @owner)
     photo = FbGraph::Photo.fetch(@photo_identifier, :access_token => user.access_token)
-
-    # access_tokens = {
-    #   'artiwarah' => 'AAACEdEose0cBAKn1hCJfyz0f0hEwmUdkWJ2T4MZABdq91o7gcAsF5VN0yztxsRQ3FP5b7zWLIH0sZAdopm7wWrXYYqh19y2W38OnDvIF2ZA5PM51RhN',
-    #   'chanisa.suwannarang' => 'AAACEdEose0cBALkX2Mv6POymslNw0BjBEbj83vaaViVmvPnPs7xrWhcDrTfMo74tMnarocZAwxYR5MSTmyZBfIjIrNnXDjTKZAf7hdYO2k7ZBziZAQIL4',
-    #   'eadheat' => 'AAACEdEose0cBAEugnK8l278ZB90FWsUbrdT7fpcpCwZBCy8DXgRRg6it9zZBMWb5uhBTgKzaKk23MlP5TyhNl4s9XzC4TQNRERqZAw77BE2wVH4cPfPE'
-    # }
 
     @photo_description = photo.name
     photo.images.each do |image|

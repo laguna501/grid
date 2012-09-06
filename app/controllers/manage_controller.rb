@@ -7,7 +7,7 @@ class ManageController < ActionController::Base
     @client = client
 
     redirect_to @client.authorization_uri(
-      :scope => [:email, :user_photos, :read_stream]
+      :scope => [:email, :user_photos]
     )
   end
 
@@ -19,11 +19,15 @@ class ManageController < ActionController::Base
 
     user = User.where(facebook_uid: fb_user.username).first
     if user.blank?
-     	user = User.new(facebook_uid: fb_user.username, email: fb_user.email, access_token: fb_user.access_token.access_token, user_type: "pro")
+     	user = User.new
+      user.facebook_uid = fb_user.username
+      user.email = fb_user.email
+      user.access_token = fb_user.access_token.access_token
+      user.user_type = "pro"
      	user.save
   	else
-		user.access_token = fb_user.access_token.access_token
-		user.save
+  		user.access_token = fb_user.access_token.access_token
+  		user.save
     end
     redirect_to grids_url
   end
