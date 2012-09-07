@@ -70,7 +70,7 @@ class ManageController < ActionController::Base
 
           # Net::HTTP.start( full_url.host ) { |http|
           #   resp = http.get( full_url.path )
-          #   open( '/photos/'+file_name, 'wb' ) { |file|
+          #   open( File.join(GRID::Application.config.upload_path, file_name), 'wb' ) { |file|
           #     file.write(resp.body)
           #   }
           # }

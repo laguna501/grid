@@ -34,4 +34,6 @@ GRID::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  config.upload_path = Rails.root.join("tmp")
 end
