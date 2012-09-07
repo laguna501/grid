@@ -1,6 +1,5 @@
 class ManageController < ActionController::Base
   layout 'application'
-  before_filter :fetch_users, :fetch_photos, :save_photos,  only: :pull_photos
 
   def index; end
 
@@ -34,41 +33,26 @@ class ManageController < ActionController::Base
   end
 
   def pull_photos
-    redirect_to grids_url
-  end
-
-  private
-  def client
-    fb_auth = FbGraph::Auth.new('135259466618586', '5c7369efc1f535f76e7640779cfd97e4')
-    client = fb_auth.client
-    client.redirect_uri = "http://grid.swiftlet.co.th/manage/callback"
-    client
-  end
-
-  def fetch_users
-    users = User.where('access_token IS NOT NULL')
+    users = User.where("access_token IS NOT NULL")
     @fb_users = Hash.new
     users.each do |user|
       @fb_users[user.facebook_uid] = FbGraph::User.fetch(user.facebook_uid, :access_token => user.access_token)
     end
-  end
 
-  def fetch_photos
     Photo.destroy_all
     
     @user_photos = Hash.new
     @fb_users.each do |facebook_uid, user|
       @user_photos[facebook_uid] = []
-      user.albums.each do |album|
-        album.photos.each do |photo|
-          next unless photo.name =~ /#grid/           #fixed description must have #grid word
-          @user_photos[facebook_uid] << photo
-        end
+      album = user.albums.detect do |album|
+        album.name =~ /Cover Photo/
+      end
+      album.photos.each do |photo|
+        next unless photo.name =~ /#grid/           #fixed description must have #grid word
+        @user_photos[facebook_uid] << photo
       end
     end
-  end
 
-  def save_photos
     @user_photos.each do |facebook_uid, photos|
       photos.each do |photo| 
         user_photo = Photo.new
@@ -105,6 +89,16 @@ class ManageController < ActionController::Base
         user_photo.save
       end 
     end 
+
+    redirect_to grids_url
+  end
+
+  private
+  def client
+    fb_auth = FbGraph::Auth.new('135259466618586', '5c7369efc1f535f76e7640779cfd97e4')
+    client = fb_auth.client
+    client.redirect_uri = "http://grid.swiftlet.co.th/manage/callback"
+    client
   end
 
 end
