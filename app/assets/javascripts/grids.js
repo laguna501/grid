@@ -21,10 +21,22 @@ Grids = {
       sortBy : 'random'
     });
   },
+  allUser: function(){
+    Grids.clearUser();
+  },
+  facebookUser: function(){
+    Grids.clearUser();
+    $(this).addClass('checked');
+  },
+  clearUser: function(){
+    $('[id^=facebook_uid]').removeClass('checked');
+  },
   init: function() {
     Grids.changeLayoutMode('masonry');
     $('div.layouts').click(Grids.layout);
     $('div.filters').click(Grids.filter);
+    $('[id^=facebook_uid]').click(Grids.facebookUser);
+    $('#show-all-user').click(Grids.allUser);
 
     (function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];

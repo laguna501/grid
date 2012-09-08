@@ -3,15 +3,24 @@
   <section id="options" class="clearfix">
     <div id="layouts" class="option-set clearfix" data-option-key="layoutMode">
       <h4>Layout: </h4>
-      <div class="layouts" data-option-value="masonry" class="selected">masonry</div>
-      <div class="layouts" data-option-value="fitRows">fitRows</div>
+      <div id="grid-masonry" class="layouts selected" data-option-value="masonry">masonry</div>
+      <div id="grid-fitrows" class="layouts" data-option-value="fitRows">fitRows</div>
     </div>
   </section>
 
-  <div id="filters" class="option-set clearfix" data-option-key="filterMode">
-    <div class="filters" data-option-value="*">Show all</div>
+  <div id="filter" class="option-set clearfix" data-option-key="filterMode">
+    <div class="filters" data-option-value="*">
+      <button id="show-all-user" class="btn btn-small btn-primary" type="button">Show all</button>
+    </div>
+
     <% @user_photos.keys.sort.each do |facebook_uid| %>
-      <div class="filters" data-option-value="<%= facebook_uid %>"><%= facebook_uid %></div>
+      <div class="filters" data-option-value="<%= facebook_uid %>">
+        <p>
+          <button id="facebook_uid-<%= facebook_uid %>" class="btn btn-small" type="button"><%= facebook_uid %></button>
+          <button id="facebook_uid-Anemone" class="btn btn-small" type="button">Eadheat Anemone</button>
+          <button id="facebook_uid-Eadheat" class="btn btn-small" type="button">Eadheat</button>
+        </p>
+      </div>
     <% end %>
   </div>
 

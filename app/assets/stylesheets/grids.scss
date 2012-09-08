@@ -58,31 +58,24 @@
     margin: 0;
   }
 
-  #layouts {
+  #layouts {    
     float: right;
 
-    h4, div.layouts {
+    h4 {
       float: left;
-      margin: 10px;
+      margin: 10px;  
+      color: $font-black-color;   
     }
     div.layouts {
-      cursor: pointer;
-    }
-  }
-
-  #filters {
-    clear: both;
-
-    h4, div.filters {
       float: left;
-      margin: 10px;
+      margin: 10px; 
+      cursor: pointer;    
+      color: $grid-layout;  
     }
 
-    div.filters {
-      cursor: pointer;
-      border: solid 1px gray;
-      border-radius: 3px;
-      padding: 3px;
+    div.layouts:hover {
+      cursor: pointer; 
+      color: $font-blue-color;  
     }
   }
 
@@ -173,31 +166,97 @@ div.fb-like {
   margin: 10px auto;
 }
 
-.btn {
-  height: 100px !important;
-  margin: 10px;
-  background-color: $girl-grid-color !important;
-  background-image: -moz-linear-gradient(center top , $girl-grid-color-gradient_1, $girl-grid-color-gradient_2) !important;
-  color: $font-black-color !important;
+#grid{
+  .btn {
+    height: 100px !important;
+    margin: 10px;
+    background-color: $girl-grid-color !important;
+    background-image: -moz-linear-gradient(center top , $girl-grid-color-gradient_1, $girl-grid-color-gradient_2) !important;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from($girl-grid-color-gradient_1), to($girl-grid-color-gradient_2));
+    background-image: -webkit-linear-gradient(top, $girl-grid-color-gradient_1, $girl-grid-color-gradient_2);
+    background-image: -o-linear-gradient(top, $girl-grid-color-gradient_1, $girl-grid-color-gradient_2);
+    background-image: linear-gradient(to bottom, $girl-grid-color-gradient_1, $girl-grid-color-gradient_2);
+    color: $font-white-color !important;
+  }
+
+  .btn:hover {
+    color: $font-white-color !important;
+    background-color: $girl-grid-color-gradient_2 !important;
+    *background-color: $girl-grid-color-hover !important;
+  }
+
+  .btn-primary {
+    color: $font-white-color !important;
+    background-color: $pro-grid-color !important;
+    background-image: -moz-linear-gradient(center top , $pro-grid-color-gradient_1, $pro-grid-color-gradient_2) !important;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from($pro-grid-color-gradient_1), to($pro-grid-color-gradient_2));
+    background-image: -webkit-linear-gradient(top, $pro-grid-color-gradient_1, $pro-grid-color-gradient_2);
+    background-image: -o-linear-gradient(top, $pro-grid-color-gradient_1, $pro-grid-color-gradient_2);
+    background-image: linear-gradient(to bottom, $pro-grid-color-gradient_1, $pro-grid-color-gradient_2);
+  }
+
+  .btn-primary:hover {
+    color: $font-white-color !important;
+    background-color: $pro-grid-color-gradient_2 !important;
+    *background-color: $pro-grid-color-hover !important;
+  }
 }
 
-.btn:hover {
-  color: $girl-font-black-color !important;
-  background-color: $girl-grid-color-gradient_2 !important;
-  *background-color: $girl-grid-color-hover !important;
+#filter{
+  .btn {
+    height: 26px;
+    margin: 5px;
+    background-color: $user-btn-color;
+    background-image: -moz-linear-gradient(center top , $user-btn-color-gradient_1, $user-btn-color-gradient_2);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from($user-btn-color-gradient_1), to($user-btn-color-gradient_2));
+    background-image: -webkit-linear-gradient(top, $user-btn-color-gradient_1, $user-btn-color-gradient_2);
+    background-image: -o-linear-gradient(top, $user-btn-color-gradient_1, $user-btn-color-gradient_2);
+    background-image: linear-gradient(to bottom, $user-btn-color-gradient_1, $user-btn-color-gradient_2);
+    color: $font-black-color;
+  }
+
+  .btn:hover {
+    color: $font-black-color;
+    background-color: $user-btn-color-gradient_2;
+    *background-color: $user-btn-color-hover;
+  } 
+
+  .btn-primary {
+    color: $font-white-color;
+    background-color: $pro-grid-color;
+    background-image: -moz-linear-gradient(center top , $pro-grid-color-gradient_1, $pro-grid-color-gradient_2);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from($pro-grid-color-gradient_1), to($pro-grid-color-gradient_2));
+    background-image: -webkit-linear-gradient(top, $pro-grid-color-gradient_1, $pro-grid-color-gradient_2);
+    background-image: -o-linear-gradient(top, $pro-grid-color-gradient_1, $pro-grid-color-gradient_2);
+    background-image: linear-gradient(to bottom, $pro-grid-color-gradient_1, $pro-grid-color-gradient_2);
+  }
+
+  .btn-primary:hover {
+    color: $font-white-color;
+    background-color: $pro-grid-color-gradient_2;
+    *background-color: $pro-grid-color-hover;
+  }
+
+  .checked {
+    color: $font-black-color;
+    background-color: $botton-user-gradient_1;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from($botton-user-gradient_1), to($botton-user-gradient_2));
+    background-image: -webkit-linear-gradient(top, $botton-user-gradient_1, $botton-user-gradient_2);
+    background-image: -o-linear-gradient(top, $botton-user-gradient_1, $botton-user-gradient_2);
+    background-image: linear-gradient(to bottom, $botton-user-gradient_1, $botton-user-gradient_2);
+    background-image: -moz-linear-gradient(top, $botton-user-gradient_1, $botton-user-gradient_2);
+  }
+
+  .checked:hover {
+    color: $font-black-color;
+    background-color: $botton-user-gradient_2;
+    *background-color: $botton-user-gradient_1;
+  }
 }
 
-.btn-primary {
-  color: $font-white-color !important;
-  background-color: $pro-grid-color !important;
-  background-image: -moz-linear-gradient(center top , $pro-grid-color-gradient_1, $pro-grid-color-gradient_2) !important;
-}
 
-.btn-primary:hover {
-  color: $pro-font-white-color !important;
-  background-color: $pro-grid-color-gradient_2 !important;
-  *background-color: $pro-grid-color-hover !important;
-}
+
+
 
 
 
