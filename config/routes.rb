@@ -13,6 +13,14 @@ GRID::Application.routes.draw do
       get :callback
       get :extend_access_token
       get :pull_photos
+      get :callback_instagram
+      get :feed
+    end
+  end
+
+  resources :instagram, only: [:index] do
+    collection do
+      get :connect
     end
   end
 

@@ -18,6 +18,7 @@ gem 'capistrano'
 gem 'jquery-rails'
 gem 'mysql2'
 gem 'fb_graph'
+gem 'instagram'
 gem 'syslog-logger'
 gem 'unicorn'
 
