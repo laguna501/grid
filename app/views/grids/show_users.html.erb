@@ -15,9 +15,7 @@
 
     <% @user_photos.keys.sort.each do |username| %>
       <div class="filters" data-option-value="<%= username %>">
-        <p>
-          <button id="username-<%= username %>" class="btn btn-small" type="button"><%= username %></button>
-        </p>
+        <button id="username-<%= username %>" class="btn btn-small" type="button"><%= username %></button>
       </div>
     <% end %>
   </div>
