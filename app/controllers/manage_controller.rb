@@ -4,6 +4,8 @@ class ManageController < ActionController::Base
 
   def index; end
 
+  def get_access_token; end
+
   def extend_access_token
     @client = client
 
@@ -18,7 +20,7 @@ class ManageController < ActionController::Base
     access_token = @client.access_token! :client_auth_body # => Rack::OAuth2::AccessToken
     fb_user = FbGraph::User.me(access_token).fetch # => FbGraph::User
 
-    user = User.where(facebook_uid: fb_user.username).first
+    user = User.where(username: fb_user.username).first
     unless user.blank?
   		user.access_token = fb_user.access_token.access_token
   		user.save
@@ -44,30 +46,29 @@ class ManageController < ActionController::Base
     users = User.where("access_token IS NOT NULL").where(social_type: "facebook")
     @fb_users = Hash.new
     users.each do |user|
-      next unless user.check_access_token
-      @fb_users[user.facebook_uid] = FbGraph::User.fetch(user.facebook_uid, :access_token => user.access_token)
+      @fb_users[user.username] = FbGraph::User.fetch(user.username, :access_token => user.access_token)
     end
 
     Photo.destroy_all
     
     @user_photos = Hash.new
-    @fb_users.each do |facebook_uid, user|
-      @user_photos[facebook_uid] = []
+    @fb_users.each do |username, user|
+      @user_photos[username] = []
       album = user.albums.detect do |album|
         album.name =~ /Cover Photo/
       end
       album.photos.each do |photo|
         next unless photo.name =~ /#grid/           #fixed description must have #grid word
-        @user_photos[facebook_uid] << photo
+        @user_photos[username] << photo
       end
     end
 
-    @user_photos.each do |facebook_uid, photos|
+    @user_photos.each do |username, photos|
       photos.each do |photo| 
         user_photo = Photo.new
         user_photo.identifier = photo.identifier
         user_photo.description = photo.name
-        user_photo.user = User.where(facebook_uid: facebook_uid).first
+        user_photo.user = User.where(username: username).first
         photo.images.each do |image| 
           user_photo.photo_type = image.height > image.width ? "portrait" : "landscape" 
           next unless image.width <= 780 && 600 < image.width
@@ -82,8 +83,8 @@ class ManageController < ActionController::Base
           break
         end
 
-        user_photo.full = user_photo.save_file(facebook_uid, user_photo.full)
-        user_photo.thumbnail = user_photo.save_file(facebook_uid, user_photo.thumbnail)
+        user_photo.full = user_photo.save_file(username, user_photo.full)
+        user_photo.thumbnail = user_photo.save_file(username, user_photo.thumbnail)
         user_photo.save
       end 
     end 

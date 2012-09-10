@@ -8,14 +8,14 @@ class GridsController < ActionController::Base
     users = User.includes(:photos).where(user_type: @type).where("access_token IS NOT NULL")
     @user_photos = Hash.new
     users.each do |user|
-      @user_photos[user.facebook_uid] = user.photos
+      @user_photos[user.username] = user.photos
     end
   end
 
   def show_photo
     @photo_identifier = params['identifier']
     @owner = params['owner']
-    user = User.where(facebook_uid: @owner).first
+    user = User.where(username: @owner).first
     photo = FbGraph::Photo.fetch(@photo_identifier, :access_token => user.access_token)
 
     @photo_description = photo.name

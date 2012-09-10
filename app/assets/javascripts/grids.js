@@ -29,7 +29,7 @@ Grids = {
     $(this).addClass('checked');
   },
   clearUser: function(){
-    $('[id^=facebook_uid]').removeClass('checked');
+    $('[id^=username]').removeClass('checked');
   },
   init: function() {
     (function(d, s, id) {
@@ -43,7 +43,7 @@ Grids = {
     Grids.changeLayoutMode('masonry');
     $('div.layouts').click(Grids.layout);
     $('div.filters').click(Grids.filter);
-    $('[id^=facebook_uid]').click(Grids.facebookUser);
+    $('[id^=username]').click(Grids.facebookUser);
     $('#show-all-user').click(Grids.allUser);
   }
 }

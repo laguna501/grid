@@ -12,6 +12,7 @@ GRID::Application.routes.draw do
     collection do
       get :callback
       get :extend_access_token
+      get :get_access_token
       get :pull_photos
       get :callback_instagram
       get :feed
