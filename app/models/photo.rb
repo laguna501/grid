@@ -10,12 +10,13 @@ class Photo < ActiveRecord::Base
     file_path = nil
     Net::HTTP.start( full_url.host ) { |http|
       resp = http.get( full_url.path )
-      directory_name = File.join( GRID::Application.config.upload_path, username )
-      Dir.mkdir(directory_name) unless File.exists?(directory_name)
+      directory_name = File.join( Rails.root.join(*%w(public assets uploads)), username )
+      FileUtils.mkdir_p(directory_name) unless File.exists?(directory_name)
       open( File.join(directory_name, file_name), 'wb' ) { |file|
         file.write(resp.body)
       }
       file_path = [directory_name, file_name].join("/")
+      file_path = file_path.gsub(Rails.root.join(*%w(public)).to_s, "")
     } 
     return file_path
   end

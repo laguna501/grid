@@ -16,12 +16,9 @@ class GridsController < ActionController::Base
     @photo_identifier = params['identifier']
     @owner = params['owner']
     user = User.where(username: @owner).first
-    photo = FbGraph::Photo.fetch(@photo_identifier, :access_token => user.access_token)
+    photo = Photo.where(identifier: @photo_identifier, user_id: user).first
 
-    @photo_description = photo.name
-    photo.images.each do |image|
-      next unless image.width <= 780 && 600 < image.width
-      @user_photo = image and break
-    end
+    @photo_description = photo.description
+    @user_photo = photo.full
   end
 end
