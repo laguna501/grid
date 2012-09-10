@@ -19,14 +19,7 @@ class ManageController < ActionController::Base
     fb_user = FbGraph::User.me(access_token).fetch # => FbGraph::User
 
     user = User.where(facebook_uid: fb_user.username).first
-    if user.blank?
-     	user = User.new
-      user.facebook_uid = fb_user.username
-      user.email = fb_user.email
-      user.access_token = fb_user.access_token.access_token
-      user.user_type = "pro"
-     	user.save
-  	else
+    unless user.blank?
   		user.access_token = fb_user.access_token.access_token
   		user.save
     end
@@ -51,6 +44,7 @@ class ManageController < ActionController::Base
     users = User.where("access_token IS NOT NULL").where(social_type: "facebook")
     @fb_users = Hash.new
     users.each do |user|
+      next unless user.check_access_token
       @fb_users[user.facebook_uid] = FbGraph::User.fetch(user.facebook_uid, :access_token => user.access_token)
     end
 
@@ -76,20 +70,6 @@ class ManageController < ActionController::Base
         user_photo.user = User.where(facebook_uid: facebook_uid).first
         photo.images.each do |image| 
           user_photo.photo_type = image.height > image.width ? "portrait" : "landscape" 
-
-          # require 'uri'
-          # require 'net/http'
-
-          # full_url = URI.parse(image.source)
-          # file_name = full_url.path.split("/").last
-
-          # Net::HTTP.start( full_url.host ) { |http|
-          #   resp = http.get( full_url.path )
-          #   open( File.join(GRID::Application.config.upload_path, file_name), 'wb' ) { |file|
-          #     file.write(resp.body)
-          #   }
-          # }
-
           next unless image.width <= 780 && 600 < image.width
           user_photo.full = image.source
           break
@@ -101,6 +81,9 @@ class ManageController < ActionController::Base
           user_photo.thumbnail = image.source
           break
         end
+
+        user_photo.full = user_photo.save_file(facebook_uid, user_photo.full)
+        user_photo.thumbnail = user_photo.save_file(facebook_uid, user_photo.thumbnail)
         user_photo.save
       end 
     end 
