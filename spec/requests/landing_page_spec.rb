@@ -7,8 +7,8 @@ describe "Test Landing page which branches out to Pros and Girls", js: true do
       visit ("/")
       current_path.should == "/"
       page.should have_css("#grid" , :text => "Grid")
-      page.should have_css("#pro" , :text => "Pro Grid")
-      page.should have_css("#girl" , :text => "Girl Grid")
+      page.should have_css("#grid" , :text => "Pro Grid")
+      page.should have_css("#grid" , :text => "Girl Grid")
     end
   end
 end
