@@ -31,6 +31,7 @@ group :development, :test, :staging do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'database_cleaner'
+  gem 'shoulda-matchers'
 end
 
 group :ubuntu do

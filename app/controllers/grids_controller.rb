@@ -10,8 +10,6 @@ class GridsController < ActionController::Base
     accounts.each do |account|
       @user_photos[account.username] = account.photos
     end
-    require 'pp'
-    pp @user_photos
   end
 
   def show_photo
