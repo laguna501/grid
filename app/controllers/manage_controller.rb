@@ -1,10 +1,10 @@
 class ManageController < ActionController::Base
   layout 'application'
-  CALLBACK_URL = "https://grid.swiftlet.co.th/manage/callback_instagram"
 
   def index; end
 
-  def get_access_token; end
+  def get_access_token_facebook; end
+  def get_access_token_instagram; end
 
   def extend_access_token
     @client = client
@@ -28,21 +28,8 @@ class ManageController < ActionController::Base
     redirect_to grids_url
   end
 
-  def callback_instagram    
-    response = Instagram.get_access_token(params[:code], :redirect_uri => CALLBACK_URL)    
-    @access_token_instagram = response.access_token
-
-    client = Instagram.client(:access_token => @access_token_instagram)
-    ig_user = client.user
-
-    user = User.where(username: ig_user.username, social_type: "instagram").first
-    user.access_token = @access_token_instagram
-    user.save
-
-    redirect_to grids_url
-  end
-
   def pull_photos
+    #Pull from facebook
     users = User.includes(:photos).where("access_token IS NOT NULL").where(social_type: "facebook")
     @fb_users = Hash.new
     users.each do |user|
@@ -72,7 +59,7 @@ class ManageController < ActionController::Base
         user_photo.user = user
         photo.images.each do |image| 
           user_photo.photo_type = image.height > image.width ? "portrait" : "landscape" 
-          next unless image.width <= 780 && 600 < image.width
+          next unless image.width <= 780
           user_photo.full = image.source
           break
         end 
@@ -84,13 +71,17 @@ class ManageController < ActionController::Base
           break
         end
 
-        user_photo.full = user_photo.save_file(username, user_photo.full)
-        user_photo.thumbnail = user_photo.save_file(username, user_photo.thumbnail)
+        user_photo.full = user_photo.save_file(username, user_photo.full, user.social_type)
+        user_photo.thumbnail = user_photo.save_file(username, user_photo.thumbnail, user.social_type)
         user_photo.save
       end 
     end 
 
     redirect_to grids_url
+  end
+
+  def pull_photos_instagram
+    users = User.includes(:photos).where("access_token IS NOT NULL").where(social_type: "instagram")
   end
 
   private
