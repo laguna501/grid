@@ -59,5 +59,9 @@ module GRID
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
     config.assets.prefix = "/grid"
+
+    config.notifier_default_host = "localhost"
+    config.notifier_default_port = "3000"
+    config.notifier_from_field = "do-not-reply@theknowledge.in.th"
   end
 end
