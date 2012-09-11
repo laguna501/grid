@@ -49,7 +49,7 @@ class ManageController < ActionController::Base
       @fb_users[user.username] = FbGraph::User.fetch(user.username, :access_token => user.access_token)
     end
 
-    Photo.destroy_all
+    all_photo = Photo.all.map(&:identifier)
     
     @user_photos = Hash.new
     @fb_users.each do |username, user|
@@ -59,6 +59,7 @@ class ManageController < ActionController::Base
       end
       album.photos.each do |photo|
         next unless photo.name =~ /#grid/           #fixed description must have #grid word
+        next if all_photo.include?(photo.identifier)
         @user_photos[username] << photo
       end
     end
