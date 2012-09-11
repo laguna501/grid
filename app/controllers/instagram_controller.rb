@@ -22,9 +22,9 @@ class InstagramController < ActionController::Base
     client = Instagram.client(:access_token => @access_token_instagram)
     ig_user = client.user
 
-    user = User.where(username: ig_user.username, social_type: "instagram").first
-    user.access_token = @access_token_instagram
-    user.save
+    account = Account.where(username: ig_user.username, social_type: "instagram").first
+    account.access_token = @access_token_instagram
+    account.save
 
     redirect_to grids_url
   end

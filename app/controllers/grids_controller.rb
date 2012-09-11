@@ -5,18 +5,20 @@ class GridsController < ActionController::Base
 
   def show_users
     @type = params[:type]
-    users = User.includes(:photos).where(user_type: @type).where("access_token IS NOT NULL")
+    accounts = Account.includes(:user).includes(:photos).where("users.user_type = ?", @type).where("access_token IS NOT NULL")
     @user_photos = Hash.new
-    users.each do |user|
-      @user_photos[user.username] = user.photos
+    accounts.each do |account|
+      @user_photos[account.username] = account.photos
     end
+    require 'pp'
+    pp @user_photos
   end
 
   def show_photo
     @photo_identifier = params['identifier']
     @owner = params['owner']
-    user = User.where(username: @owner).first
-    photo = Photo.where(identifier: @photo_identifier, user_id: user).first
+    account = Account.where(username: @owner).first
+    photo = Photo.where(identifier: @photo_identifier, account_id: account).first
 
     @photo_description = photo.description
     @user_photo = photo.full

@@ -20,20 +20,20 @@ class ManageController < ActionController::Base
     access_token = @client.access_token! :client_auth_body # => Rack::OAuth2::AccessToken
     fb_user = FbGraph::User.me(access_token).fetch # => FbGraph::User
 
-    user = User.where(username: fb_user.username).first
-    unless user.blank?
-  		user.access_token = fb_user.access_token.access_token
-  		user.save
+    account = Account.where(username: fb_user.username, social_type: "facebook").first
+    unless account.blank?
+  		account.access_token = fb_user.access_token.access_token
+  		account.save
     end
     redirect_to grids_url
   end
 
   def pull_photos
     #Pull from facebook
-    users = User.includes(:photos).where("access_token IS NOT NULL").where(social_type: "facebook")
+    accounts = Account.includes(:photos).where("access_token IS NOT NULL").where(social_type: "facebook")
     @fb_users = Hash.new
-    users.each do |user|
-      @fb_users[user.username] = FbGraph::User.fetch(user.username, :access_token => user.access_token)
+    accounts.each do |account|
+      @fb_users[account.username] = FbGraph::User.fetch(account.username, :access_token => account.access_token)
     end
     
     @user_photos = Hash.new
@@ -49,14 +49,14 @@ class ManageController < ActionController::Base
     end
 
     @user_photos.each do |username, photos|
-      user = User.includes(:photos).where(username: username).first
-      all_photo = user.photos.map(&:identifier)
+      account = Account.includes(:photos).where(username: username).first
+      all_photo = account.photos.map(&:identifier)
       photos.each do |photo| 
         next if all_photo.include?(photo.identifier)
         user_photo = Photo.new
         user_photo.identifier = photo.identifier
         user_photo.description = photo.name
-        user_photo.user = user
+        user_photo.account = account
         photo.images.each do |image| 
           user_photo.photo_type = image.height > image.width ? "portrait" : "landscape" 
           next unless image.width <= 780
@@ -71,8 +71,8 @@ class ManageController < ActionController::Base
           break
         end
 
-        user_photo.full = user_photo.save_file(username, user_photo.full, user.social_type)
-        user_photo.thumbnail = user_photo.save_file(username, user_photo.thumbnail, user.social_type)
+        user_photo.full = user_photo.save_file(username, user_photo.full, account.social_type)
+        user_photo.thumbnail = user_photo.save_file(username, user_photo.thumbnail, account.social_type)
         user_photo.save
       end 
     end 
@@ -81,7 +81,7 @@ class ManageController < ActionController::Base
   end
 
   def pull_photos_instagram
-    users = User.includes(:photos).where("access_token IS NOT NULL").where(social_type: "instagram")
+    accounts = Account.includes(:photos).where("access_token IS NOT NULL").where(social_type: "instagram")
   end
 
   private

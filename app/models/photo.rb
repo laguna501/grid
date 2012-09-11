@@ -1,5 +1,5 @@
 class Photo < ActiveRecord::Base
-  belongs_to :user, inverse_of: :photos
+  belongs_to :account, inverse_of: :photos
 
   def save_file(username, source, social_type)
 	require 'uri'
