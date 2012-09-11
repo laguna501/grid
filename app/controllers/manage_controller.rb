@@ -43,13 +43,11 @@ class ManageController < ActionController::Base
   end
 
   def pull_photos
-    users = User.where("access_token IS NOT NULL").where(social_type: "facebook")
+    users = User.includes(:photos).where("access_token IS NOT NULL").where(social_type: "facebook")
     @fb_users = Hash.new
     users.each do |user|
       @fb_users[user.username] = FbGraph::User.fetch(user.username, :access_token => user.access_token)
     end
-
-    all_photo = Photo.all.map(&:identifier)
     
     @user_photos = Hash.new
     @fb_users.each do |username, user|
@@ -59,17 +57,19 @@ class ManageController < ActionController::Base
       end
       album.photos.each do |photo|
         next unless photo.name =~ /#grid/           #fixed description must have #grid word
-        next if all_photo.include?(photo.identifier)
         @user_photos[username] << photo
       end
     end
 
     @user_photos.each do |username, photos|
+      user = User.includes(:photos).where(username: username).first
+      all_photo = user.photos.map(&:identifier)
       photos.each do |photo| 
+        next if all_photo.include?(photo.identifier)
         user_photo = Photo.new
         user_photo.identifier = photo.identifier
         user_photo.description = photo.name
-        user_photo.user = User.where(username: username).first
+        user_photo.user = user
         photo.images.each do |image| 
           user_photo.photo_type = image.height > image.width ? "portrait" : "landscape" 
           next unless image.width <= 780 && 600 < image.width
