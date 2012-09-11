@@ -28,7 +28,7 @@ class ManageController < ActionController::Base
     redirect_to grids_url
   end
 
-  def pull_photos
+  def pull_photos_facebook
     #Pull from facebook
     accounts = Account.includes(:photos).where("access_token IS NOT NULL").where(social_type: "facebook")
     @fb_users = Hash.new
@@ -65,8 +65,8 @@ class ManageController < ActionController::Base
         end 
 
         photo.images.each do |image| 
-          next if image.height < image.width && image.height > 200 
-          next if image.height > image.width && image.width > 200
+          next if image.height < image.width && image.height > 350 
+          next if image.height > image.width && image.width > 350
           user_photo.thumbnail = image.source
           break
         end
