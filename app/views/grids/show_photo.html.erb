@@ -8,7 +8,9 @@
   <div id="user_photo"><%= image_tag @user_photo %></div>
 
 <% unless @photo_description.blank? %>
+<hr />
   <div id="photo_description"><%= @photo_description %></div>
+  <hr />
 <% end %>
 
   <div class="fb-comments" data-href="https://grid.swiftlet.co.th/grids/show_photo?identifier=<%= @photo_identifier %>&owner=<%= @owner %>" data-num-posts="10" data-width="470">
