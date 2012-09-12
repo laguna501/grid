@@ -57,7 +57,7 @@ class ManageController < ActionController::Base
         user_photo.identifier = photo.identifier
         user_photo.description = photo.name
         user_photo.account = account
-        photo.images.each do |image| 
+        photo.images.sort_by(&:width).reverse.each do |image| 
           user_photo.photo_type = image.height > image.width ? "portrait" : "landscape" 
           next unless image.width <= 780
           user_photo.full = image.source
