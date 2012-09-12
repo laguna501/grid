@@ -46,6 +46,7 @@ Grids = {
     $('div.filters').click(Grids.filter);
     $('[id^=username]').click(Grids.facebookUser);
     $('#show-all-user').click(Grids.allUser);
+    setTimeout(function() {$('#show-all-user').click() }, 150);
   }
 }
 
