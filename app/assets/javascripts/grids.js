@@ -41,6 +41,7 @@ Grids = {
     }(document, 'script', 'facebook-jssdk'));
     
     Grids.changeLayoutMode('masonry');
+    $('#container').isotope({ filter: '*' });
     $('div.layouts').click(Grids.layout);
     $('div.filters').click(Grids.filter);
     $('[id^=username]').click(Grids.facebookUser);
