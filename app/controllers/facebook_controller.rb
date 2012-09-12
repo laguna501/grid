@@ -25,15 +25,14 @@ class FacebookController < ActionController::Base
   end
 
   def facebook_account
-    @facebook_accounts = Account.where(social_type: "facebook")
+    @facebook_accounts = Account.includes(:user).where(social_type: "facebook")
   end
 
   def access_token_expired    
     @facebook_accounts.each do |facebook_account|
       @token_life_time = (facebook_account.updated_at + 60.days) - Time.now
       next unless @token_life_time  < 4.days
-      @user = User.find(facebook_account.user_id)
-      @user.deliver_extend_facebook_access_token
+      facebook_account.deliver_extend_facebook_access_token
     end    
     head(:ok)
   end
@@ -42,8 +41,7 @@ class FacebookController < ActionController::Base
     @facebook_accounts.each do |facebook_account|
       @token_life_time = (facebook_account.updated_at + 60.days) - Time.now
       next unless @token_life_time  < 1.days
-      @user = User.find(facebook_account.user_id)
-      @user.deliver_facebook_report_to_admin
+      facebook_account.deliver_facebook_report_to_admin
     end    
     head(:ok)
   end

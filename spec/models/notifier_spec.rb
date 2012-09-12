@@ -5,7 +5,7 @@ describe Notifier do
       user = FactoryGirl.create(:user)
       account = FactoryGirl.create(:account, user: user)
 
-      Notifier.extend_facebook_access_token(user).deliver
+      Notifier.extend_facebook_access_token(account).deliver
 
       email = ActionMailer::Base.deliveries.first
       email.from.should == [Rails.configuration.notifier_from_field]
@@ -20,7 +20,7 @@ describe Notifier do
       user = FactoryGirl.create(:user)
       account = FactoryGirl.create(:account, user: user)
 
-      Notifier.extend_instagram_access_token(user).deliver
+      Notifier.extend_instagram_access_token(account).deliver
 
       email = ActionMailer::Base.deliveries.first
       email.from.should == [Rails.configuration.notifier_from_field]
@@ -35,13 +35,13 @@ describe Notifier do
       user = FactoryGirl.create(:user)
       account = FactoryGirl.create(:account, user: user)
 
-      Notifier.facebook_report_to_admin(user).deliver
+      Notifier.facebook_report_to_admin(account).deliver
 
       email = ActionMailer::Base.deliveries.first
       email.from.should == [Rails.configuration.notifier_from_field]
       email.to.should == [Rails.configuration.notifier_to_admin]
       email.subject.should == "#{user.email}'s access token was expired"
-      email.decoded.should include("#{user.email}'s access token was expired")
+      email.decoded.should include("#{account.username} #{user.email}'s access token was expired")
     end
   end
 end
