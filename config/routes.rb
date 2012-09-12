@@ -11,12 +11,15 @@ GRID::Application.routes.draw do
   resources :facebook, only: [:index] do
     collection do
       get :callback
+      get :access_token_expired
+      get :facebook_send_admin_email
     end
   end
 
   resources :instagram, only: [:index] do
     collection do
       get :callback
+      get :access_token_expired
     end
   end
 
