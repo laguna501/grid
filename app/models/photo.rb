@@ -1,7 +1,7 @@
 class Photo < ActiveRecord::Base
   belongs_to :account, inverse_of: :photos
 
-  def save_file(username, source, social_type)
+  def save_file(username, source, social_type, size)
 	require 'uri'
 	require 'net/http'
     full_url = URI.parse(source) rescue nil
@@ -10,7 +10,7 @@ class Photo < ActiveRecord::Base
     file_path = nil
     Net::HTTP.start( full_url.host ) { |http|
       resp = http.get( full_url.path )
-      directory_name = File.join( Rails.root.join(*%w(public assets uploads)), social_type, username )
+      directory_name = File.join( Rails.root.join(*%w(public assets uploads)), social_type, size, username )
       FileUtils.mkdir_p(directory_name) unless File.exists?(directory_name)
       open( File.join(directory_name, file_name), 'wb' ) { |file|
         file.write(resp.body)

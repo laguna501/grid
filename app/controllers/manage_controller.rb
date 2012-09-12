@@ -1,8 +1,6 @@
 class ManageController < ActionController::Base
   layout 'application'
 
-  def index; end
-
   def get_access_token_facebook; end
   def get_access_token_instagram; end
 
@@ -24,83 +22,6 @@ class ManageController < ActionController::Base
     unless account.blank?
   		account.access_token = fb_user.access_token.access_token
   		account.save
-    end
-    redirect_to grids_url
-  end
-
-  def pull_photos_facebook
-    #Pull from facebook
-    accounts = Account.includes(:photos).where("access_token IS NOT NULL").where(social_type: "facebook")
-    @fb_users = Hash.new
-    accounts.each do |account|
-      @fb_users[account.username] = FbGraph::User.fetch(account.username, :access_token => account.access_token)
-    end
-    
-    @user_photos = Hash.new
-    @fb_users.each do |username, user|
-      @user_photos[username] = []
-      album = user.albums.detect do |album|
-        album.name =~ /Cover Photo/
-      end
-      album.photos.each do |photo|
-        next unless photo.name =~ /#grid/           #fixed description must have #grid word
-        @user_photos[username] << photo
-      end
-    end
-
-    @user_photos.each do |username, photos|
-      account = Account.includes(:photos).where(username: username).first
-      all_photo = account.photos.map(&:identifier)
-      photos.each do |photo| 
-        next if all_photo.include?(photo.identifier)
-        user_photo = Photo.new
-        user_photo.identifier = photo.identifier
-        user_photo.description = photo.name
-        user_photo.account = account
-        photo.images.sort_by(&:width).reverse.each do |image| 
-          user_photo.photo_type = image.height > image.width ? "portrait" : "landscape" 
-          next unless image.width <= 780
-          user_photo.full = image.source
-          break
-        end 
-
-        photo.images.each do |image| 
-          next if image.height < image.width && image.height > 350 
-          next if image.height > image.width && image.width > 350
-          user_photo.thumbnail = image.source
-          break
-        end
-
-        user_photo.full = user_photo.save_file(username, user_photo.full, account.social_type)
-        user_photo.thumbnail = user_photo.save_file(username, user_photo.thumbnail, account.social_type)
-        user_photo.save
-      end 
-    end 
-
-    redirect_to grids_url
-  end
-
-  def pull_photos_instagram
-    accounts = Account.includes(:photos).where("access_token IS NOT NULL").where(social_type: "instagram")
-    accounts.each do |account|
-      client = Instagram.client(:access_token => account.access_token)
-      count = 20
-      until count < 20
-        all_photo = Photo.where(account_id: account.id).map(&:identifier)
-        medias = client.user_recent_media(options = {max_id: (all_photo.last rescue nil), count: 20})
-        medias.each do |media|
-          next if all_photo.include?(media.id)
-          next if media.caption.blank?
-          next unless media.caption.text =~ /#grid/
-          photo = Photo.new
-          photo.identifier = media.id
-          photo.account_id = account.id
-          photo.thumbnail = photo.save_file(account.username, media.images.low_resolution.url, account.social_type)
-          photo.full = photo.save_file(account.username, media.images.standard_resolution.url, account.social_type)
-          photo.save
-        end
-        count = medias.count
-      end
     end
     redirect_to grids_url
   end

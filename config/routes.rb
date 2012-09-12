@@ -14,8 +14,6 @@ GRID::Application.routes.draw do
       get :extend_access_token
       get :get_access_token_facebook
       get :get_access_token_instagram
-      get :pull_photos_facebook
-      get :pull_photos_instagram
     end
   end
 
