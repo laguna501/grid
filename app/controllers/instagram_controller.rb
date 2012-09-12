@@ -2,7 +2,7 @@ class InstagramController < ActionController::Base
   require "instagram"
   before_filter :connect, only: :index
 
-  CALLBACK_URL = "https://grid.swiftlet.co.th/instagram/callback_instagram"
+  CALLBACK_URL = "https://grid.swiftlet.co.th/instagram/callback"
 
   def index; end
 
@@ -15,7 +15,7 @@ class InstagramController < ActionController::Base
     redirect_to Instagram.authorize_url(:redirect_uri => CALLBACK_URL)
   end
 
-  def callback_instagram    
+  def callback  
     response = Instagram.get_access_token(params[:code], :redirect_uri => CALLBACK_URL)    
     @access_token_instagram = response.access_token
 

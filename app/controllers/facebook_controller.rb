@@ -1,10 +1,7 @@
-class ManageController < ActionController::Base
+class FacebookController < ActionController::Base
   layout 'application'
 
-  def get_access_token_facebook; end
-  def get_access_token_instagram; end
-
-  def extend_access_token
+  def index
     @client = client
 
     redirect_to @client.authorization_uri(
@@ -30,7 +27,7 @@ class ManageController < ActionController::Base
   def client
     fb_auth = FbGraph::Auth.new('135259466618586', '5c7369efc1f535f76e7640779cfd97e4')
     client = fb_auth.client
-    client.redirect_uri = "http://grid.swiftlet.co.th/manage/callback"
+    client.redirect_uri = "http://grid.swiftlet.co.th/facebook/callback"
     client
   end
 

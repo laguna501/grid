@@ -8,19 +8,15 @@ GRID::Application.routes.draw do
     end
   end
   
-  resources :manage, only: [:index] do
+  resources :facebook, only: [:index] do
     collection do
       get :callback
-      get :extend_access_token
-      get :get_access_token_facebook
-      get :get_access_token_instagram
     end
   end
 
   resources :instagram, only: [:index] do
     collection do
-      get :connect
-      get :callback_instagram
+      get :callback
     end
   end
 
