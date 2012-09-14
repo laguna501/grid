@@ -28,3 +28,12 @@ accounts.each do |account|
     end
   end
 end
+
+facebook_accounts = Account.includes(:user).where(social_type: "facebook")   
+facebook_accounts.each do |facebook_account|
+  token_life_time = (facebook_account.updated_at + 60.days) - Time.now
+  next unless token_life_time  < 4.days
+  facebook_account.deliver_extend_facebook_access_token
+  next unless token_life_time  < 1.days
+  facebook_account.deliver_facebook_report_to_admin
+end 
