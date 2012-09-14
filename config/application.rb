@@ -60,8 +60,8 @@ module GRID
     config.assets.version = '1.0'
     config.assets.prefix = "/grid"
 
-    config.notifier_default_host = "localhost"
-    config.notifier_default_port = "3000"
+    config.notifier_default_host = "grid.swiftlet.co.th"
+    config.notifier_default_port = "80"
     config.notifier_from_field = "do-not-reply@swiftlet.co.th"
     config.notifier_to_admin = "artiwarahd@swiftlet.co.th"
   end
