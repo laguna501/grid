@@ -28,15 +28,4 @@ class InstagramController < ActionController::Base
 
     redirect_to grids_url
   end
-
-  def access_token_expired
-    # instagram_accounts = Account.where(social_type: "instagram")
-    # instagram_accounts.each do |instagram_account|
-    #   token_life_time = (instagram_account.updated_at + 60.days) - Time.now
-    #   next unless (token_life_time  <= 3.days)
-    #   user = User.find(facebook_account.user_id)
-    #   user.deliver_extend_facebook_access_token
-    # end    
-    head(:ok)
-  end
 end

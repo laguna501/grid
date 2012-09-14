@@ -19,7 +19,6 @@ GRID::Application.routes.draw do
   resources :instagram, only: [:index] do
     collection do
       get :callback
-      get :access_token_expired
     end
   end
 

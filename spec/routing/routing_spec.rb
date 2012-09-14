@@ -26,12 +26,6 @@ describe "routing" do
   end
 
   describe "access_token_expired" do
-    it "routes instagram access_token_expired resources" do
-      get("/instagram/access_token_expired").should route_to("instagram#access_token_expired")
-    end
-  end  
-
-  describe "access_token_expired" do
     it "routes facebook access_token_expired resources" do
       get("/facebook/access_token_expired").should route_to("facebook#access_token_expired")
     end
