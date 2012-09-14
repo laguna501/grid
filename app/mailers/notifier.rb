@@ -7,6 +7,7 @@ class Notifier < ActionMailer::Base
     @account = account
     mail(
       to: account.user.email,
+      cc: Rails.configuration.notifier_to_admin,
       subject: "Extend facebook access token"
     )
   end
@@ -15,15 +16,8 @@ class Notifier < ActionMailer::Base
     @account = account
     mail(
       to: account.user.email,
+      cc: Rails.configuration.notifier_to_admin,
       subject: "Extend instagram access token"
-    )
-  end
-
-  def facebook_report_to_admin(account)
-    @account = account
-    mail(
-      to: Rails.configuration.notifier_to_admin,
-      subject: "#{@account.user.email}'s access token was expired"
     )
   end
 end
