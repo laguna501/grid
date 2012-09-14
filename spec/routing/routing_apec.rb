@@ -1,10 +1,5 @@
 require 'spec_helper'
 describe "routing" do
-  describe "manage" do
-    it "routes manages resources" do
-      get("/manage").should route_to("manage#index")
-    end
-  end
 
   describe "grids" do
     it "routes grids resources" do
@@ -18,45 +13,33 @@ describe "routing" do
     end
   end
 
-  describe "pull_photos_instagram" do
-    it "routes pull_photos_instagram resources" do
-      get("/manage/pull_photos_instagram").should route_to("manage#pull_photos_instagram")
-    end
-  end
-
-  describe "connect" do
-    it "routes connect resources" do
-      get("/instagram/connect").should route_to("instagram#connect")
-    end
-  end
-
-  describe "pull_photos" do
-    it "routes pull_photos resources" do
-      get("/manage/pull_photos").should route_to("manage#pull_photos")
-    end
-  end
-
-  describe "get_access_token_instagram" do
-    it "routes get_access_token_instagram resources" do
-      get("/manage/get_access_token_instagram").should route_to("manage#get_access_token_instagram")
-    end
-  end
-
-  describe "extend_access_token" do
-    it "routes extend_access_token resources" do
-      get("/manage/extend_access_token").should route_to("manage#extend_access_token")
+  describe "callback" do
+    it "routes facebook callback resources" do
+      get("/facebook/callback").should route_to("facebook#callback")
     end
   end
 
   describe "callback" do
-    it "routes callback resources" do
-      get("/manage/callback").should route_to("manage#callback")
+    it "routes instagram callback resources" do
+      get("/instagram/callback").should route_to("instagram#callback")
     end
   end
 
-  describe "callback_instagram" do
-    it "routes callback_instagram resources" do
-      get("/instagram/callback_instagram").should route_to("instagram#callback_instagram")
+  describe "access_token_expired" do
+    it "routes instagram access_token_expired resources" do
+      get("/instagram/access_token_expired").should route_to("instagram#access_token_expired")
+    end
+  end  
+
+  describe "access_token_expired" do
+    it "routes facebook access_token_expired resources" do
+      get("/facebook/access_token_expired").should route_to("facebook#access_token_expired")
+    end
+  end
+
+  describe "facebook_send_admin_email" do
+    it "routes facebook facebook_send_admin_email resources" do
+      get("/facebook/facebook_send_admin_email").should route_to("facebook#facebook_send_admin_email")
     end
   end
 end
