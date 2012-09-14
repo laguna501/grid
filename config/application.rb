@@ -62,7 +62,7 @@ module GRID
 
     config.notifier_default_host = "localhost"
     config.notifier_default_port = "3000"
-    config.notifier_from_field = "do-not-reply@swiflet.co.th"
-    config.notifier_to_admin = "sompornb@swiflet.co.th"
+    config.notifier_from_field = "do-not-reply@swiftlet.co.th"
+    config.notifier_to_admin = "artiwarahd@swiftlet.co.th"
   end
 end
