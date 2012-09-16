@@ -3,7 +3,7 @@ class Account < ActiveRecord::Base
   has_many :photos
 
   def social_type
-    self.class.to_s.gsub("Account", "").lowercase
+    self.class.to_s.gsub("Account", "").downcase
   end
 end
 

@@ -5,7 +5,7 @@ class Photo < ActiveRecord::Base
   belongs_to :account, inverse_of: :photos
 
   def self.save_file(username, source, social_type, size)
-    full_url = URI.parse(source) rescue return nil
+    full_url = URI.parse(source) rescue (return nil)
     directory_name = Rails.root.join(*%w(public assets uploads #{social_type} #{size} #{username}))
     file_name = full_url.path.split("/").last
 
