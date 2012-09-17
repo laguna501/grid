@@ -60,7 +60,7 @@
 
   #layouts {    
     float: right;
-    padding-right: 4px;
+    padding-right: 8px;
 
     h4 {
       float: left;
@@ -93,7 +93,7 @@
       width: 150px;
       border: solid 1px gray;
       border-radius: 3px;
-      margin: 4px;
+      margin: 3.5px;
     }
   }
 }
@@ -172,6 +172,7 @@ div.fb-like {
 
 #grid{
   .btn {
+    width: 790px;
     height: 100px !important;
     margin: 10px;
     background-color: $girl-grid-color !important;
