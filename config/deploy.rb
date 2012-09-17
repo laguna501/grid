@@ -80,7 +80,7 @@ namespace :deploy do
     Rewrite the db/seeds.rb for new data migration each release.
   DESC
   task :seed, :roles => :db do
-    run "cd #{directory} && #{rake} RAILS_ENV=#{rails_env} db:seed"
+    run "cd #{current_path} && #{rake} RAILS_ENV=#{rails_env} db:seed"
   end
 end
 
