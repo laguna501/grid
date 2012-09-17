@@ -8,7 +8,7 @@ class GridsController < ActionController::Base
     accounts = Account.includes(:user).includes(:photos).where("users.user_type = ?", @type).where("access_token IS NOT NULL")
     @user_photos = Hash.new
     accounts.each do |account|
-      @user_photos[account.user.nickname] = account.photos
+      @user_photos[account.username] = account.photos
     end
   end
 
