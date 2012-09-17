@@ -2,8 +2,8 @@ FactoryGirl.define do
   sequence(:photo_identifier) {|n| "identifier #{n}" }
   sequence(:photo_description) {|n| "description #{n}" }
   factory :photo do
-    thumbnail {"http://s3.freefoto.com/images/05/45/05_45_3_web.jpg"}
-    full {"http://s3.freefoto.com/images/05/45/05_45_3_web.jpg"}
+    thumbnail {"/assets/rails.png"}
+   	full {"/assets/rails.png"}
     photo_type {"landscape"}
   end
 end
