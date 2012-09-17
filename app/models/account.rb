@@ -6,17 +6,3 @@ class Account < ActiveRecord::Base
     self.class.to_s.gsub("Account", "").downcase
   end
 end
-
-class InstagramAccount < Account
-  
-  def extend_access_token
-    Notifier.extend_instagram_access_token(self).deliver
-  end
-end
-
-class FacebookAccount < Account
-
-  def extend_access_token
-    Notifier.extend_facebook_access_token(self).deliver
-  end
-end

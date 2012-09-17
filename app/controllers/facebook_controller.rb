@@ -27,7 +27,7 @@ class FacebookController < ActionController::Base
   def client
     fb_auth = FbGraph::Auth.new('135259466618586', '5c7369efc1f535f76e7640779cfd97e4')
     client = fb_auth.client
-    client.redirect_uri = "http://grid.swiftlet.co.th/facebook/callback"
+    client.redirect_uri = "http://grid.swiftlet.co.th/facebook/callback1"
     client
   end  
 end
