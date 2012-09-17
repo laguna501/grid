@@ -1,4 +1,4 @@
-accounts = Account.includes(:photos).where("access_token IS NOT NULL").where(social_type: "instagram")
+accounts = InstagramAccount.includes(:photos).where("access_token IS NOT NULL")
 accounts.each do |account|
   client = Instagram.client(:access_token => account.access_token)
   count = 20
@@ -9,12 +9,12 @@ accounts.each do |account|
       next if all_photo.include?(media.id)
       next if media.caption.blank?
       next unless media.caption.text =~ /#grid/
-      photo = Photo.new
-      photo.identifier = media.id
-      photo.account_id = account.id
-      photo.thumbnail = photo.save_file(account.username, media.images.low_resolution.url, account.social_type, "full")
-      photo.full = photo.save_file(account.username, media.images.standard_resolution.url, account.social_type, "thumbnail")
-      photo.save
+      account.photos.create(
+        identifier: media.id,
+        account_id: account.id,
+        thumbnail: Photo.save_file(account.username, media.images.low_resolution.url, account.social_type, "full"),
+        full: Photo.save_file(account.username, media.images.standard_resolution.url, account.social_type, "thumbnail")
+      )
     end
     count = medias.count
   end

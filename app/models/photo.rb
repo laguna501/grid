@@ -1,7 +1,7 @@
 require 'uri'
 require 'net/http'
 class Photo < ActiveRecord::Base
-  attr_accessible :identifier, :description, :full, :thumbnail
+  attr_accessible :identifier, :description, :full, :thumbnail, :account_id
   belongs_to :account, inverse_of: :photos
 
   def self.save_file(username, source, social_type, size)
