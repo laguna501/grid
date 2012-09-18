@@ -20,7 +20,7 @@ class FacebookController < ActionController::Base
   		account.access_token = fb_user.access_token.access_token
   		account.save
     end
-    redirect_to grids_url
+    redirect_to grids_path
   end
 
   private

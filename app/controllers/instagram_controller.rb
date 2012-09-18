@@ -26,6 +26,6 @@ class InstagramController < ActionController::Base
     account.access_token = @access_token_instagram
     account.save
 
-    redirect_to grids_url
+    redirect_to grids_path
   end
 end

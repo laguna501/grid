@@ -26,7 +26,7 @@
         <div class="item <%= photo.photo_type %>" owner="<%= username %>">
           <%= link_to(
             image_tag(photo.thumbnail),
-            show_photo_grids_url(owner: username, identifier: photo.identifier), target: "_blank"
+            show_photo_grids_path(owner: username, identifier: photo.identifier), target: "_blank"
           ) %>
         </div>
       <% end %>
