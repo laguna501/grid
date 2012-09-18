@@ -127,6 +127,7 @@ div.fb-like {
   margin: 0 auto;
 
   #nickname {
+    clear: both;
     float: left;
     h1{
       margin: 0;
@@ -135,9 +136,11 @@ div.fb-like {
 
   #social_plugins {
     float: right;
+    clear: both;
   }
 
   #user_photo {
+    clear: both;
     text-align: center;
     img{
       border: solid 1px gray;
@@ -156,7 +159,7 @@ div.fb-like {
   }
 
   div.fb-comments {
-    margin: 2px 175px;
+    margin: 2px 30px;
     padding: 3px;
   }
 }
