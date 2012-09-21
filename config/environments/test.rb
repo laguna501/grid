@@ -36,8 +36,7 @@ GRID::Application.configure do
   config.active_support.deprecation = :stderr
 
   config.notifier_default_host = "grid.swiftlet.co.th"
-  config.notifier_default_port = 80
-  
+
   config.fb_app_id = "135259466618586"
   config.fb_app_secret = "5c7369efc1f535f76e7640779cfd97e4"
   config.fb_callback_url = "https://grid.swiftlet.co.th/facebook/callback"

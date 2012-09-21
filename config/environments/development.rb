@@ -39,7 +39,6 @@ GRID::Application.configure do
   config.upload_path = Rails.root.join("tmp")
 
   config.notifier_default_host = "grid.swiftlet.co.th"
-  config.notifier_default_port = 80
 
   config.fb_app_id = "135259466618586"
   config.fb_app_secret = "5c7369efc1f535f76e7640779cfd97e4"
