@@ -8,7 +8,7 @@ accounts.each do |account|
     medias.each do |media|
       next if all_photo.include?(media.id)
       next if media.caption.blank?
-      next unless media.caption.text =~ /#grid/
+      next unless media.caption.text =~ /#grid/i
       account.photos.create(
         identifier: media.id,
         account_id: account.id,
