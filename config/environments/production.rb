@@ -68,4 +68,15 @@ GRID::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   config.upload_path = Rails.root.join(*%w(.. shared uploads))
+
+  config.notifier_default_host = "learn.theknowledge.in.th"
+  config.notifier_default_port = 80
+
+  config.fb_app_id = "135259466618586"
+  config.fb_app_secret = "5c7369efc1f535f76e7640779cfd97e4"
+  config.fb_callback_url = "https://grid.swiftlet.co.th/facebook/callback"
+
+  config.ig_client_id = "cf32424d71d4445995bf58ec0e2a3bd2"
+  config.ig_client_secret = "5e0be7f1d1b74102acb324183cdf6c3f"
+  config.ig_callback_url = "https://grid.swiftlet.co.th/instagram/callback"
 end
