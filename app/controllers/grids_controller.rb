@@ -15,7 +15,7 @@ class GridsController < ActionController::Base
   def show_photo
     @photo_identifier = params['identifier']
     @owner = params['owner']
-    account = Account.where(username: @owner).first
+    account = Account.includes(:user).where("users.nickname = ?", @owner).first
     photo = Photo.where(identifier: @photo_identifier, account_id: account).first
 
     @photo_description = photo.description
