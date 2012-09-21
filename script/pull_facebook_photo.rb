@@ -22,5 +22,5 @@ accounts.each do |account|
 end
 
 FacebookAccount.includes(:user).each do |facebook_account|
-  (facebook_account.updated_at + (60 - 4).days < Time.now) || facebook_account.extend_access_token
-end 
+  facebook_account.extend_access_token if (facebook_account.updated_at + (60 - 4).days < Time.now)
+end  
