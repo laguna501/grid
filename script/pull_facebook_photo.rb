@@ -5,8 +5,6 @@ accounts.each do |account|
   next if fb_user.respond_to?(:error)
   albums = fb_user.albums
   albums.each do |album|
-require 'pp'
-pp album.name    
     photos = album.photos(limit: 1000).select {|photo| photo.name =~ /#grid/ && photos_by_identifier.exclude?(photo.identifier) }
     photos.each do |photo|
       images = photo.images.sort_by(&:width)
