@@ -69,7 +69,7 @@ GRID::Application.configure do
 
   config.upload_path = Rails.root.join(*%w(.. shared uploads))
 
-  config.notifier_default_host = "learn.theknowledge.in.th"
+  config.notifier_default_host = "grid.swiftlet.co.th"
   config.notifier_default_port = 80
 
   config.fb_app_id = "135259466618586"
