@@ -1,4 +1,5 @@
 //= require jquery.isotope.js
+//= require jquery.infinitescroll.js
 //= require bootstrap.js
 
 Grids = {

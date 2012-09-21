@@ -20,7 +20,7 @@
     <% end %>
   </div>
 
-  <div id="container">
+  <div id="container" class="infinite-scrolling">
     <% @user_photos.each do |username, photos|%>
       <% photos.each do |photo| %>
         <div class="item <%= photo.photo_type %>" owner="<%= username %>">
