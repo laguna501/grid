@@ -15,11 +15,13 @@ Grids = {
     return false;
   },
   changeLayoutMode: function(mode){
-    $('#container').isotope({
-      // options
-      itemSelector : '.item',
-      layoutMode : mode,
-      sortBy : 'random'
+    $('#container').imagesLoaded( function(){
+      $('#container').isotope({
+        // options
+        itemSelector : '.item',
+        layoutMode : mode,
+        sortBy : 'random'
+      });
     });
   },
   allUser: function(){
@@ -47,7 +49,6 @@ Grids = {
     $('div.filters').click(Grids.filter);
     $('[id^=username]').click(Grids.facebookUser);
     $('#show-all-user').click(Grids.allUser);
-    setTimeout(function() {$('#show-all-user').click() }, 800);
   }
 }
 
