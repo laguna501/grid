@@ -11,8 +11,8 @@ describe "Test show page", js: true  do
         thumbnail: "/assets/uploads/facebook/thumbnail/artiwarah/182869_3569852204790_1354565865_n.jpg",
         full: "/assets/uploads/facebook/full/artiwarah/182869_3569852204790_1354565865_n.jpg", account: account)
 
-      visit ("/grids/show_photo?identifier=9&owner=artiwarah")
-      page.should have_css("#nickname", :text => "artiwarah")
+      visit ("/grids/show_photo?identifier=9&owner=JOE")
+      page.should have_css("#nickname", :text => "JOE")
       page.should have_css("img[@alt='182869_3569852204790_1354565865_n']")
     end
 
@@ -26,8 +26,8 @@ describe "Test show page", js: true  do
         account: account
         )
 
-      visit ("/grids/show_photo?identifier=10&owner=fernzzzaa")
-      page.should have_css("#nickname", :text => "fernzzzaa")
+      visit ("/grids/show_photo?identifier=10&owner=FERN")
+      page.should have_css("#nickname", :text => "FERN")
       page.should have_css("img[@alt='9f599bd6fbc911e1a44612313804e8c1_6']")
     end
   end
