@@ -19,4 +19,8 @@ class Photo < ActiveRecord::Base
     end
     file_path.gsub(Rails.root.join("public").to_s, "")
   end
+
+  def status
+    return self.deleted ? "deleted" : "not deleted"
+  end
 end

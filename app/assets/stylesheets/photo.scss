@@ -1,0 +1,27 @@
+@import "variables";
+
+#photo_management {
+
+	div.photo_item {
+
+		padding: 2px 1px;
+		cursor: pointer;
+		display: inline-block;
+		vertical-align: top;
+		border: 1px solid $photo_item_border;
+		
+		.batch_box {
+			margin: 0;
+		}
+
+		img {
+			width: 190px;
+		}
+	}
+	div.photo_item[deleted="false"] {
+		background-color: $photo_item_bg_color_deleted;
+	}
+	div.photo_item[deleted="true"] {
+		background-color: $photo_item_bg_color_not_deleted;
+	}
+}

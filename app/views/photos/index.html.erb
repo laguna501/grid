@@ -1,0 +1,20 @@
+<h2>Photo Management</h2>
+<div id="photo_management">
+	<%= form_tag(photos_url) do %>
+		<% @photos.each do |photo| %>
+			<div class="photo_item" identifier=<%= photo.identifier %> deleted=<%= photo.deleted %> >
+				<div><%= check_box_tag("select[#{photo.identifier}]", value = 1, false, class: "batch_box") %></div>
+				<%= image_tag photo.thumbnail %>
+				<div><%= photo.account.user.nickname %></div>
+				<div>Identifier: <%= photo.identifier %></div>
+				<div><%= photo.status.titleize if photo.deleted %></div>
+			</div>
+		<% end %>
+		<div id="pagination">
+			<%= will_paginate @posts %>
+		</div>
+		<div id="buttons">
+			<%= submit_tag "Delete / Undelete Photos" %>
+		</div>
+	<% end %>
+</div>
