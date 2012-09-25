@@ -1,0 +1,9 @@
+<%- [:notice, :error].each do |kind| -%>
+  <%- unless flash[kind].blank? -%>
+  <div class="screen-only flash <%= kind %> frame">
+    <% [flash[kind]].flatten.each do |line| %>
+    <div><%= line %></div>
+    <% end %>
+  </div>
+  <%- end -%>
+<%- end -%>

@@ -22,7 +22,11 @@ GRID::Application.routes.draw do
     end
   end
 
-  resources :photos, only: [:index, :create]
+  resources :photos, only: [:index] do
+    collection do
+      post :change_status
+    end
+  end
 
   root to: "grids#index"
 end
