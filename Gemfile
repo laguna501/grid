@@ -21,11 +21,8 @@ gem 'fb_graph'
 gem 'instagram'
 gem 'syslog-logger'
 gem 'unicorn'
-<<<<<<< HEAD
 gem "will_paginate"
-=======
 gem 'authlogic'
->>>>>>> #36607657
 
 group :development, :test, :staging do
   # Pretty printed test output

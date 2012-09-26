@@ -1,11 +1,11 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(admin)
-    admin ||= Admin.new # guest user
+  def initialize(user)
+    # admin ||= Admin.new # guest user
 
 
-    can    :manage,            :all
+    # can    :manage,            :all
     
     # Define abilities for the passed in user here. For example:
     #
