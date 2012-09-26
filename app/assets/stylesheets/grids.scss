@@ -53,6 +53,8 @@
 }
 
 #show_users{
+  padding-left: 4px;
+  padding-right: 3px;
   h1 {
     float: left;
     margin: 0;
@@ -90,10 +92,11 @@
 
   div.item {
     img {
-      width: 150px;
+      width: 190px;
       border: solid 1px gray;
       border-radius: 3px;
-      margin: 3.5px;
+      margin-left: 2px;
+      margin-right: 3px;
     }
   }
 }
