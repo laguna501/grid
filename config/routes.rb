@@ -1,5 +1,6 @@
 GRID::Application.routes.draw do
 
+  resource :user_session, only: [:create, :new, :destroy]
   resources  :grids, only: [:index, :new, :create] do
     collection do
       get :show_users
