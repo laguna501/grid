@@ -5,7 +5,7 @@ class GridsController < ActionController::Base
 
   def show_users
     @type = params[:type]
-    accounts = Account.includes(:user).includes(:photos).where("users.user_type = ?", @type).where("access_token IS NOT NULL")
+    accounts = Account.includes(:user).includes(:photos).where("users.user_type = ?", @type).where("access_token IS NOT NULL").where("photos.deleted = ?", false)
     @user_photos = Hash.new
     accounts.each do |account|
       @user_photos[account.user.nickname] = account.photos
