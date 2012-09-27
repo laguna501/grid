@@ -1,4 +1,4 @@
-class FacebookController < ActionController::Base
+class FacebookController < ApplicationController
   layout 'application'
 
   def index

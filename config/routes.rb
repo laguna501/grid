@@ -29,5 +29,7 @@ GRID::Application.routes.draw do
     end
   end
 
+  resources :manage_admins, only: [:index, :new, :create, :edit, :update, :destroy]
+
   root to: "grids#index"
 end

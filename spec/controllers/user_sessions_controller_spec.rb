@@ -23,7 +23,7 @@ describe UserSessionsController do
         "password" => admin.password
       }
 
-      response.should redirect_to("/")
+      response.should redirect_to(photos_path)
     end
 
     it "redirect to the previous action if present" do

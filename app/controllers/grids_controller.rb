@@ -1,4 +1,4 @@
-class GridsController < ActionController::Base
+class GridsController < ApplicationController
   layout 'application'
 
   def index; end

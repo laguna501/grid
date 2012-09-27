@@ -1,0 +1,6 @@
+
+<tr>
+	<td><%= admin.username %></td>
+	<td><%= link_to("Edit", edit_manage_admin_url(admin)) %></td>
+	<td><%= link_to("Delete", manage_admin_url(admin), method: :delete, data: { confirm: "Are you sure?" }) %></td>
+</tr>

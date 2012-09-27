@@ -1,4 +1,4 @@
-class InstagramController < ActionController::Base
+class InstagramController < ApplicationController
   require "instagram"
   before_filter :connect, only: :index
 

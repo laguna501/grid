@@ -20,7 +20,7 @@ class UserSessionsController < ApplicationController
     destroy_session
 
     @user_session = UserSession.create(params[:user_session])
-    flash[:error] = "seccessfuly"
+    flash[:error] = "Login successful."
     redirect_back_or_default photos_path
   end
 
