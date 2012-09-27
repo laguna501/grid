@@ -1,6 +1,6 @@
-class PhotosController < ActionController::Base
+class PhotosController < ApplicationController
   before_filter :redirect_other_roles
-  authorize_resource class: false  
+  before_filter :require_user
   layout 'application'
 
   def index
@@ -20,7 +20,7 @@ class PhotosController < ActionController::Base
   end
 
   def redirect_other_roles
-    if (params[:id].blank?)
+    if (current_user.blank?)
         redirect_to(new_user_session_url)
     end    
   end
