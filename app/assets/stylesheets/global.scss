@@ -12,3 +12,11 @@ div.menu-admin {
   	margin-right: 10px;
   }
 }
+
+div.remember {
+	input, label{
+		margin: 0 2px;
+		display: inline-block;
+		vertical-align: middle;
+	}
+}
