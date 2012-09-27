@@ -8,10 +8,11 @@ class PhotosController < ApplicationController
   end
 
   def change_status
+    command = params[:commit] == "Delete Photos" ? true : false
   	if params[:select].present?
   		photos = Photo.find(:all, :conditions => ["identifier IN (?)", params[:select] ] )
   		photos.each do |photo|
-  			photo.deleted = !photo.deleted
+  			photo.deleted = command
   			photo.save
   		end
   		flash[:notice] = "Update photos successfully."

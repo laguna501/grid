@@ -3,6 +3,7 @@
 <h2>Photo Management</h2>
 <div id="photo_management">
 	<%= form_tag(change_status_photos_url) do %>
+		<div class="pagination"><%= will_paginate @posts %></div>
 		<% @photos.each do |photo| %>
 			<div class="photo_item" identifier=<%= photo.identifier %> deleted=<%= photo.deleted %> >
 				<div><%= check_box_tag("select[]", photo.identifier, false, class: "batch_box") %></div>
@@ -12,11 +13,12 @@
 				<div><%= photo.status.titleize if photo.deleted %></div>
 			</div>
 		<% end %>
-		<div id="pagination">
-			<%= will_paginate @posts %>
-		</div>
+		<div class="pagination"><%= will_paginate @posts %></div>
 		<div id="buttons">
-			<%= submit_tag "Delete / Undelete Photos" %>
+			<%= submit_tag "Delete Photos" %>
+			<%= submit_tag "Undelete Photos" %>
+			<%= button_tag "Select All", :type => 'button', id: "select_all" %>
+			<%= button_tag "Reset", :type => 'button', id: "reset" %>
 		</div>
 	<% end %>
 </div>

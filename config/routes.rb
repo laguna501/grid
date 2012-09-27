@@ -6,6 +6,7 @@ GRID::Application.routes.draw do
       get :show_users
       get :show_by_user
       get :show_photo
+      get :infinite_scroll
     end
   end
   
