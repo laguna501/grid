@@ -1,0 +1,7 @@
+<div class="menu-admin">
+<%= link_to("Gride", "/") unless current_user.blank? %>
+<%= link_to("Photo", photos_path) unless current_user.blank? %>
+<%= link_to("Manage", manage_admins_path) unless current_user.blank? %>
+<%= link_to("LOGOUT", user_session_url, method: "delete") unless current_user.blank? %>
+<%= "(#{current_user.username})" unless current_user.blank? %>
+</div>

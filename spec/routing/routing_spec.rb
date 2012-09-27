@@ -36,4 +36,22 @@ describe "routing" do
       get("/facebook/facebook_send_admin_email").should route_to("facebook#facebook_send_admin_email")
     end
   end
+
+  describe "manage" do
+    it "index page" do
+      get("/manage_admins").should route_to("manage_admins#index")
+    end
+
+    it "new page" do
+      get("/manage_admins/new").should route_to("manage_admins#new")
+    end
+
+    it "create page" do
+      post("/manage_admins").should route_to("manage_admins#create")
+    end
+
+    it "update page" do
+      put( "/manage_admins/1").should route_to(controller: "manage_admins", action: "update", id: "1")
+    end
+  end
 end

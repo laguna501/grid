@@ -1,5 +1,5 @@
-<div class="frame" id="user-form-container">
-<%#= form_for current_user, url: manage_admin_url do |f| %>
+<div class="frame">
+<h2>Edit Information</h2>
 <%= form_for(@admin, url: manage_admin_url) do |f| %>
   <table>
     <tr>
@@ -21,6 +21,6 @@
       <td><%= f.password_field :password_confirmation %></td>
     </tr>
   </table>
-  <div id="user-submit-container"><%= f.submit "Update your information" %></div>
+  <div id="user-submit-container"><%= f.submit "Update information" %></div>
 <%- end -%>
 </div>

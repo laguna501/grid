@@ -23,8 +23,6 @@
 </head>
 <body>
   <div id="wrap">
-  	<%= link_to("LOGIN", new_user_session_url) %>
-  	<%= link_to("LOGOUT", user_session_url, method: "delete") %>
     <%= render partial: "shared/flashes" %>
     <%= yield %>
   </div>

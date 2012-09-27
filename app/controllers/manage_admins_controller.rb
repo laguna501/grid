@@ -15,11 +15,11 @@ class ManageAdminsController < ApplicationController
     @admin = Admin.new(params[:admin])
 
     if @admin.save
-      flash.now[:notice] = "Admin successfully created."
+      flash[:notice] = "Admin successfully created."
       redirect_to manage_admins_url
     else
-      flash.now[:error] ||= ["Cannot create admin."]
-      flash.now[:error] << "#{@admin.errors.full_messages.join(", ")}"
+      flash[:error] ||= ["Cannot create admin."]
+      flash[:error] << "#{@admin.errors.full_messages.join(", ")}"
       render :action => :new
     end
   end

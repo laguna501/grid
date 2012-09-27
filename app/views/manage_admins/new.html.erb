@@ -1,15 +1,18 @@
-<%= form_for(@admin, url: manage_admins_url) do |f| %>
-<p>
-<%= f.label :username %>
-<%= f.text_field :username %>
-</p>
-<p>
-<%= f.label :password %>
-<%= f.password_field :password %>
-</p>
-<p>
-<%= f.label :password_confirmation %>
-<%= f.password_field :password_confirmation %>
-</p>
-<%= f.submit "Create" %>
-<% end %>
+<div class="frame">
+	<h2>Create Admin</h2>
+	<%= form_for(@admin, url: manage_admins_url) do |f| %>
+	<p>
+	<%= f.label :username %>
+	<%= f.text_field :username %>
+	</p>
+	<p>
+	<%= f.label :password %>
+	<%= f.password_field :password %>
+	</p>
+	<p>
+	<%= f.label :password_confirmation %>
+	<%= f.password_field :password_confirmation %>
+	</p>
+	<%= f.submit "Create" %>
+	<% end %>
+</div>

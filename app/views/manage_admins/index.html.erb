@@ -1,12 +1,14 @@
-<%= link_to("Create Admin", new_manage_admin_url) %>
-
+<%= render partial: "shared/menu_admin" %>
+<div>
 <h3>Management</h3>
+<%= link_to("Create Admin", new_manage_admin_url) %>
   <table>
 		<tr>
 			<th>Username</th>
-			<th colspan="2">Action</th>
+			<th id="head-action" colspan="2">Action</th>
 		</tr>
 		<tr>
 			<%= render partial: "list_admins", collection: @admins, as: "admin" %>
 		</tr>
 	</table>
+</div>
