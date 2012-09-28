@@ -18,7 +18,7 @@ class ManageAdminsController < ApplicationController
       flash[:notice] = "Admin successfully created."
       redirect_to manage_admins_url
     else
-      flash[:error] = []
+      flash.now[:error] = []
       flash[:error] ||= ["Cannot create admin."]
       flash[:error] << "#{@admin.errors.full_messages.join(", ")}"
       render :action => :new
@@ -40,7 +40,7 @@ class ManageAdminsController < ApplicationController
       flash[:notice] = "Admin successfully updated."
       redirect_to(manage_admins_url)
     else
-      flash[:error] = []
+      flash.now[:error] = []
       flash[:error] ||= ["Cannot update admin."]
       flash[:error] << "#{@admin.errors.full_messages.join(", ")}"
       render action: :edit
