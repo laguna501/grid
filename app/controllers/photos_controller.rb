@@ -25,4 +25,13 @@ class PhotosController < ApplicationController
         redirect_to(new_user_session_url)
     end    
   end
+  
+  def change_highlight
+    identifier = params[:identifier]
+    highlighted = params[:highlight]
+    photo = Photo.where(identifier: identifier).first
+    photo.highlighted = highlighted
+    photo.save
+    render :nothing => true
+  end
 end

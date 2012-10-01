@@ -4,15 +4,20 @@
 <div id="photo_management">
 	<%= form_tag(change_status_photos_url) do %>
 		<div class="pagination"><%= will_paginate @posts %></div>
-		<% @photos.each do |photo| %>
-			<div class="photo_item" identifier=<%= photo.identifier %> deleted=<%= photo.deleted %> >
-				<div><%= check_box_tag("select[]", photo.identifier, false, class: "batch_box") %></div>
-				<%= image_tag photo.thumbnail %>
-				<div><%= photo.account.user.nickname %></div>
-				<div>Identifier: <%= photo.identifier %></div>
-				<div><%= photo.status.titleize if photo.deleted %></div>
-			</div>
-		<% end %>
+		<div id="container">
+			<% @photos.each do |photo| %>
+				<div class='<%="photo_item #{photo.check_corner_stamp}"%>' identifier=<%= photo.identifier %> deleted=<%= photo.deleted %> >
+					<div class="batch"><%= check_box_tag("select[]", photo.identifier, false, class: "batch_box") %></div>
+					<div class='<%="highlight_button #{photo.check_highlighted}"%>' highlighted=<%= photo.highlighted %> > </div>
+					<div class="detail">
+						<%= image_tag photo.thumbnail, class: "#{photo.check_highlighted} #{photo.account.social_type}" %>
+						<div><%= photo.account.user.nickname %></div>
+						<div>Identifier: <%= photo.identifier %></div>
+						<div><%= photo.status.titleize if photo.deleted %></div>
+					</div>
+				</div>
+			<% end %>
+		</div>
 		<div class="pagination"><%= will_paginate @posts %></div>
 		<div id="buttons">
 			<%= submit_tag "Delete Photos" %>

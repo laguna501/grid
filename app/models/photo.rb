@@ -23,4 +23,12 @@ class Photo < ActiveRecord::Base
   def status
     return self.deleted ? "deleted" : "not deleted"
   end
+
+  def check_highlighted
+    return self.highlighted ? "highlighted" : "unhighlight"
+  end
+
+  def check_corner_stamp
+    return "corner-stamp" if self.highlighted
+  end
 end

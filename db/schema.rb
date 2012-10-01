@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20120926081016) do
+=======
+ActiveRecord::Schema.define(:version => 20120927093439) do
+>>>>>>> #36607731
 
   create_table "accounts", :force => true do |t|
     t.string   "username"
@@ -50,6 +54,7 @@ ActiveRecord::Schema.define(:version => 20120926081016) do
     t.text     "description"
     t.string   "photo_type"
     t.boolean  "deleted",     :default => false
+    t.boolean  "highlighted", :default => false
   end
 
   create_table "users", :force => true do |t|

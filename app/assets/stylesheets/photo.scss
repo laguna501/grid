@@ -11,13 +11,42 @@
 		border: 1px solid $photo_item_border;
 		
 		.batch_box {
+			float: left;
 			margin: 0;
 		}
 
-		img {
-			width: 190px;
+		.highlight_button {
+			float: right;
+			width: 20px;
+			height: 20px;
+		}
+
+		div.unhighlight {
+			background-image: url(bookmark-star-empty.png);
+		}
+		div.on-hover {
+			background-image: url(bookmark-star-hover.png);
+		}
+		div.highlighted {
+			background-image: url(bookmark-star-filled.png);
+		}
+
+		div.detail{
+			clear: both;
+			img {
+				width: $photo_item_image_width;
+			}
 		}
 	}
+
+	div.corner-stamp{
+		div.detail{
+			img {
+				width: $photo_item_corner_stamp;
+			}
+		}
+	}
+	
 	div.photo_item[deleted="false"] {
 		background-color: $photo_item_bg_color_deleted;
 	}
