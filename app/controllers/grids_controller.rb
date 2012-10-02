@@ -5,11 +5,22 @@ class GridsController < ApplicationController
 
   def show_users
     @type = params[:type]
-    accounts = Account.includes(:user).includes(:photos).where("users.user_type = ?", @type).where("access_token IS NOT NULL").where("photos.deleted = ?", false)
-    @user_photos = Hash.new
-    accounts.each do |account|
-      @user_photos[account.user.nickname] = account.photos
-    end
+    @users = User.all.map(&:nickname)
+    @page = 0
+  end
+
+  def infinite_scroll
+    type = params[:type]
+    @page = params[:page]
+    limit_per_page = 10;
+    
+    @photos = Photo.includes(account: :user).where("users.user_type = ?", type
+      ).where("access_token IS NOT NULL").where(
+        "photos.deleted = ?", false
+      ).offset(@page.to_i * limit_per_page).limit(limit_per_page).order("photos.id DESC")
+
+    @page = @page.to_i + 1
+    render layout: false
   end
 
   def show_photo

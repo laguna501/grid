@@ -1,0 +1,10 @@
+<nav class="entry"></nav>
+<%= text_field_tag "current_page", @page, class: "hidden" %>
+<% @photos.each do |photo| %>
+<div class='<%="item #{photo.check_corner_stamp}"%>' owner="<%= photo.account.user.nickname %>">
+  <%= link_to(
+    image_tag(photo.thumbnail),
+    show_photo_grids_path(owner: photo.account.user.nickname, identifier: photo.identifier), target: "_blank"
+  ) %>
+</div>
+<% end %>

@@ -1,5 +1,5 @@
 //= require jquery.isotope.js
-//= require jquery.infinitescroll.js
+//= require waypoints.js
 //= require bootstrap.js
 
 Grids = {
@@ -19,10 +19,12 @@ Grids = {
       $('#container').isotope({
         // options
         itemSelector : '.item',
-        layoutMode : mode,
-        sortBy : 'random'
+        layoutMode : mode
       });
     });
+  },
+  clearUser: function(){
+    $('#container').isotope({ filter: '*' });
   },
   allUser: function(){
     Grids.clearUser();
@@ -31,10 +33,49 @@ Grids = {
     Grids.clearUser();
     $(this).addClass('checked');
   },
-  clearUser: function(){
-    $('[id^=username]').removeClass('checked');
+  loadNextPhotos: function(page){
+    var type = $("#type").val();
+    $.ajax({
+      url: '/grids/infinite_scroll',
+      data: { type: type, page: page },
+      type: 'get',
+      dataType: 'html',
+      success: function(result) {
+        $(result).imagesLoaded(function(){
+          $('nav.entry').remove();
+          $('#current_page').remove();
+          $('#container').isotope( 'insert', $(result) );
+        })
+      }
+    });
+  },
+  loadWayPoint: function(){
+
+    var $loading = $("<div class='loading'><p>Loading more items&hellip;</p></div>"),
+    $entry = $('footer'), 
+    opts = {
+      offset: '100%'
+    };
+    
+    $entry.waypoint(function(event, direction) {
+      $entry.waypoint('remove');
+      $('body').append($loading);
+      $.get($('.more a').attr('href'), function(data) {
+        var $data = $(data);
+
+        var page = $("#current_page").val();
+        Grids.loadNextPhotos(page);
+
+        $loading.detach();
+        $('.more').replaceWith($data.find('.more'));
+        $entry.waypoint(opts);
+      });
+    }, opts);
   },
   init: function() {
+
+    var page = $("#current_page").val();
+
     (function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) return;
@@ -49,6 +90,9 @@ Grids = {
     $('div.filters').click(Grids.filter);
     $('[id^=username]').click(Grids.facebookUser);
     $('#show-all-user').click(Grids.allUser);
+
+    Grids.loadNextPhotos(page);
+    Grids.loadWayPoint();
   }
 }
 

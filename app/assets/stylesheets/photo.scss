@@ -2,9 +2,12 @@
 
 #photo_management {
 
+  padding-left: 4px;
+  padding-right: 3px;
+  
 	div.photo_item {
-
-		padding: 2px 1px;
+	    margin-left: 2px;
+	    margin-right: 3px;
 		cursor: pointer;
 		display: inline-block;
 		vertical-align: top;

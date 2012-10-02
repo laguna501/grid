@@ -91,13 +91,24 @@
   }
 
   div.item {
+    margin-left: 2px;
+    margin-right: 3px;
+    margin-bottom: 5px;
+    
     img {
-      width: 190px;
+      width: $photo_item_image_width;
       border: solid 1px gray;
       border-radius: 3px;
-      margin-left: 2px;
-      margin-right: 3px;
     }
+  }
+  div.corner-stamp{
+    img {
+      width: $photo_item_corner_stamp;
+    }
+  }
+
+  #page_nav {
+    clear: both;
   }
 }
 

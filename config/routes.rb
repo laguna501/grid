@@ -27,6 +27,7 @@ GRID::Application.routes.draw do
   resources :photos, only: [:index] do
     collection do
       post :change_status
+      get :change_highlight
     end
   end
 

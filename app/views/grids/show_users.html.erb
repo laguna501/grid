@@ -13,23 +13,15 @@
       <button id="show-all-user" class="btn btn-small btn-primary" type="button">Show all</button>
     </div>
 
-    <% @user_photos.keys.sort.each do |nickname| %>
+    <% @users.each do |nickname| %>
       <div class="filters" data-option-value="<%= nickname %>">
         <button id="username-<%= nickname %>" class="btn btn-small" type="button"><%= nickname %></button>
       </div>
     <% end %>
   </div>
 
+  <%= text_field_tag "type", @type, class: "hidden" %>
+  <%= text_field_tag "current_page", @page, class: "hidden" %>
   <div id="container" class="infinite-scrolling">
-    <% @user_photos.each do |nickname, photos|%>
-      <% photos.each do |photo| %>
-        <div class="item <%= photo.photo_type %>" owner="<%= nickname %>">
-          <%= link_to(
-            image_tag(photo.thumbnail),
-            show_photo_grids_path(owner: nickname, identifier: photo.identifier), target: "_blank"
-          ) %>
-        </div>
-      <% end %>
-    <% end %>
   </div>
 </div>
