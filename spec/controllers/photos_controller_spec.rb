@@ -15,17 +15,31 @@ describe PhotosController do
   end
 
   describe "change_status" do
-    it "admin can revert photo status" do
+    it "admin can set photo status to deleted" do
     	photo_1 = FactoryGirl.create(:photo)
     	photo_2 = FactoryGirl.create(:photo, deleted: true)
 
       login_as do |admin, user_session|
-        post :change_status, select: [photo_1.identifier, photo_2.identifier]
+        post :change_status, select: [photo_1.identifier, photo_2.identifier], commit: "Delete Photos"
 
         Photo.first.deleted.should == true
-        Photo.last.deleted.should == false
+        Photo.last.deleted.should == true
        	response.should redirect_to(photos_url)
        	flash[:notice].should include("Update photos successfully.")
+      end
+    end
+
+    it "admin can set photo status to undelete" do
+      photo_1 = FactoryGirl.create(:photo)
+      photo_2 = FactoryGirl.create(:photo, deleted: true)
+
+      login_as do |admin, user_session|
+        post :change_status, select: [photo_1.identifier, photo_2.identifier], commit: "Undelete Photos"
+
+        Photo.first.deleted.should == false
+        Photo.last.deleted.should == false
+        response.should redirect_to(photos_url)
+        flash[:notice].should include("Update photos successfully.")
       end
     end
   end

@@ -17,10 +17,10 @@ describe GridsController do
       photo_1 = FactoryGirl.create(:photo, account: pro_1)
       photo_2 = FactoryGirl.create(:photo, account: pro_2)
 
-    	get :show_users, type: "pro"
-      assigns[:user_photos][pro_1.user.nickname].should include(photo_1)
-    	assigns[:user_photos][pro_2.user.nickname].should include(photo_2)
-    	response.should render_template("show_users")
+    	get :infinite_scroll, type: "pro", page: 0
+      assigns[:photos].should include(photo_1)
+    	assigns[:photos].should include(photo_2)
+    	response.should render_template("infinite_scroll")
     end
 
     it "filter photos where deleted is false" do
@@ -30,10 +30,10 @@ describe GridsController do
       photo_3 = FactoryGirl.create(:photo, account: pro)
       photo_4 = FactoryGirl.create(:photo, account: pro, deleted: true) #noise
 
-      get :show_users, type: "pro"
-      assigns[:user_photos][pro.user.nickname].should include(photo_1, photo_2, photo_3)
-      assigns[:user_photos][pro.user.nickname].should_not include(photo_4)
-      response.should render_template("show_users")
+      get :infinite_scroll, type: "pro", page: 0
+      assigns[:photos].should include(photo_1, photo_2, photo_3)
+      assigns[:photos].should_not include(photo_4)
+      response.should render_template("infinite_scroll")
     end
   end
 
