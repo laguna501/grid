@@ -3,7 +3,7 @@ accounts.each do |account|
   fb_user = FbGraph::User.fetch(account.username, :access_token => account.access_token)
   photos_by_identifier = account.photos.map(&:identifier)
   next if fb_user.respond_to?(:error)
-  albums = fb_user.albums
+  albums = fb_user.albums(limit: 1000)
   albums.each do |album|
     photos = album.photos(limit: 1000).select {|photo| photo.name =~ /#grid/i && photos_by_identifier.exclude?(photo.identifier) }
     photos.each do |photo|
