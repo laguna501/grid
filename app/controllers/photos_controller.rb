@@ -17,7 +17,7 @@ class PhotosController < ApplicationController
   		end
   		flash[:notice] = "Update photos successfully."
   	end
-  	redirect_to photos_url
+  	redirect_to(:back)
   end
 
   def redirect_other_roles

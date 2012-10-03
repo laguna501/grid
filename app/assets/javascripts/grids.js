@@ -51,7 +51,7 @@ Grids = {
   },
   loadWayPoint: function(){
 
-    var $loading = $("<div class='loading'><p>Loading more items&hellip;</p></div>"),
+    var $loading = $("<div class='loading'></div>"),
     $entry = $('footer'), 
     opts = {
       offset: '100%'
