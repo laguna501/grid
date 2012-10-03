@@ -5,7 +5,7 @@ class GridsController < ApplicationController
 
   def show_users
     @type = params[:type]
-    @users = User.all.map(&:nickname)
+    @users = User.where(user_type: @type).map(&:nickname)
     @page = 0
   end
 
