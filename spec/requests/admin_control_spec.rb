@@ -211,5 +211,28 @@ describe "Test admin access control", js: true do
       end
       page.should have_css(".frame", :text => "Username is too short")
     end
+
+    it "Admin want to edit password I have incorrect original password, new password,and new password confirmation" do
+       user =  FactoryGirl.create(:admin, username: "Testing", 
+        password: "000000", 
+        password_confirmation: "000000")
+
+      visit ("/user_session/new")
+      page.should have_css("#new_user_session")
+      within ("#new_user_session") do
+        fill_in 'user_session[username]', :with => 'Test'
+        fill_in 'user_session[password]', :with => '000000'
+        click_button ('Login')
+      end
+      visit ("/manage_admins/1/edit")
+      page.should have_css(".frame", :text => "Edit Information")
+      within ("#edit_admin_1") do
+        fill_in 'admin[original_password]', :with => '111111'
+        fill_in 'admin[password]', :with => '111111'
+        fill_in 'admin[password_confirmation]', :with => '118111'
+        click_button ('Update information')
+      end
+      page.should have_css(".frame", :text => "Password doesn't match confirmation, Original password is wrong")
+    end
   end
 end
