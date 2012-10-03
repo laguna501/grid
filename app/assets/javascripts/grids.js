@@ -45,6 +45,10 @@ Grids = {
           $('nav.entry').remove();
           $('#current_page').remove();
           $('#container').isotope( 'insert', $(result) );
+          setTimeout(function () {
+            $('#container').isotope({ filter: '*' });
+          }, 300);
+
         })
       }
     });
