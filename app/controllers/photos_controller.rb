@@ -22,7 +22,7 @@ class PhotosController < ApplicationController
 
   def redirect_other_roles
     if (current_user.blank?)
-        redirect_to(new_user_session_url)
+      redirect_to(new_user_session_url)
     end    
   end
   

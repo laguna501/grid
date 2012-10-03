@@ -12,7 +12,7 @@
 					<div class="detail">
 						<%= image_tag photo.thumbnail, class: "#{photo.check_highlighted} #{photo.account.social_type}" %>
 						<div><%= photo.account.user.nickname %></div>
-						<div>Identifier: <%= photo.identifier %></div>
+						<div title='<%=" Identifier: #{photo.identifier}"%>'>Identifier: <%= photo.identifier.length < 16 ? photo.identifier : photo.identifier[0..12] + "..." %></div>
 						<div><%= photo.status.titleize if photo.deleted %></div>
 					</div>
 				</div>
