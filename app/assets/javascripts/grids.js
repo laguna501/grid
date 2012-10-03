@@ -91,8 +91,10 @@ Grids = {
     $('[id^=username]').click(Grids.facebookUser);
     $('#show-all-user').click(Grids.allUser);
 
-    Grids.loadNextPhotos(page);
-    Grids.loadWayPoint();
+    if(window.location.pathname == "/grids/show_users"){
+      Grids.loadNextPhotos(page);
+      Grids.loadWayPoint();
+    }
   }
 }
 
