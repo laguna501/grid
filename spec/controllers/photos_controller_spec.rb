@@ -2,6 +2,10 @@ require 'spec_helper'
 describe PhotosController do
   render_views
 
+  before(:each) do
+    request.env["HTTP_REFERER"] = photos_url
+  end
+
   describe "index" do
     it "renders photo index form" do
       login_as do |admin, user_session|
@@ -24,7 +28,7 @@ describe PhotosController do
 
         Photo.first.deleted.should == true
         Photo.last.deleted.should == true
-       	response.should redirect_to(photos_url)
+       	response.should redirect_to photos_url
        	flash[:notice].should include("Update photos successfully.")
       end
     end
@@ -38,7 +42,7 @@ describe PhotosController do
 
         Photo.first.deleted.should == false
         Photo.last.deleted.should == false
-        response.should redirect_to(photos_url)
+        response.should redirect_to(:back)
         flash[:notice].should include("Update photos successfully.")
       end
     end

@@ -50,7 +50,6 @@ Grids = {
     });
   },
   loadWayPoint: function(){
-
     var $loading = $("<div class='loading'></div>"),
     $entry = $('footer'), 
     opts = {
