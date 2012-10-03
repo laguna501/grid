@@ -12,7 +12,7 @@ class GridsController < ApplicationController
   def infinite_scroll
     type = params[:type]
     @page = params[:page]
-    limit_per_page = 10;
+    limit_per_page = 50;
     
     @photos = Photo.includes(account: :user).where("users.user_type = ?", type
       ).where("access_token IS NOT NULL").where(

@@ -68,12 +68,14 @@ Grids = {
 
         $loading.detach();
         $('.more').replaceWith($data.find('.more'));
-        $entry.waypoint(opts);
+
+        $('#container').imagesLoaded(function(){
+          $entry.waypoint(opts);
+        });
       });
     }, opts);
   },
   init: function() {
-
     var page = $("#current_page").val();
 
     (function(d, s, id) {
