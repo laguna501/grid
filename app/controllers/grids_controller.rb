@@ -5,7 +5,7 @@ class GridsController < ApplicationController
 
   def show_users
     @type = params[:type]
-    @users = User.where(user_type: @type).map(&:nickname)
+    @users = User.includes(accounts: :photos).where(user_type: @type).where("photos.id IS NOT NULL").map(&:nickname)
     @page = 0
   end
 
