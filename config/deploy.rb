@@ -98,9 +98,9 @@ task :production do
   set :assets_prefix, "grid"
   set(:branch) { Capistrano::CLI.ui.ask("Tag to deploy:") }
 
-  role :web, "grid.swiftlet.co.th"                    # Your HTTP server, Apache/etc
-  role :app, "grid.swiftlet.co.th"                    # This may be the same as your `Web` server
-  role :db,  "grid.swiftlet.co.th", :primary => true  # This is where Rails migrations will run
+  role :web, "grid.canonlife.com"                    # Your HTTP server, Apache/etc
+  role :app, "grid.canonlife.com"                    # This may be the same as your `Web` server
+  role :db,  "grid.canonlife.com", :primary => true  # This is where Rails migrations will run
 end
 
 desc <<-EOS
@@ -117,7 +117,7 @@ task :staging do
   set :assets_prefix, "grid"
   set(:branch) { Capistrano::CLI.ui.ask("Tag to deploy:") }
 
-  role :web, "grid.canonlife.com"                    # Your HTTP server, Apache/etc
-  role :app, "grid.canonlife.com"                    # This may be the same as your `Web` server
-  role :db,  "grid.canonlife.com", :primary => true  # This is where Rails migrations will run
+  role :web, "grid.swiftlet.co.th"                    # Your HTTP server, Apache/etc
+  role :app, "grid.swiftlet.co.th"                    # This may be the same as your `Web` server
+  role :db,  "grid.swiftlet.co.th", :primary => true  # This is where Rails migrations will run
 end
