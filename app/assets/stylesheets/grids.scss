@@ -191,7 +191,7 @@ div.fb-like {
   .btn {
     width: 790px;
     height: 100px !important;
-    margin: 10px;
+    margin: auto;
     background-color: $girl-grid-color !important;
     background-image: -moz-linear-gradient(center top , $girl-grid-color-gradient_1, $girl-grid-color-gradient_2) !important;
     background-image: -webkit-gradient(linear, 0 0, 0 100%, from($girl-grid-color-gradient_1), to($girl-grid-color-gradient_2));
