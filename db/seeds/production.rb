@@ -16,20 +16,33 @@ Admin.create(
   password_confirmation: "WDA6ZtrpDBiGi8bxkcTt"
 )
 
-user = User.create(
-  email: "laguna501@gmail.com",
-  user_type: "pro",
-  nickname: "Phatthaworn"
-)
+user = User.new
+user.email = "laguna501@gmail.com"
+user.user_type = "pro"
+user.nickname = "Phatthaworn"
+user.save!
 
-FacebookAccount.create(user: user, username: "phatthaworn")
-InstagramAccount.create(user: user, username: "phatthaworn")
+account = FacebookAccount.new
+account.user = user
+account.username = "phatthaworn"
+account.save!
 
-user = User.create(
-  email: "a_antarctica@hotmail.com",
-  user_type: "girl",
-  nickname: "Oumkwan"
-)
+account = InstagramAccount.new
+account.user = user
+account.username = "phatthaworn"
+account.save!
 
-FacebookAccount.create(user: user, username: "oumkwan")
-InstagramAccount.create(user: user, username: "oumkwan")
+user = User.new
+user.email = "a_antarctica@hotmail.com"
+user.user_type = "girl"
+user.nickname = "Oumkwan"
+
+account = FacebookAccount.new
+account.user = user
+account.username = "oumkwan"
+account.save!
+
+account = InstagramAccount.new
+account.user = user
+account.username = "oumkwan"
+account.save!
