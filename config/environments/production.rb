@@ -71,11 +71,11 @@ GRID::Application.configure do
 
   config.notifier_default_host = "grid.canonlife.com"
 
-  config.fb_app_id = "135259466618586"
-  config.fb_app_secret = "5c7369efc1f535f76e7640779cfd97e4"
+  config.fb_app_id = "492521007438654"
+  config.fb_app_secret = "efc8294a390f428125a7dece4a4c7167"
   config.fb_callback_url = "https://grid.canonlife.com/facebook/callback"
 
-  config.ig_client_id = "cf32424d71d4445995bf58ec0e2a3bd2"
-  config.ig_client_secret = "5e0be7f1d1b74102acb324183cdf6c3f"
+  config.ig_client_id = "9650a0128aed41a7afd4ac4a29664879"
+  config.ig_client_secret = "b3394ff7ad94435c8fe98680804c5489"
   config.ig_callback_url = "https://grid.canonlife.com/instagram/callback"
 end
