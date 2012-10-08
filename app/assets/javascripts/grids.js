@@ -50,10 +50,10 @@ Grids = {
             $("div.isotope-item").unbind("mouseover");
             $("div.isotope-item").unbind("mouseout");
             $("div.isotope-item").mouseover(function(){
-              $(this).children(".infos")show();
+              $(this).children(".infos").show();
               $(this).children("a").children("img").removeClass().addClass("img-fade");
             }).mouseout(function(){
-              $(this).children(".infos")hide();
+              $(this).children(".infos").hide();
               $(this).children("a").children("img").removeClass();
             });
           }, 300);
