@@ -47,19 +47,27 @@ Grids = {
           $('#container').isotope( 'insert', $(result) );
           setTimeout(function () {
             $('#container').isotope({ filter: '*' });
+            $("div.isotope-item").unbind("mouseover");
+            $("div.isotope-item").unbind("mouseout");
+            $("div.isotope-item").mouseover(function(){
+              $(this).children(".infos").removeClass().addClass("infos show");
+              $(this).children("a").children("img").removeClass().addClass("img-fade");
+            }).mouseout(function(){
+              $(this).children(".infos").removeClass().addClass("infos");
+              $(this).children("a").children("img").removeClass();
+            });
           }, 300);
-
         })
       }
     });
   },
   loadWayPoint: function(){
     var $loading = $("<div class='loading'></div>"),
-    $entry = $('footer'), 
+    $entry = $('footer'),
     opts = {
       offset: '100%'
     };
-    
+
     $entry.waypoint(function(event, direction) {
       $entry.waypoint('remove');
       $('body').append($loading);
@@ -88,7 +96,7 @@ Grids = {
       js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=135259466618586";
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
-    
+
     Grids.changeLayoutMode('masonry');
     $('#container').isotope({ filter: '*' });
     $('div.layouts').click(Grids.layout);
