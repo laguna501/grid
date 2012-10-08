@@ -115,7 +115,7 @@ html {
     -ms-text-size-adjust: 100%;
 }
 body{
-	background: repeat url(light_toast.png);
+	background: repeat url(/assets/light_toast.png);
 	color:#888;
 	font-family:"Open Sans", Helvetica, Arial, sans-serif;
     font-size: 12px;
