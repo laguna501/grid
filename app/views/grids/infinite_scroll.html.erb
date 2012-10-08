@@ -6,7 +6,7 @@
     image_tag(photo.thumbnail),
     show_photo_grids_path(owner: photo.account.user.nickname, identifier: photo.identifier), target: "_blank"
   ) %>
-  <div class="infos"> <h4>
+  <div class="infos show"> <h4>
   		<%= link_to photo.description, show_photo_grids_path(owner: photo.account.user.nickname, identifier: photo.identifier), target: "_blank" %>
 		</h4> <span><%= photo.account.user.nickname %></span> </div>
 	</div>
