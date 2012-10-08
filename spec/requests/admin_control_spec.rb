@@ -19,7 +19,7 @@ describe "Test admin access control", js: true do
       end
       page.should have_css(".frame", :text => "Login successful.")
       page.should have_css("#wrap", :text => "Photo Management")
-      page.should have_css(".menu-admin", :text => "Gride" , :text => "Photo" , :text => "Manage", :text => "LOGOUT" , :text => "(TESTACCESSCONTROL)" )  
+      page.should have_css(".menu-admin", :text => "Grid" , :text => "Photo" , :text => "Manage", :text => "LOGOUT" , :text => "(TESTACCESSCONTROL)" )  
       current_path.should == "/photos"
     end
 
