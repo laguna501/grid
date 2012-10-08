@@ -1,13 +1,13 @@
 <nav class="entry"></nav>
 <%= text_field_tag "current_page", @page, class: "hidden" %>
 <% @photos.each do |photo| %>
-<div class='<%="item #{photo.check_corner_stamp}"%>' owner="<%= photo.account.user.nickname %>">
+<div class='<%="item #{photo.check_corner_stamp} #{photo.account.social_type}"%>' owner="<%= photo.account.user.nickname %>">
   <%= link_to(
     image_tag(photo.thumbnail),
     show_photo_grids_path(owner: photo.account.user.nickname, identifier: photo.identifier), target: "_blank"
   ) %>
   <div class="infos"> <h4>
-		<a href="path_to_full_size_photo" target="_blank"><%= photo.description %></a>
+  		<%= link_to photo.description, show_photo_grids_path(owner: photo.account.user.nickname, identifier: photo.identifier), target: "_blank" %>
 		</h4> <span><%= photo.account.user.nickname %></span> </div>
 	</div>
 </div>
