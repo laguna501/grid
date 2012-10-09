@@ -1,7 +1,7 @@
 <div id="photo">
 
   <div id="social_plugins">
-    <div class="fb-like" data-href="https://grid.swiftlet.co.th/grids/show_photo?identifier=<%= @photo_identifier %>&owner=<%= @owner %>" data-send="true" data-width="350" data-show-faces="false" data-font="verdana"></div>
+    <div class="fb-like" data-href="https://<%= Rails.configuration.notifier_default_host %>/grids/show_photo?identifier=<%= @photo_identifier %>&owner=<%= @owner %>" data-send="true" data-width="350" data-show-faces="false" data-font="verdana"></div>
   </div>
 	
   <div id="nickname"><h1><%= @owner %></h1></div>
@@ -14,6 +14,6 @@
   <hr />
 <% end %>
 
-  <div class="fb-comments" data-href="https://grid.swiftlet.co.th/grids/show_photo?identifier=<%= @photo_identifier %>&owner=<%= @owner %>" data-num-posts="10" data-width="770">
+  <div class="fb-comments" data-href="https://<%= Rails.configuration.notifier_default_host %>/grids/show_photo?identifier=<%= @photo_identifier %>&owner=<%= @owner %>" data-num-posts="10" data-width="770">
   </div>
 </div>
