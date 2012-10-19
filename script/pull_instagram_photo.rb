@@ -1,9 +1,9 @@
 accounts = InstagramAccount.includes(:photos).where("access_token IS NOT NULL")
 accounts.each do |account|
   client = Instagram.client(:access_token => account.access_token)
+  all_photo = Photo.where(account_id: account.id).map(&:identifier)
   count = 20
   until count < 20
-    all_photo = Photo.where(account_id: account.id).map(&:identifier)
     medias = client.user_recent_media(options = {max_id: (all_photo.last rescue nil), count: 20})
     medias.each do |media|
       next if all_photo.include?(media.id)
