@@ -1,18 +1,29 @@
+<section id="title_bar">
+    <div class="content">
+      <%= link_to(show_users_grids_path(type: "girl")) do %>
+        « Back to Grid Page
+      <% end %>
+    </div>
+</section>
 <div id="photo">
 
   <div id="social_plugins">
     <div class="fb-like" data-href="https://<%= Rails.configuration.notifier_default_host %>/grids/show_photo?identifier=<%= @photo_identifier %>&owner=<%= @owner %>" data-send="true" data-width="350" data-show-faces="false" data-font="verdana"></div>
   </div>
 	
-  <div id="nickname"><h1><%= @owner %></h1></div>
+  
 
-  <div id="user_photo"><%= image_tag @user_photo %></div>
+  <div id="user_photo" class="image_single">
+    <%= image_tag @user_photo %>
 
-<% unless @photo_description.blank? %>
-<hr />
-  <div id="photo_description"><%= @photo_description %></div>
-  <hr />
+    <% unless @photo_description.blank? %>
+  
+    <h3 id="photo_description"><span><%= @photo_description %></span><span id="nickname"><%= @owner %></span></h3>
+    <hr />
 <% end %>
+  </div>
+
+
 
   <div class="fb-comments" data-href="https://<%= Rails.configuration.notifier_default_host %>/grids/show_photo?identifier=<%= @photo_identifier %>&owner=<%= @owner %>" data-num-posts="10" data-width="770">
   </div>

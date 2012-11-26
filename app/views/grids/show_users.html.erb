@@ -1,27 +1,45 @@
-<div id="show_users">
-  <h1><%= @type.to_s.titleize %> Grid</h1>
-  <section id="options" class="clearfix">
-    <div id="layouts" class="option-set clearfix" data-option-key="layoutMode">
-      <h4>Layout: </h4>
-      <div id="grid-masonry" class="layouts selected" data-option-value="masonry">masonry</div>
-      <div id="grid-fitrows" class="layouts" data-option-value="fitRows">fitRows</div>
+<section id="title_bar">
+    <div class="content">
+      <%= link_to "« Back to Home Page",:back  %>
+        
+      
     </div>
-  </section>
-
-  <div id="filter" class="option-set clearfix" data-option-key="filterMode">
-    <div class="filters" data-option-value="*">
-      <button id="show-all-user" class="btn btn-small btn-primary" type="button">Show all</button>
-    </div>
-
-    <% @users.each do |nickname| %>
-      <div class="filters" data-option-value="<%= nickname %>">
-        <button id="username-<%= nickname %>" class="btn btn-small" type="button"><%= nickname %></button>
+</section>
+<div id="wrap">
+  <div id="show_users">
+    <h1><%= @type.to_s.titleize %> Grid</h1>
+    <section id="options" class="clearfix">
+      <div id="layouts" class="option-set clearfix" data-option-key="layoutMode">
+        <h4>Layout: </h4>
+        <div id="grid-masonry" class="layouts selected" data-option-value="masonry">masonry</div>
+        <div id="grid-fitrows" class="layouts" data-option-value="fitRows">fitRows</div>
       </div>
-    <% end %>
-  </div>
+    </section>
+    <div class="filtersourceicon">
+      <div class="filterSource fb-icon" data-option-value="facebook">
+        <a id="show-facebook" class=""></a>
+      </div>
 
-  <%= text_field_tag "type", @type, class: "hidden" %>
-  <%= text_field_tag "current_page", @page, class: "hidden" %>
-  <div id="container" class="infinite-scrolling">
+      <div class="filtersource inst-icon" data-option-value="instagram">
+         <a id="show-instagram" class="" ></a>
+      </div>
+    </div>
+    <div id="filter" class="option-set clearfix" data-option-key="filterMode">
+      <div class="filters" data-option-value="*">
+        <button id="show-all-user" class="btn btn-small btn-primary">Show all</button>
+      </div>
+
+
+      <% @users.each do |nickname| %>
+        <div class="filters" data-option-value="<%= nickname %>">
+          <button id="username-<%= nickname %>" class="btn btn-small" type="button"><%= nickname %></button>
+        </div>
+      <% end %>
+    </div>
+
+    <%= text_field_tag "type", @type, class: "hidden" %>
+    <%= text_field_tag "current_page", @page, class: "hidden" %>
+    <div id="container" class="infinite-scrolling">
+    </div>
   </div>
 </div>

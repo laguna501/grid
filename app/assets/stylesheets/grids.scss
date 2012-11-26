@@ -145,8 +145,7 @@ div.fb-like {
   margin: 0 auto;
 
   #nickname {
-    clear: both;
-    float: left;
+
     h1{
       margin: 0;
     }
@@ -170,9 +169,7 @@ div.fb-like {
   }
 
   #photo_description{
-    width: 580px;
-    margin-left: auto ;
-    margin-right: auto ;
+
     color: $photo-description-color;
   }
 

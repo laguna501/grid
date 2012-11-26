@@ -60,10 +60,10 @@ Grids = {
             $("div.isotope-item").unbind("mouseout");
             $("div.isotope-item").mouseover(function(){
               $(this).children(".infos").show();
-              $(this).children("a").children("img").removeClass().addClass("img-fade");
+              $(this).children("a").children("img").css({'opacity':0.5,'background-color':'#fff'});
             }).mouseout(function(){
               $(this).children(".infos").hide();
-              $(this).children("a").children("img").removeClass();
+              $(this).children("a").children("img").css({'opacity':1,'background-color':'#fff'});
             });
           }, 300);
         })
@@ -95,6 +95,7 @@ Grids = {
       });
     }, opts);
   },
+
   init: function() {
     var page = $("#current_page").val();
 
@@ -113,6 +114,8 @@ Grids = {
     $('[id^=username]').click(Grids.facebookUser);
     $('#show-all-user').click(Grids.allUser);
     $('div.filtersource').click(Grids.filterSource);
+    
+
 
     if(window.location.pathname == "/grids/show_users"){
       Grids.loadNextPhotos(page);
