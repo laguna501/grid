@@ -775,7 +775,7 @@ background-color: white;
 }
 
 .isotope-item a img, #show_users div.item img {
-	box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
 -moz-box-shadow: 0 1px 2px rgba(34,25,25,0.4);
 -webkit-box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
 padding:5px;
@@ -1079,6 +1079,12 @@ margin: -31px 0 0 -31px !important;
 	   -moz-border-radius:		4px 4px 4px 4px;
 	     -o-border-radius:		4px 4px 4px 4px;
 	        border-radius:		4px 4px 4px 4px;
+	 /* CSS3 TRANSITION*/
+	-webkit-transition: all 0.4s ease;
+	-moz-transition: all 0.4s ease;
+	-o-transition: all 0.4s ease;
+	transition: all 0.4s ease;
+
 }
 
 
@@ -1354,3 +1360,20 @@ margin: -31px 0 0 -31px !important;
 .work-desc {background-color:white;}
 #layouts {display:none;}
 #filter {float:right;}
+.inst-icon {
+	background: url('/assets/instagram_icon.png') no-repeat;
+	width:48px;
+	height:48px;
+	float:left;
+}
+.fb-icon {
+	background: url('/assets/facebook_icon.png') no-repeat;
+	width:48px;
+	height:48px;
+	float:left;
+}
+.inst-icon:hover, .fb-icon:hover {
+	opacity:0.6;
+}
+.filtersourceicon {display:block;}
+

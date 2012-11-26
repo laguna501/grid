@@ -14,6 +14,14 @@ Grids = {
       $('#container').isotope({ filter: '[owner="'+nickname+'"], [class="item"]' });
     return false;
   },
+  filterSource: function(){
+    var photosource = $( this ).attr('data-option-value');
+    if (photosource == 'facebook')
+      $('#container').isotope ({ filter: '.item.facebook'});
+    else
+      $('#container').isotope ({ filter: '.item.instagram'});
+    return false;
+  },
   changeLayoutMode: function(mode){
     $('#container').imagesLoaded( function(){
       $('#container').isotope({
@@ -104,6 +112,7 @@ Grids = {
     $('div.filters').click(Grids.filter);
     $('[id^=username]').click(Grids.facebookUser);
     $('#show-all-user').click(Grids.allUser);
+    $('div.filtersource').click(Grids.filterSource);
 
     if(window.location.pathname == "/grids/show_users"){
       Grids.loadNextPhotos(page);
