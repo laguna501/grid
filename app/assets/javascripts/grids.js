@@ -24,6 +24,7 @@ Grids = {
     });
   },
   clearUser: function(){
+    $('div.filters').find('button').removeClass('checked');
     $('#container').isotope({ filter: '*' });
   },
   allUser: function(){

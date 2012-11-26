@@ -7,7 +7,7 @@ development: &default
   pool: 5
   timeout: 5000
   encoding: utf8
-  database: grid_from_production
+  database: grid_production
 
 test:
   <<: *default
