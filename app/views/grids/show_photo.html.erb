@@ -12,7 +12,8 @@
 
     <% unless @photo_description.blank? %>
   
-    <h3 id="photo_description"><span><%= @photo_description %></span><span id="nickname"><%= @owner %></span></h3>
+    <h3 id="photo_description"><span><%= @owner %></span><span id="nickname"></span></h3>
+    <h4><span><%= @photo_description %></span></h4>
     <hr />
 <% end %>
   </div>

@@ -55,6 +55,28 @@ a img { border: none; }
 }
 
 
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), url('http://themes.googleusercontent.com/font?kit=1bFto_RrW-wgLetD2HhJU_esZW2xOQ-xsNqO47m55DA') format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Roboto Light'), local('Roboto-Light'), url('http://themes.googleusercontent.com/font?kit=33_del8_OqHYp5o7lJ03zEbnXQ06sCSpaytluCdpFnY') format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 100;
+  src: local('Roboto Thin'), local('Roboto-Thin'), url('http://themes.googleusercontent.com/font?kit=DPu3R_w4R5pjnst7X4FGRhsxEYwM7FgeyaSgU71cLG0') format('woff');
+}
+
+
 
 
 html {
@@ -122,7 +144,7 @@ h1, h2, h5, h6{
 	color:#5a5a5a;
 	text-shadow:#fff 0px 1px 0px;
 	/*font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;*/
-	font-family:"Open Sans", Helvetica, Arial, sans-serif;
+	font-family:"Roboto-Thin", Helvetica, Arial, sans-serif;
 }
 h1 a, h2 a, h3 a, h5 a, h6 a{
 	color:#5a5a5a;
@@ -130,7 +152,7 @@ h1 a, h2 a, h3 a, h5 a, h6 a{
 
 h4 a, h3 {
 	color:#ffffff;
-	font-family:"Open Sans", Helvetica, Arial, sans-serif;
+	font-family:"Roboto-Thin", Helvetica, Arial, sans-serif;
 }
 
 h1{
@@ -481,14 +503,14 @@ transition: all 0.4s ease;
 }
 #photo_description span { 
    color: white; 
-   font: normal 45px 'Open Sans',Helvetica, Sans-Serif; 
+   font:  45px 'Roboto-Thin',Helvetica, Sans-Serif; 
    letter-spacing: 0px;  
    background: rgb(0, 0, 0); /* fallback color */
    background: rgba(0, 0, 0, 0.6);
    padding: 10px; 
 }
 #nickname {
-	font: normal 16px 'Open Sans', Helvetica, Sans-Serif;
+	font: normal 16px 'Roboto-Thin', Helvetica, Sans-Serif;
 	display: none;
 }
 #show_users h1 {display:none;}
