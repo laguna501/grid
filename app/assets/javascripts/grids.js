@@ -1,6 +1,9 @@
 //= require jquery.isotope.js
 //= require waypoints.js
 //= require bootstrap.js
+//= require jquery.fancybox.js
+
+
 
 Grids = {
   layout: function() {
@@ -54,6 +57,8 @@ Grids = {
           $('nav.entry').remove();
           $('#current_page').remove();
           $('#container').isotope( 'insert', $(result) );
+
+
           setTimeout(function () {
             $('#container').isotope({ filter: '*' });
             $("div.isotope-item").unbind("mouseover");
@@ -70,6 +75,7 @@ Grids = {
       }
     });
   },
+
   loadWayPoint: function(){
     var $loading = $("<div class='loading'></div>"),
     $entry = $('footer'),
@@ -86,6 +92,7 @@ Grids = {
         var page = $("#current_page").val();
         Grids.loadNextPhotos(page);
 
+
         $loading.detach();
         $('.more').replaceWith($data.find('.more'));
 
@@ -95,6 +102,7 @@ Grids = {
       });
     }, opts);
   },
+
 
   init: function() {
     var page = $("#current_page").val();
@@ -113,8 +121,8 @@ Grids = {
     $('div.filters').click(Grids.filter);
     $('[id^=username]').click(Grids.facebookUser);
     $('#show-all-user').click(Grids.allUser);
-    $('div.filtersource').click(Grids.filterSource);
-    
+    $('div.filtersource').click(Grids.filterSource);  
+
 
 
     if(window.location.pathname == "/grids/show_users"){
@@ -125,3 +133,26 @@ Grids = {
 }
 
 $(Grids.init);
+$(document).ready(function() {
+
+  /* This is basic - uses default settings */
+  
+  /*$("a.photo").fancybox({
+
+    fitToView : true,
+    autoSize  : true,
+    autoCenter : true,
+   'hideOnContentClick': true,
+   'width' : '75%',
+   'height' : '75%',
+   'autoScale' : false,
+
+
+  });*/
+ 
+  /* Using custom settings */
+
+
+  
+});
+

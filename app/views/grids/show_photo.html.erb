@@ -7,12 +7,6 @@
 </section>
 <div id="photo">
 
-  <div id="social_plugins">
-    <div class="fb-like" data-href="https://<%= Rails.configuration.notifier_default_host %>/grids/show_photo?identifier=<%= @photo_identifier %>&owner=<%= @owner %>" data-send="true" data-width="350" data-show-faces="false" data-font="verdana"></div>
-  </div>
-	
-  
-
   <div id="user_photo" class="image_single">
     <%= image_tag @user_photo %>
 
@@ -23,7 +17,9 @@
 <% end %>
   </div>
 
-
+  <div id="social_plugins">
+    <div class="fb-like" data-href="https://<%= Rails.configuration.notifier_default_host %>/grids/show_photo?identifier=<%= @photo_identifier %>&owner=<%= @owner %>" data-send="true" data-width="350" data-show-faces="false" data-font="verdana"></div>
+  </div>
 
   <div class="fb-comments" data-href="https://<%= Rails.configuration.notifier_default_host %>/grids/show_photo?identifier=<%= @photo_identifier %>&owner=<%= @owner %>" data-num-posts="10" data-width="770">
   </div>

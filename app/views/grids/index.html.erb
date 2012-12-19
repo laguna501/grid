@@ -1,8 +1,83 @@
 <div id="grid">
-  <h1>Canon Grid</h1>
-  <hr />
 
-  <%= link_to(show_users_grids_path(type: "girl")) do %>
-    <button class="btn btn-large btn-block" type="button"><h2>Access to Canon Girl Grid</h2></button>
-  <% end %>
-</div>
+
+
+			<section class="main">
+
+				<div id="ri-grid" class="ri-grid ri-grid-size-3 ri-shadow">
+					<img class="ri-loading-image" src="assets/loading.gif"/>
+					<ul>
+						<li><a href="#"><img src="assets/medium/1.jpg"/></a></li>
+						<li><a href="#"><img src="assets/medium/2.jpg"/></a></li>
+						<li><a href="#"><img src="assets/medium/3.jpg"/></a></li>
+						<li><a href="#"><img src="assets/medium/4.jpg"/></a></li>
+						<li><a href="#"><img src="assets/medium/5.jpg"/></a></li>
+						<li><a href="#"><img src="assets/medium/6.jpg"/></a></li>
+						<li><a href="#"><img src="assets/medium/7.jpg"/></a></li>
+						<li><a href="#"><img src="assets/medium/8.jpg"/></a></li>
+						<li><a href="#"><img src="assets/medium/9.jpg"/></a></li>
+						<li><a href="#"><img src="assets/medium/10.jpg"/></a></li>
+						<li class="ri-nochange"><a href="/grids/show_users?type=girl"><img src="assets/medium/gate1.png"/></a></li>
+						<li class="ri-nochange"><a href="/grids/show_users?type=girl"><img src="assets/medium/gate2.png"/></a></li>
+						<li><a href="#"><img src="assets/medium/13.jpg"/></a></li>
+						<li><a href="#"><img src="assets/medium/14.jpg"/></a></li>
+						<li><a href="#"><img src="assets/medium/15.jpg"/></a></li>
+						<li><a href="#"><img src="assets/medium/16.jpg"/></a></li>
+						<li class="ri-nochange"><a href="/grids/show_users?type=girl"><img src="assets/medium/gate3.png"/></a></li>
+						<li class="ri-nochange"><a href="/grids/show_users?type=girl"><img src="assets/medium/gate4.png"/></a></li>
+						<li><a href="#"><img src="assets/medium/19.jpg"/></a></li>
+						<li><a href="#"><img src="assets/medium/20.jpg"/></a></li>
+						<li><a href="#"><img src="assets/medium/21.jpg"/></a></li>
+						<li><a href="#"><img src="assets/medium/22.jpg"/></a></li>
+						<li><a href="#"><img src="assets/medium/23.jpg"/></a></li>
+						<li><a href="#"><img src="assets/medium/24.jpg"/></a></li>
+						<li><a href="#"><img src="assets/medium/25.jpg"/></a></li>
+						<li><a href="#"><img src="assets/medium/26.jpg"/></a></li>
+						<li><a href="#"><img src="assets/medium/27.jpg"/></a></li>
+						<li><a href="#"><img src="assets/medium/28.jpg"/></a></li>
+						<li><a href="#"><img src="assets/medium/29.jpg"/></a></li>
+						<li><a href="#"><img src="assets/medium/30.jpg"/></a></li>
+						<li><a href="#"><img src="assets/medium/31.jpg"/></a></li>
+
+					</ul>
+				</div>
+
+			</section>
+
+		<script type="text/javascript">	
+			$(function() {
+			
+				$( '#ri-grid' ).gridrotator( {
+					rows : 5,
+					columns : 6,
+					maxStep : 2,
+					interval : 1000,
+					nochange :[10,11,16,17],
+					preventClick    : false,
+					w1024 : {
+						rows : 5,
+						columns : 6
+					},
+					w768 : {
+						rows : 5,
+						columns : 6
+					},
+					w480 : {
+						rows : 5,
+						columns : 6
+					},
+					w320 : {
+						rows : 5,
+						columns : 6
+					},
+					w240 : {
+						rows : 5,
+						columns : 6
+					},
+
+				} );
+			
+			});
+		</script>
+
+		</div>
