@@ -60,8 +60,8 @@ module GRID
     config.assets.version = '1.0'
     config.assets.prefix = "/grid"
 
-    config.notifier_default_host = "grid.swiftlet.co.th"
-    config.notifier_from_field = "do-not-reply@swiftlet.co.th"
-    config.notifier_to_admin = "artiwarahd@swiftlet.co.th"
+    config.notifier_default_host = "grid.canonlife.com"
+    config.notifier_from_field = "do-not-reply@canonlife.com"
+    config.notifier_to_admin = "phatthaworn@dicepath.com"
   end
 end
