@@ -8,9 +8,9 @@ gem 'rails', '3.2.6'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'uglifier'
+  gem 'sass-rails', '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
+  gem 'uglifier', '>= 1.0.3'
 end
 
 gem 'cancan'
@@ -24,11 +24,13 @@ gem 'unicorn'
 gem "will_paginate"
 gem 'authlogic'
 
+
 group :development, :test, :staging do
   # Pretty printed test output
   gem 'factory_girl_rails'
   gem 'mocha', require: 'mocha_standalone'
-  gem 'parallel_tests'
+  gem 'parallel', '0.5.18'
+  gem 'parallel_tests', '0.8.8'
   gem 'railroady'
   gem 'rspec-rails'
   gem 'capybara'
