@@ -96,6 +96,7 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.7.5)
     kgio (2.7.4)
+    libv8 (3.11.8.4)
     libwebsocket (0.1.7.1)
       addressable
       websocket
@@ -118,8 +119,8 @@ GEM
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
     nokogiri (1.5.6)
-    parallel (0.6.1)
-    parallel_tests (0.8.14)
+    parallel (0.5.18)
+    parallel_tests (0.8.8)
       parallel
     polyglot (0.3.3)
     rack (1.4.1)
@@ -215,22 +216,24 @@ DEPENDENCIES
   cancan
   capistrano
   capybara
-  coffee-rails
+  coffee-rails (~> 3.2.1)
   database_cleaner
   factory_girl_rails
   fb_graph
   instagram
   jquery-rails
+  libv8 (~> 3.11.8)
   mocha
   mysql2
-  parallel_tests
+  parallel (= 0.5.18)
+  parallel_tests (= 0.8.8)
   railroady
   rails (= 3.2.6)
   rspec-rails
-  sass-rails
+  sass-rails (~> 3.2.3)
   shoulda-matchers
   syslog-logger
   therubyracer
-  uglifier
+  uglifier (>= 1.0.3)
   unicorn
   will_paginate
