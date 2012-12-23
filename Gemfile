@@ -40,4 +40,5 @@ end
 
 group :ubuntu do
   gem 'therubyracer'
+  gem 'libv8', '~> 3.11.8'
 end
