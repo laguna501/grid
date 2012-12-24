@@ -33,7 +33,7 @@ group :development, :test, :staging do
   gem 'parallel_tests', '0.8.8'
   gem 'railroady'
   gem 'rspec-rails'
-  gem 'capybara'
+  gem 'capybara', '1.1.2'
   gem 'database_cleaner'
   gem 'shoulda-matchers'
 end
