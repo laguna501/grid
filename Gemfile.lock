@@ -96,6 +96,7 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.7.5)
     kgio (2.7.4)
+    libv8 (3.11.8.4)
     libwebsocket (0.1.7.1)
       addressable
       websocket
@@ -221,6 +222,7 @@ DEPENDENCIES
   fb_graph
   instagram
   jquery-rails
+  libv8
   mocha
   mysql2
   parallel_tests

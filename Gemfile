@@ -39,5 +39,6 @@ group :development, :test, :staging do
 end
 
 group :ubuntu do
+  gem 'libv8'
   gem 'therubyracer'
 end
