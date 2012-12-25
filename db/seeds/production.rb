@@ -18,7 +18,7 @@ Admin.create(
 
 user = User.new
 user.email = "laguna501@gmail.com"
-user.user_type = "pro"
+user.user_type = "girl"
 user.nickname = "Phatthaworn"
 user.full_name = "Phatthaworn Phongphaew"
 user.save!
@@ -38,6 +38,7 @@ user.email = "a_antarctica@hotmail.com"
 user.user_type = "girl"
 user.nickname = "Oumkwan"
 user.full_name = "Oumkwan Puksri"
+user.save!
 
 account = FacebookAccount.new
 account.user = user
