@@ -29,7 +29,6 @@
         <button id="show-all-user" class="btn btn-small btn-primary">Show all</button>
       </div>
 
-
       <% @users.each do |nickname| %>
         <div class="filters" data-option-value="<%= nickname %>">
           <button id="username-<%= nickname %>" class="btn btn-small" type="button"><%= nickname %></button>

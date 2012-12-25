@@ -5,12 +5,17 @@ html,body {
 }
 
 #wrap {
-  width: 795px;
+
   margin: 0 auto;
   height:auto !important; 			/* real browsers */
 	height:100%; 									/* IE6: treaded as min-height*/
 	min-height:100%; 							/* real browsers */
 }
+
+#wrap {width:auto;}
+
+ 
+
 
 a{
   text-decoration: none !important;
