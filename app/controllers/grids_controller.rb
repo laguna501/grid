@@ -9,6 +9,7 @@ class GridsController < ApplicationController
     @page = 0
   end
 
+
   def infinite_scroll
     type = params[:type]
     @page = params[:page]
@@ -28,11 +29,11 @@ class GridsController < ApplicationController
     @owner = params['owner']
     account = Account.includes(:user).where("users.nickname = ?", @owner).all
     photo = Photo.where(identifier: @photo_identifier, account_id: account).first
-    user = User.where(nickname: @owner).first
+
 
     @photo_description = photo.description
     @user_photo = photo.full
-    @user_fullname = user.full_name
+    #@user_fullname = user.full_name
 
   end
 end

@@ -1,7 +1,6 @@
 //= require jquery.isotope.js
 //= require waypoints.js
 //= require bootstrap.js
-//= require jquery.fancybox.js
 
 
 
@@ -17,14 +16,14 @@ Grids = {
       $('#container').isotope({ filter: '[owner="'+nickname+'"], [class="item"]' });
     return false;
   },
-  filterSource: function(){
+  /*filterSource: function(){
     var photosource = $( this ).attr('data-option-value');
     if (photosource == 'facebook')
       $('#container').isotope ({ filter: '.item.facebook'});
     else
       $('#container').isotope ({ filter: '.item.instagram'});
     return false;
-  },
+  },*/
   changeLayoutMode: function(mode){
     $('#container').imagesLoaded( function(){
       $('#container').isotope({
@@ -121,7 +120,7 @@ Grids = {
     $('div.filters').click(Grids.filter);
     $('[id^=username]').click(Grids.facebookUser);
     $('#show-all-user').click(Grids.allUser);
-    $('div.filtersource').click(Grids.filterSource);  
+    /*$('div.filtersource').click(Grids.filterSource);  */
 
 
 
@@ -134,26 +133,4 @@ Grids = {
 
 
 $(Grids.init);
-$(document).ready(function() {
-
-  /* This is basic - uses default settings */
-  
-  /*$("a.photo").fancybox({
-
-    fitToView : true,
-    autoSize  : true,
-    autoCenter : true,
-   'hideOnContentClick': true,
-   'width' : '75%',
-   'height' : '75%',
-   'autoScale' : false,
-
-
-  });*/
- 
-  /* Using custom settings */
-
-
-  
-});
 
