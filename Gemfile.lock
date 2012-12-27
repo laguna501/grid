@@ -215,7 +215,7 @@ DEPENDENCIES
   authlogic
   cancan
   capistrano
-  capybara
+  capybara (= 1.1.2)
   coffee-rails (~> 3.2.1)
   database_cleaner
   factory_girl_rails
