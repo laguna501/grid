@@ -4,6 +4,7 @@
 
 
 
+
 Grids = {
   layout: function() {
     Grids.changeLayoutMode($(this).attr("data-option-value"));
@@ -16,14 +17,14 @@ Grids = {
       $('#container').isotope({ filter: '[owner="'+nickname+'"], [class="item"]' });
     return false;
   },
-  /*filterSource: function(){
+  filterSource: function(){
     var photosource = $( this ).attr('data-option-value');
     if (photosource == 'facebook')
       $('#container').isotope ({ filter: '.item.facebook'});
     else
       $('#container').isotope ({ filter: '.item.instagram'});
     return false;
-  },*/
+  },
   changeLayoutMode: function(mode){
     $('#container').imagesLoaded( function(){
       $('#container').isotope({
@@ -40,10 +41,11 @@ Grids = {
   allUser: function(){
     Grids.clearUser();
   },
-  facebookUser: function(){
+  filterUser: function(){
     Grids.clearUser();
     $(this).addClass('checked');
   },
+ 
   loadNextPhotos: function(page){
     var type = $("#type").val();
     $.ajax({
@@ -118,9 +120,9 @@ Grids = {
     $('#container').isotope({ filter: '*' });
     $('div.layouts').click(Grids.layout);
     $('div.filters').click(Grids.filter);
-    $('[id^=username]').click(Grids.facebookUser);
+    $('[id^=username]').click(Grids.filterUser);
     $('#show-all-user').click(Grids.allUser);
-    /*$('div.filtersource').click(Grids.filterSource);  */
+    $('div.filtersource').click(Grids.filterSource);
 
 
 
@@ -133,4 +135,21 @@ Grids = {
 
 
 $(Grids.init);
+
+
+$(document).ready(function() {
+
+/* This is basic - uses default settings */
+
+$("a.photo").fancybox({
+    fitToView : true,
+    iframe : {
+        scrolling : 'auto'
+
+      }
+    });
+
+
+ });
+
 

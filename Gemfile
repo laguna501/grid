@@ -16,6 +16,7 @@ end
 gem 'cancan'
 gem 'capistrano'
 gem 'jquery-rails'
+gem 'fancybox2-rails', '~> 0.2.1'
 gem 'mysql2'
 gem 'fb_graph'
 gem 'instagram'
