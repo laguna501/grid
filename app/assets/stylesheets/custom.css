@@ -490,8 +490,8 @@ transition: all 0.4s ease;
 }
 
 .image_single {
-	position:relative;
-	width:100%;
+	/*position:relative;
+	width:100%;*/
 }
 
 #photo_description {
@@ -807,3 +807,34 @@ transition: all 0.4s ease;
 	margin-top: 30px;
 	text-align: left;
 }
+
+.fb-comments{width: 100% !important;}
+.fb-comments iframe[style]{width: 100% !important;}
+.fb-like-box{width: 100% !important;}
+.fb-like-box iframe[style]{width: 100% !important;}
+.fb-comments span{width: 100% !important;}
+.fb-comments iframe span[style]{width: 100% !important;}
+.fb-like-box span{width: 100% !important;}
+.fb-like-box iframe span[style]{width: 100% !important;}
+
+
+.fancybox-wrap { 
+  top: 10px !important; 
+
+}
+
+.fancybox-type-iframe .fancybox-nav {
+    width: 60px;       
+}
+
+.fancybox-type-iframe .fancybox-nav span {
+    visibility: visible;
+    opacity: 0.8;
+}
+.fancybox-next {
+	right: -60px;
+}
+.fancybox-prev {
+	left: -60px;
+}
+

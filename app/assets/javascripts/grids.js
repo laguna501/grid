@@ -102,6 +102,7 @@ Grids = {
         });
       });
     }, opts);
+
   },
 
 
@@ -139,14 +140,16 @@ $(Grids.init);
 
 $(document).ready(function() {
 
-/* This is basic - uses default settings */
+
 
 $("a.photo").fancybox({
     fitToView : true,
-    iframe : {
-        scrolling : 'auto'
-
-      }
+    openEffect  : 'none',
+    closeEffect : 'none',
+    nextEffect  : 'none',
+    prevEffect  : 'none',
+    padding     : 0,
+    margin      : [20, 60, 20, 60]
     });
 
 
