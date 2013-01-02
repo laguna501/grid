@@ -8,7 +8,7 @@ accounts.each do |account|
     medias.each do |media|
       next if all_photo.include?(media.id)
       next if media.caption.blank?
-      next unless media.caption.text =~ /#grid/i
+      next unless media.caption.text =~ /#cnlifespace/i
       account.photos.create(
         identifier: media.id,
         full: Photo.save_file(account.username, media.images.standard_resolution.url, account.social_type, "full"),
