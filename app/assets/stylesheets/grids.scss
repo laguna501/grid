@@ -131,19 +131,19 @@
 }
   
 #fb {
-  margin: 0 auto;
-  text-align: center;
+/*  margin: 0 auto;
+  text-align: center;*/
 }
 
 div.fb-like {
-  clear: both;
-  display: block;
+ /* clear: both;
+  display: block;*/
 }
 
 #photo {
-  width: 820px;
+  /*width: 820px;
   margin: 20px auto;
-
+*/
   #nickname {
 
     h1{
@@ -152,13 +152,13 @@ div.fb-like {
   }
 
   #social_plugins {
-    float: right;
-    clear: both;
+    /*float: right;
+    clear: both;*/
   }
 
   #user_photo {
-    clear: both;
-    text-align: center;
+   /* clear: both;
+    text-align: center;*/
     img{
       border: solid 1px gray;
       border-radius: 3px;
@@ -174,8 +174,8 @@ div.fb-like {
   }
 
   div.fb-comments {
-    margin: 2px 30px;
-    padding: 3px;
+    /*margin: 2px 30px;
+    padding: 3px;*/
   }
 }
 

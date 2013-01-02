@@ -169,6 +169,7 @@ h3{
 	font-size:30px;
 	line-height:30px;
 	margin-bottom:10px;
+	text-shadow:0 1px 1px rgba(0, 0, 0, .4);
 }
 h4{
 	font-size:18px;
@@ -239,6 +240,7 @@ border:none;
 padding:15px;
 background-color: white;
 border:none;
+width: 100%
 
 }
 
@@ -493,12 +495,15 @@ transition: all 0.4s ease;
 	/*position:relative;
 	width:100%;*/
 }
+#photo #user_photo {
+	position: relative;
+}
 
 #photo_description {
 	position:absolute;
-	bottom:100px;
-	left:15%;
-	width:70%;
+	bottom:10%;
+	left:50px;
+	width:90%;
 	text-align: left;
 }
 #photo_description span { 
@@ -506,7 +511,7 @@ transition: all 0.4s ease;
    font:  45px 'Roboto-Thin',Helvetica, Sans-Serif; 
    letter-spacing: 0px;  
    background: rgb(0, 0, 0); /* fallback color */
-   background: rgba(0, 0, 0, 0.6);
+   background: rgba(236, 28, 44, 0.6);
    padding: 10px; 
 }
 #nickname {
@@ -838,3 +843,12 @@ transition: all 0.4s ease;
 	left: -60px;
 }
 
+#photo_description span.caption {
+	color:#ffffff;
+	font-family: Helvetica, Arial, sans-serif;
+	text-shadow:0 1px 1px rgba(0, 0, 0, .4);
+	font-size:18px;
+	font-weight: lighter;
+	line-height:24px;
+	background: rgba(0, 0, 0, 0.6);
+}
