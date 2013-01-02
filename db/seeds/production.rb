@@ -49,3 +49,71 @@ account = InstagramAccount.new
 account.user = user
 account.username = "oumkwan"
 account.save!
+
+user = User.new
+user.email = "heyguyiloveu@gmail.com"
+user.user_type = "girl"
+user.nickname = "Nok"
+user.full_name = "Anchawee Leeprasert"
+user.save!
+
+account = FacebookAccount.new
+account.user = user
+account.username = "noknoknok.nok"
+account.save!
+
+account = InstagramAccount.new
+account.user = user
+account.username = "nok_anchawee14"
+account.save!
+
+user = User.new
+user.email = "loverphoenix@hotmail.com"
+user.user_type = "girl"
+user.nickname = "Smile"
+user.full_name = "Piyaon Sitthibunyapat"
+user.save!
+
+account = FacebookAccount.new
+account.user = user
+account.username = "cheezysmily"
+account.save!
+
+account = InstagramAccount.new
+account.user = user
+account.username = "sassysmily"
+account.save!
+
+user = User.new
+user.email = "musub_69@hotmail.com"
+user.user_type = "girl"
+user.nickname = "Pang"
+user.full_name = "Wilasinee Tiacharoen"
+user.save!
+
+account = FacebookAccount.new
+account.user = user
+account.username = "pang.wilasinee.3"
+account.save!
+
+account = InstagramAccount.new
+account.user = user
+account.username = "pang_goh"
+account.save!
+
+user = User.new
+user.email = "moonlight.eyes@hotmail.com"
+user.user_type = "girl"
+user.nickname = "Pou"
+user.full_name = "Thanunkan Somsup"
+user.save!
+
+account = FacebookAccount.new
+account.user = user
+account.username = "moonangel.pou"
+account.save!
+
+account = InstagramAccount.new
+account.user = user
+account.username = "thanunkan"
+account.save!
