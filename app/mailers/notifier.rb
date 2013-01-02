@@ -7,7 +7,7 @@ class Notifier < ActionMailer::Base
     mail(
       to: account.user.email,
       cc: Rails.configuration.notifier_to_admin,
-      subject: "Extend facebook access token"
+      subject: "Request for facebook access token"
     )
   end
 
@@ -16,7 +16,7 @@ class Notifier < ActionMailer::Base
     mail(
       to: account.user.email,
       cc: Rails.configuration.notifier_to_admin,
-      subject: "Extend instagram access token"
+      subject: "Request for instagram access token"
     )
   end
 end
