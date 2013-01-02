@@ -105,6 +105,23 @@ Grids = {
 
   },
 
+  loadFancybox: function(){
+    $(document).ready(function() {
+    $("a.photo").fancybox({
+        fitToView : true,
+        openEffect  : 'none',
+        closeEffect : 'none',
+        nextEffect  : 'none',
+        prevEffect  : 'none',
+        padding     : 0,
+        margin      : [20, 60, 20, 60]
+        });
+
+
+     });
+
+
+  },
 
   init: function() {
     var page = $("#current_page").val();
@@ -130,29 +147,11 @@ Grids = {
     if(window.location.pathname == "/grids/show_users"){
       Grids.loadNextPhotos(page);
       Grids.loadWayPoint();
+      Grids.loadFancybox();
     }
   }
 }
 
 
 $(Grids.init);
-
-
-$(document).ready(function() {
-
-
-
-$("a.photo").fancybox({
-    fitToView : true,
-    openEffect  : 'none',
-    closeEffect : 'none',
-    nextEffect  : 'none',
-    prevEffect  : 'none',
-    padding     : 0,
-    margin      : [20, 60, 20, 60]
-    });
-
-
- });
-
 
