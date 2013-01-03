@@ -9,7 +9,6 @@ class GridsController < ApplicationController
     @page = 0
   end
 
-
   def infinite_scroll
     type = params[:type]
     @page = params[:page]
