@@ -5,14 +5,15 @@
   <div id="user_photo" class="image_single span10">
     <%= image_tag @user_photo %>
 
-    <% unless @photo_description.blank? %>
+    
   <h3 id="photo_description"><span><%= @user_fullname%></span>
     <br />
     <br />
+  <% unless @photo_description.blank? %>
   <span class="caption"><%= @photo_description %></span>
+  <% end %>
   </h3>
     
-<% end %>
   </div>
   <div class = "span1"></div>
   </div>
