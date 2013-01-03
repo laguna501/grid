@@ -11,6 +11,7 @@ accounts.each do |account|
       next unless media.caption.text =~ /#cnlifespace/i
       account.photos.create(
         identifier: media.id,
+        description: media.caption.text,
         full: Photo.save_file(account.username, media.images.standard_resolution.url, account.social_type, "full"),
         thumbnail: Photo.save_file(account.username, media.images.low_resolution.url, account.social_type, "thumbnail")
       )
