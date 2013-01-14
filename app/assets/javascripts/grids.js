@@ -45,8 +45,14 @@ Grids = {
     Grids.clearUser();
     $(this).addClass('checked');
   },
- 
+
   loadNextPhotos: function(page){
+    if(current_page == page){
+      return;
+    }
+    else{
+      current_page = page
+    }
     var type = $("#type").val();
     $.ajax({
       url: '/grids/infinite_scroll',
@@ -124,6 +130,7 @@ Grids = {
   },
 
   init: function() {
+    var current_page = null;
     var page = $("#current_page").val();
 
     (function(d, s, id) {
