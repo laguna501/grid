@@ -125,8 +125,6 @@ Grids = {
 
 
      });
-
-
   },
 
   init: function() {
