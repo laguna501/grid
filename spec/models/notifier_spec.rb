@@ -10,7 +10,7 @@ describe Notifier do
       email = ActionMailer::Base.deliveries.first
       email.from.should == [Rails.configuration.notifier_from_field]
       email.to.should == [user.email]
-      email.subject.should == "Extend facebook access token"
+      email.subject.should == "Request for facebook access token"
       email.cc.should == [Rails.configuration.notifier_to_admin]
       email.decoded.should include("Extend facebook access token")
     end
@@ -26,7 +26,7 @@ describe Notifier do
       email = ActionMailer::Base.deliveries.first
       email.from.should == [Rails.configuration.notifier_from_field]
       email.to.should == [user.email]
-      email.subject.should == "Extend instagram access token"
+      email.subject.should == "Request for instagram access token"
       email.cc.should == [Rails.configuration.notifier_to_admin]
       email.decoded.should include("Extend instagram access token")
     end
