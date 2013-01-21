@@ -7,10 +7,14 @@
     show_photo_grids_path(owner: photo.account.user.nickname, identifier: photo.identifier),class: "photo fancybox.iframe", rel: "gallery", id: photo.identifier
   ) %>
   <div class="infos show" > <h4>
-  		<%= link_to photo.description, show_photo_grids_path(owner: photo.account.user.nickname, identifier: photo.identifier), class: "photo fancybox.iframe"
+      <% caption_size = photo.highlighted? ? 57 : 27 %>
+      <% photo_description = photo.description[0..caption_size] %>
+      <% photo_description += "..." unless photo_description == photo.description %>
+      <% photo_description.gsub!(/#cnlifespace/i, "") %>
+  		<%= link_to photo_description, show_photo_grids_path(owner: photo.account.user.nickname, identifier: photo.identifier), class: "photo fancybox.iframe"
 
   		%>
-		</h4> <span><%= photo.account.user.nickname %></span> 
+		</h4> <span><%= photo.account.user.nickname %></span>
   </div>
 </div>
 </div>
