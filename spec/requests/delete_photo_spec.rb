@@ -7,10 +7,10 @@ describe "Delete and Undelete photos", js: true do
       admin = FactoryGirl.create(:admin, username: "test", password: "000000",password_confirmation: "000000")
       user = FactoryGirl.create(:user, email: "artiwarah@example.com",user_type: "pro", nickname: "JOE")
       account = FactoryGirl.create(:account,username: "artiwarah", type: "FacebookAccount", user: user)
-      photo = FactoryGirl.create(:photo, 
+      photo = FactoryGirl.create(:photo,
         identifier: '1',
         thumbnail: "/assets/uploads/facebook/thumbnail/artiwarah/182869_3569852204790_1354565865_n.jpg",
-        full: "/assets/uploads/facebook/full/artiwarah/182869_3569852204790_1354565865_n.jpg", 
+        full: "/assets/uploads/facebook/full/artiwarah/182869_3569852204790_1354565865_n.jpg",
         account: account
         )
 
@@ -22,7 +22,6 @@ describe "Delete and Undelete photos", js: true do
         click_button ('Login')
       end
       page.should have_css(".frame", :text => "Login successful.")
-      page.should have_css("#wrap", :text => "Photo Management")
       check('select[]')
       click_button ('Delete Photos')
       page.should have_css(".frame", :text => "Update photos successfully")
@@ -33,22 +32,22 @@ describe "Delete and Undelete photos", js: true do
       admin = FactoryGirl.create(:admin, username: "test", password: "000000",password_confirmation: "000000")
       user = FactoryGirl.create(:user, email: "artiwarah@example.com",user_type: "pro", nickname: "JOE")
       account = FactoryGirl.create(:account,username: "artiwarah", type: "FacebookAccount", user: user)
-      photo = FactoryGirl.create(:photo, 
+      photo = FactoryGirl.create(:photo,
         identifier: '1',
         thumbnail: "/assets/uploads/facebook/thumbnail/artiwarah/182869_3569852204790_1354565865_n.jpg",
-        full: "/assets/uploads/facebook/full/artiwarah/182869_3569852204790_1354565865_n.jpg", 
+        full: "/assets/uploads/facebook/full/artiwarah/182869_3569852204790_1354565865_n.jpg",
         account: account
         )
-      FactoryGirl.create(:photo, 
+      FactoryGirl.create(:photo,
         identifier: '2',
         thumbnail: "/assets/uploads/facebook/thumbnail/artiwarah/182869_3569852204790_1354565865_n.jpg",
-        full: "/assets/uploads/facebook/full/artiwarah/182869_3569852204790_1354565865_n.jpg", 
+        full: "/assets/uploads/facebook/full/artiwarah/182869_3569852204790_1354565865_n.jpg",
         account: account
         )
-      FactoryGirl.create(:photo, 
+      FactoryGirl.create(:photo,
         identifier: '3',
         thumbnail: "/assets/uploads/facebook/thumbnail/artiwarah/182869_3569852204790_1354565865_n.jpg",
-        full: "/assets/uploads/facebook/full/artiwarah/182869_3569852204790_1354565865_n.jpg", 
+        full: "/assets/uploads/facebook/full/artiwarah/182869_3569852204790_1354565865_n.jpg",
         account: account
         )
 
@@ -60,7 +59,6 @@ describe "Delete and Undelete photos", js: true do
         click_button ('Login')
       end
       page.should have_css(".frame", :text => "Login successful.")
-      page.should have_css("#wrap", :text => "Photo Management")
       click_button ('Select All')
       click_button ('Delete Photos')
       page.should have_css(".frame", :text => "Update photos successfully")
@@ -73,10 +71,10 @@ describe "Delete and Undelete photos", js: true do
       admin = FactoryGirl.create(:admin, username: "test", password: "000000",password_confirmation: "000000")
       user = FactoryGirl.create(:user, email: "artiwarah@example.com",user_type: "pro", nickname: "JOE")
       account = FactoryGirl.create(:account,username: "artiwarah", type: "FacebookAccount", user: user)
-      photo = FactoryGirl.create(:photo, 
+      photo = FactoryGirl.create(:photo,
         identifier: '1',
         thumbnail: "/assets/uploads/facebook/thumbnail/artiwarah/182869_3569852204790_1354565865_n.jpg",
-        full: "/assets/uploads/facebook/full/artiwarah/182869_3569852204790_1354565865_n.jpg", 
+        full: "/assets/uploads/facebook/full/artiwarah/182869_3569852204790_1354565865_n.jpg",
         deleted: true,
         account: account
         )
@@ -89,7 +87,6 @@ describe "Delete and Undelete photos", js: true do
         click_button ('Login')
       end
       page.should have_css(".frame", :text => "Login successful.")
-      page.should have_css("#wrap", :text => "Photo Management")
       check('select[]')
       click_button ('Undelete Photos')
       page.should have_css(".frame", :text => "Update photos successfully")
@@ -100,24 +97,24 @@ describe "Delete and Undelete photos", js: true do
       admin = FactoryGirl.create(:admin, username: "test", password: "000000",password_confirmation: "000000")
       user = FactoryGirl.create(:user, email: "artiwarah@example.com",user_type: "pro", nickname: "JOE")
       account = FactoryGirl.create(:account,username: "artiwarah", type: "FacebookAccount", user: user)
-      photo = FactoryGirl.create(:photo, 
+      photo = FactoryGirl.create(:photo,
         identifier: '1',
         thumbnail: "/assets/uploads/facebook/thumbnail/artiwarah/182869_3569852204790_1354565865_n.jpg",
-        full: "/assets/uploads/facebook/full/artiwarah/182869_3569852204790_1354565865_n.jpg", 
+        full: "/assets/uploads/facebook/full/artiwarah/182869_3569852204790_1354565865_n.jpg",
         deleted: true,
         account: account
         )
-      FactoryGirl.create(:photo, 
+      FactoryGirl.create(:photo,
         identifier: '2',
         thumbnail: "/assets/uploads/facebook/thumbnail/artiwarah/182869_3569852204790_1354565865_n.jpg",
         full: "/assets/uploads/facebook/full/artiwarah/182869_3569852204790_1354565865_n.jpg",
-        deleted: true, 
+        deleted: true,
         account: account
         )
-      FactoryGirl.create(:photo, 
+      FactoryGirl.create(:photo,
         identifier: '3',
         thumbnail: "/assets/uploads/facebook/thumbnail/artiwarah/182869_3569852204790_1354565865_n.jpg",
-        full: "/assets/uploads/facebook/full/artiwarah/182869_3569852204790_1354565865_n.jpg", 
+        full: "/assets/uploads/facebook/full/artiwarah/182869_3569852204790_1354565865_n.jpg",
         deleted: true,
         account: account
         )
@@ -130,7 +127,6 @@ describe "Delete and Undelete photos", js: true do
         click_button ('Login')
       end
       page.should have_css(".frame", :text => "Login successful.")
-      page.should have_css("#wrap", :text => "Photo Management")
       click_button ('Select All')
       click_button ('Undelete Photos')
       page.should have_css(".frame", :text => "Update photos successfully")
