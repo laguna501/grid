@@ -3,7 +3,7 @@ require 'bundler/capistrano'
 # Global setting
 default_run_options[:pty] = true
 set :application, "grid"
-set :repository,  "rails@swiftlet.co.th:/git/cls/grid.git"
+set :repository,  "https://github.com/laguna501/grid.git"
 set :deploy_via,  "export"
 set :scm, :git
 set :bundle_flags,    "--deployment"
