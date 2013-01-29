@@ -39,24 +39,22 @@ Grids = {
     $('#container').isotope({ filter: '*' });
   },
   allUser: function(){
-    Grids.clearUser();
+    window.location = "/grids/show_users?type=" + $(this).attr("data-user-type");
   },
   filterUser: function(){
-    Grids.clearUser();
-    $(this).addClass('checked');
+    window.location = "/grids/" + $(this).attr("data-user-id");
   },
 
   loadNextPhotos: function(page){
     if(current_page == page){
       return;
     }
-    else{
-      current_page = page
-    }
+    current_page = page;
     var type = $("#type").val();
+    var user = $("#user").val();
     $.ajax({
       url: '/grids/infinite_scroll',
-      data: { type: type, page: page },
+      data: { type: type, page: page, user: user },
       type: 'get',
       dataType: 'html',
       success: function(result) {
@@ -151,7 +149,7 @@ Grids = {
 
 
 
-    if(window.location.pathname == "/grids/show_users"){
+    if(window.location.pathname.match(/grids\/\S+/)){
       Grids.loadNextPhotos(page);
       Grids.loadWayPoint();
       Grids.loadFancybox();

@@ -1,13 +1,11 @@
 <section id="title_bar">
     <div class="content">
       <%= link_to "« Back to Home Page",:back  %>
-        
-      
     </div>
 </section>
 <div id="wrap">
   <div id="show_users">
-    <h1><%= @type.to_s.titleize %> Grid</h1>
+    <h1><%= @title %></h1>
     <section id="options" class="clearfix">
       <div id="layouts" class="option-set clearfix" data-option-key="layoutMode">
         <h4>Layout: </h4>
@@ -26,18 +24,19 @@
     </div>
     <div id="filter" class="option-set clearfix" data-option-key="filterMode">
       <div class="filters" data-option-value="*">
-        <button id="show-all-user" class="btn btn-small btn-primary">Show all</button>
+        <button id="show-all-user" class="btn btn-small btn-primary" data-user-type="<%= @type %>">Show all</button>
       </div>
 
       <% @users.each do |nickname| %>
         <div class="filters" data-option-value="<%= nickname %>">
-          <button id="username-<%= nickname %>" class="btn btn-small" type="button"><%= nickname %></button>
+          <button id="username-<%= nickname %>" class="btn btn-small" type="button" data-user-id="<%= nickname %>"><%= nickname %></button>
         </div>
       <% end %>
     </div>
 
-    <%= text_field_tag "type", @type, class: "hidden" %>
-    <%= text_field_tag "current_page", @page, class: "hidden" %>
+    <%= hidden_field_tag "type", @type %>
+    <%= hidden_field_tag "user", @user ? @user.id : nil %>
+    <%= hidden_field_tag "current_page" %>
     <div id="container" class="infinite-scrolling">
     </div>
   </div>
