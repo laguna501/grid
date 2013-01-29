@@ -125,6 +125,7 @@ Grids = {
      });
   },
 
+
   init: function() {
     var current_page = null;
     var page = $("#current_page").val();
@@ -144,7 +145,9 @@ Grids = {
     $('[id^=username]').click(Grids.filterUser);
     $('#show-all-user').click(Grids.allUser);
     $('div.filtersource').click(Grids.filterSource);
-
+    $("#CaptionHide").click(function () {
+      $("#photo_caption").slideToggle("slow");
+    });
 
 
     if(window.location.pathname.match(/grids\/\S+/)){
