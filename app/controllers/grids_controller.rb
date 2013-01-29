@@ -3,22 +3,32 @@ class GridsController < ApplicationController
 
   def index; end
 
+  def show
+    @user = User.where(nickname: params[:id]).first
+    @type = @user.user_type
+    @users = User.includes(accounts: :photos).where(user_type: @type).where("photos.id IS NOT NULL").map(&:nickname)
+    @page = 0
+    @title = @user.full_name
+    render action: :show_users
+  end
+
   def show_users
     @type = params[:type]
     @users = User.includes(accounts: :photos).where(user_type: @type).where("photos.id IS NOT NULL").map(&:nickname)
     @page = 0
+    @title = "#{@type.to_s.titleize} Grid"
   end
 
   def infinite_scroll
     type = params[:type]
     @page = params[:page]
     limit_per_page = 20;
-    
+
     @photos = Photo.includes(account: :user).where("users.user_type = ?", type
       ).where("access_token IS NOT NULL").where(
         "photos.deleted = ?", false
       ).offset(@page.to_i * limit_per_page).limit(limit_per_page).order("photos.id DESC")
-
+    @photos = @photos.where(users: {id: params[:user]}) if params[:user].present?
     @page = @page.to_i + 1
     render layout: false
   end

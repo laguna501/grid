@@ -1,7 +1,7 @@
 GRID::Application.routes.draw do
 
   resource :user_session, only: [:create, :new, :destroy]
-  resources  :grids, only: [:index, :new, :create] do
+  resources  :grids, only: [:index, :show, :new, :create] do
     collection do
       get :show_users
       get :show_by_user
@@ -9,7 +9,7 @@ GRID::Application.routes.draw do
       get :infinite_scroll
     end
   end
-  
+
   resources :facebook, only: [:index] do
     collection do
       get :callback

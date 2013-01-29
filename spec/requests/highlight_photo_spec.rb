@@ -7,10 +7,10 @@ describe "Highlight and Unhighlight photos", js: true do
       admin = FactoryGirl.create(:admin, username: "test", password: "000000",password_confirmation: "000000")
       user = FactoryGirl.create(:user, email: "artiwarah@example.com",user_type: "pro", nickname: "JOE")
       account = FactoryGirl.create(:account,username: "artiwarah", type: "FacebookAccount", user: user)
-      photo = FactoryGirl.create(:photo, 
+      photo = FactoryGirl.create(:photo,
         identifier: '1',
         thumbnail: "/assets/uploads/facebook/thumbnail/artiwarah/182869_3569852204790_1354565865_n.jpg",
-        full: "/assets/uploads/facebook/full/artiwarah/182869_3569852204790_1354565865_n.jpg", 
+        full: "/assets/uploads/facebook/full/artiwarah/182869_3569852204790_1354565865_n.jpg",
         highlighted: false,
         account: account
         )
@@ -23,7 +23,6 @@ describe "Highlight and Unhighlight photos", js: true do
         click_button ('Login')
       end
       page.should have_css(".frame", :text => "Login successful.")
-      page.should have_css("#wrap", :text => "Photo Management")
       page.find(".highlight_button").click
       page.should have_css(".highlighted")
     end
@@ -34,10 +33,10 @@ describe "Highlight and Unhighlight photos", js: true do
       admin = FactoryGirl.create(:admin, username: "test", password: "000000",password_confirmation: "000000")
       user = FactoryGirl.create(:user, email: "artiwarah@example.com",user_type: "pro", nickname: "JOE")
       account = FactoryGirl.create(:account,username: "artiwarah", type: "FacebookAccount", user: user)
-      photo = FactoryGirl.create(:photo, 
+      photo = FactoryGirl.create(:photo,
         identifier: '1',
         thumbnail: "/assets/uploads/facebook/thumbnail/artiwarah/182869_3569852204790_1354565865_n.jpg",
-        full: "/assets/uploads/facebook/full/artiwarah/182869_3569852204790_1354565865_n.jpg", 
+        full: "/assets/uploads/facebook/full/artiwarah/182869_3569852204790_1354565865_n.jpg",
         highlighted: true,
         account: account
         )
@@ -50,7 +49,6 @@ describe "Highlight and Unhighlight photos", js: true do
         click_button ('Login')
       end
       page.should have_css(".frame", :text => "Login successful.")
-      page.should have_css("#wrap", :text => "Photo Management")
       page.find(".highlight_button").click
       page.should have_css(".unhighlight")
     end
