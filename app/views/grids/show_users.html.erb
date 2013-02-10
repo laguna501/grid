@@ -29,13 +29,13 @@
 
   <div id="filter" class="btn-group option-set clearfix" data-option-key="filterMode">
   <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    Show Photos
+    Show photos from...
     <span class="caret"></span>
   </a>
 
   <!-- Link or button to toggle dropdown -->
   <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-    <li class="filters" data-option-value="*">
+    <li class="filters dropdown" data-option-value="*">
       <a id="show-all-user" tabindex="-1" href="#" data-user-type="<%= @type %>">All</a>
     </li>
     <% @users.each do |nickname| %>

@@ -864,3 +864,57 @@ transition: all 0.4s ease;
 	filter: progid:dximagetransform.microsoft.gradient(startColorstr='#E57', endColorstr='#E57271', GradientType=0);
 
 }
+
+/*dropdown menu*/
+
+*,
+*:after,
+*:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+::selection {
+    background: transparent; 
+}
+
+::-moz-selection {
+    background: transparent; 
+}
+
+.dropdown-menu {
+
+background: white;
+border-radius: inherit;
+border: 1px solid rgba(0,0,0,0.17);
+box-shadow: 0 0 5px rgba(0,0,0,0.1);
+font-weight: normal;
+-webkit-transition: all 0.5s ease-in;
+-moz-transition: all 0.5s ease-in;
+-ms-transition: all 0.5s ease-in;
+-o-transition: all 0.5s ease-in;
+transition: all 0.5s ease-in;
+list-style: none;
+opacity: 0.95;
+-webkit-border-radius: 4px 4px 4px 4px;
+-khtml-border-radius: 4px 4px 4px 4px;
+-moz-border-radius: 4px 4px 4px 4px;
+-o-border-radius: 4px 4px 4px 4px;
+border-radius: 4px 4px 4px 4px;
+}
+
+.dropdown-menu a {
+	padding: 10px 20px;
+}
+
+#filter a{
+font: 16px 'Roboto-Light',Helvetica, Sans-Serif;
+}
+#filter ul li a{
+font: 20px 'Roboto-Thin',Helvetica, Sans-Serif;
+text-shadow: 0 1px 1px rgba(0, 0, 0, .4);
+
+}
