@@ -1,9 +1,12 @@
+
 <section id="title_bar">
     <div class="content">
       <%= link_to "« Back to Home Page",:back  %>
     </div>
 </section>
 <div id="wrap">
+
+
   <div id="show_users" class="container">
     <h1><%= @title %></h1>
     <section id="options" class="clearfix">
@@ -22,17 +25,26 @@
          <a id="show-instagram" class="" ></a>
       </div>
     </div>
-    <div id="filter" class="option-set clearfix" data-option-key="filterMode">
-      <div class="filters" data-option-value="*">
-        <button id="show-all-user" class="btn btn-small btn-primary" data-user-type="<%= @type %>">Show all</button>
-      </div>
 
-      <% @users.each do |nickname| %>
-        <div class="filters" data-option-value="<%= nickname %>">
-          <button id="username-<%= nickname %>" class="btn btn-small" type="button" data-user-id="<%= nickname %>"><%= nickname %></button>
-        </div>
-      <% end %>
-    </div>
+
+  <div id="filter" class="btn-group option-set clearfix" data-option-key="filterMode">
+  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+    Show Photos
+    <span class="caret"></span>
+  </a>
+
+  <!-- Link or button to toggle dropdown -->
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+    <li class="filters" data-option-value="*">
+      <a id="show-all-user" tabindex="-1" href="#" data-user-type="<%= @type %>">All</a>
+    </li>
+    <% @users.each do |nickname| %>
+    <li class="filters" data-option-value="<%= nickname %>">
+      <a id="username-<%= nickname %>" tabindex="-1" href="#" data-user-id="<%= nickname %>"><%= nickname %></a></li>
+     <% end %>
+  </ul>
+</div>
+
 
     <%= hidden_field_tag "type", @type %>
     <%= hidden_field_tag "user", @user ? @user.id : nil %>

@@ -853,3 +853,14 @@ transition: all 0.4s ease;
 	line-height:24px;
 	background: rgba(0, 0, 0, 0.6);
 }
+.dropdown-menu li > a:hover, .dropdown-menu li > a:focus, .dropdown-submenu:hover > a {
+	background-color: rgba(229, 114, 113, 1);
+	background-image: -moz-linear-gradient(top, #E57, #E57271);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#E57), to(#E57271));
+	background-image: -webkit-linear-gradient(top, #E57, #E57271);
+	background-image: -o-linear-gradient(top, #E57, #E57271);
+	background-image: linear-gradient(to bottom, #E57, #E57271);
+	background-repeat: repeat-x;
+	filter: progid:dximagetransform.microsoft.gradient(startColorstr='#E57', endColorstr='#E57271', GradientType=0);
+
+}
