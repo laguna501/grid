@@ -1,33 +1,21 @@
 
-<section id="title_bar">
-    <div class="content">
-      <%= link_to "« Back to Home Page",:back  %>
+<section id="title_bar" class="row">
+    <div class="content span4 hidden-phone">
+      <%= link_to "« Back to Previous Page",:back  %>
     </div>
-</section>
-<div id="wrap">
 
-
-  <div id="show_users" class="container">
-    <h1><%= @title %></h1>
-    <section id="options" class="clearfix">
-      <div id="layouts" class="option-set clearfix" data-option-key="layoutMode">
-        <h4>Layout: </h4>
-        <div id="grid-masonry" class="layouts selected" data-option-value="masonry">masonry</div>
-        <div id="grid-fitrows" class="layouts" data-option-value="fitRows">fitRows</div>
-      </div>
-    </section>
-    <div class="filtersourceicon">
+    <div class="filtersourceicon span3 hidden-phone">
       <div class="filtersource fb-icon" data-option-value="facebook">
         <a id="show-facebook" class=""></a>
       </div>
 
       <div class="filtersource inst-icon" data-option-value="instagram">
-         <a id="show-instagram" class="" ></a>
+         <a id="show-instagram" class=""></a>
       </div>
     </div>
 
 
-  <div id="filter" class="btn-group option-set clearfix" data-option-key="filterMode">
+  <div id="filter" class="btn-group option-set clearfix span5" data-option-key="filterMode">
   <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
     Show photos from...
     <span class="caret"></span>
@@ -44,6 +32,15 @@
      <% end %>
   </ul>
 </div>
+</section>
+
+<div id="wrap">
+
+
+  <div id="show_users" class="container">
+    <h1><%= @title %></h1>
+
+
 
 
     <%= hidden_field_tag "type", @type %>
