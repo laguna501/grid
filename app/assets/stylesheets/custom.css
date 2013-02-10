@@ -497,6 +497,7 @@ transition: all 0.4s ease;
 }
 #photo #user_photo {
 	position: relative;
+	padding-top:20px;
 }
 
 #photo_description {
