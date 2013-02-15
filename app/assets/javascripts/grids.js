@@ -70,10 +70,26 @@ Grids = {
             $("div.isotope-item").unbind("mouseout");
             $("div.isotope-item").mouseover(function(){
               $(this).children(".infos").show();
-              $(this).children("a").children("img").css({'opacity':0.5,'background-color':'#fff'});
+              $(this).children("a").children("img").css({
+                'opacity':0.7,
+                'background-color':'#fff',
+                '-webkit-transition': 'all 0.4s ease-in-out',
+                '-moz-transition': 'all 0.4s ease-in-out',
+                '-o-transition': 'all 0.4s ease-in-out',
+                '-ms-transition': 'all 0.4s ease-in-out',
+                'transition': 'all 0.4s ease-in-out'
+              });
             }).mouseout(function(){
               $(this).children(".infos").hide();
-              $(this).children("a").children("img").css({'opacity':1,'background-color':'#fff'});
+              $(this).children("a").children("img").css({
+                'opacity':1,
+                'background-color':'#fff',
+                '-webkit-transition': 'all 0.4s ease-in-out',
+                '-moz-transition': 'all 0.4s ease-in-out',
+                '-o-transition': 'all 0.4s ease-in-out',
+                '-ms-transition': 'all 0.4s ease-in-out',
+                'transition': 'all 0.4s ease-in-out'
+              });
             });
           }, 300);
         })

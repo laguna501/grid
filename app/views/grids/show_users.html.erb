@@ -1,5 +1,5 @@
-
-<section id="title_bar" class="row">
+<div ="navbar-static-top navbar">
+<section id="title_bar" class="row ">
     <div class="content span4 hidden-phone">
       <%= link_to "« Back to Previous Page",:back  %>
     </div>
@@ -33,16 +33,14 @@
   </ul>
 </div>
 </section>
-
+</div>
 <div id="wrap">
 
 
   <div id="show_users" class="container">
+    <% unless @title.blank? %>
     <h1><%= @title %></h1>
-
-
-
-
+    <% end %>
     <%= hidden_field_tag "type", @type %>
     <%= hidden_field_tag "user", @user ? @user.id : nil %>
     <%= hidden_field_tag "current_page" %>

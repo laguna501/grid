@@ -16,7 +16,7 @@ class GridsController < ApplicationController
     @type = params[:type]
     @users = User.includes(accounts: :photos).where(user_type: @type).where("photos.id IS NOT NULL").map(&:nickname)
     @page = 0
-    @title = "#{@type.to_s.titleize} Grid"
+    @title = "Photo from all #{@type.to_s.titleize}s"
   end
 
   def infinite_scroll
