@@ -129,7 +129,8 @@ text-decoration:none;
 
 a:active, a:visited{}
 
-a:hover{ color:rgba(229, 114, 113, 1); }
+a:hover{ color:rgba(229, 114, 113, 1); 
+text-decoration:none;}
 
 
 /*
@@ -910,3 +911,4 @@ font: 16px 'Roboto-Light',Helvetica, Sans-Serif;
 #filter ul li a{
 font: 20px 'Roboto-Thin',Helvetica, Sans-Serif;
 text-shadow: 0 1px 1px rgba(0, 0, 0, .4);
+}
