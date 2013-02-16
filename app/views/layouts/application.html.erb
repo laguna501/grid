@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml" prefix="og: http://ogp.me/ns/article#">
 <head>
   <title>GRID</title>
   <%= stylesheet_link_tag    "application", media: "all" %>
@@ -9,6 +9,14 @@
   <%= javascript_include_tag controller_name %>
   <%= javascript_include_tag "custom" %>
   <%= csrf_meta_tags %>
+
+  <meta property="og:site_name" content="<%= @page_site %>"> 
+  <meta property="og:type" content="<%= @page_type %>"> 
+  <meta property="og:image" content="https://<%= Rails.configuration.notifier_default_host %><%= @page_image %>">
+  <meta property="og:url" content="https://<%= Rails.configuration.notifier_default_host %>/grids/show_photo?identifier=<%= @photo_identifier %>&owner=<%= @owner %>">
+  <meta property="og:title" content="Photo taken by <%= @user_fullname %>">
+  <meta property="og:description" content="<%= @page_description %>"> 
+  <meta property="fb:app_id" content="214995985312005">
 
 	<script type="text/javascript">
 		var _gaq = _gaq || [];
@@ -21,6 +29,7 @@
 		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 		})();
 	</script>
+
 
 </head>
 <body>

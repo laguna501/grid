@@ -24,6 +24,7 @@ gem 'syslog-logger'
 gem 'unicorn'
 gem "will_paginate"
 gem 'authlogic'
+gem 'open-meta-tags', :require => 'open_meta_tags'
 
 
 group :development, :test, :staging do

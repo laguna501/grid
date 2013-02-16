@@ -45,5 +45,10 @@ class GridsController < ApplicationController
     @photo_created = photo.created_at
     @user_fullname = user.full_name
 
+    @page_site         = 'Canon LifeSpace'
+    @page_type         = 'article'
+    @page_image        = photo.thumbnail
+    @page_description  = photo.description
+
   end
 end
