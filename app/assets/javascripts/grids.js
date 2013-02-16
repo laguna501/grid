@@ -141,6 +141,10 @@ Grids = {
      });
   },
 
+  checkIFrame: function (){
+  if(location.href != top.location.href) { 
+     $('#gohome_bar').hide();}
+  },
 
   init: function() {
     var current_page = null;
@@ -155,6 +159,7 @@ Grids = {
     }(document, 'script', 'facebook-jssdk'));
 
     Grids.changeLayoutMode('masonry');
+    Grids.checkIFrame();
     $('#container').isotope({ filter: '*' });
     $('div.layouts').click(Grids.layout);
     $('div.filters').click(Grids.filter);
