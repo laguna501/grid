@@ -171,6 +171,7 @@ div.fb-like {
   #photo_description{
 
     color: $photo-description-color;
+    overflow:hidden;
   }
 
   div.fb-comments {
