@@ -10,7 +10,7 @@
       <% caption_size = photo.highlighted? ? 57 : 27 %>
       <% photo_description = photo.description.gsub(/#cnlifespace/i, "") %>
       <% photo_description = photo_description[0..caption_size] + "..." if photo_description.length > caption_size %>
-  		<%= link_to photo_description, show_photo_grids_path(owner: photo.account.user.nickname, identifier: photo.identifier), class: "photo fancybox.iframe" %>
+  		<%= link_to photo_description, show_photo_grids_path(owner: photo.account.user.nickname, identifier: photo.identifier), class: "photo fancybox.iframe", rel: "gallery2" %>
 		</h4> <span><%= photo.account.user.nickname %></span>
   </div>
 </div>

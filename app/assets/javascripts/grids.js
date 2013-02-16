@@ -71,7 +71,7 @@ Grids = {
             $("div.isotope-item").mouseover(function(){
               $(this).children(".infos").show();
               $(this).children("a").children("img").css({
-                'opacity':0.7,
+                'opacity':0.6,
                 'background-color':'#fff',
                 '-webkit-transition': 'all 0.4s ease-in-out',
                 '-moz-transition': 'all 0.4s ease-in-out',
