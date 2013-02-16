@@ -16,7 +16,7 @@
   <meta property="og:url" content="https://<%= Rails.configuration.notifier_default_host %>/grids/show_photo?identifier=<%= @photo_identifier %>&owner=<%= @owner %>">
   <meta property="og:title" content="Photo taken by <%= @user_fullname %>">
   <meta property="og:description" content="<%= @page_description %>"> 
-  <meta property="fb:app_id" content="214995985312005">
+  <meta property="fb:app_id" content="<%= @page_app_id %>">
 
 	<script type="text/javascript">
 		var _gaq = _gaq || [];
