@@ -49,6 +49,7 @@ class GridsController < ApplicationController
     @page_type         = 'article'
     @page_image        = photo.thumbnail
     @page_description  = photo.description
+    @page_app_id       = '214995985312005'
 
   end
 end
