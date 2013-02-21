@@ -11,7 +11,7 @@
       <% photo_description = photo.description.gsub(/#cnlifespace/i, "") %>
       <% photo_description = photo_description[0..caption_size] + "..." if photo_description.length > caption_size %>
   		<%= link_to photo_description, show_photo_grids_path(owner: photo.account.user.nickname, identifier: photo.identifier), class: "photo fancybox.iframe", rel: "gallery2" %>
-		</h4> <span><%= photo.account.user.nickname %></span>
+		</h4> <span><%= photo.account.user.nickname %> | <%= photo.created_at.strftime("%d %b") %></span>
   </div>
 </div>
 </div>

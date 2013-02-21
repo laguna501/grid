@@ -17,7 +17,7 @@
     <br />
   <% unless @photo_description.blank? %>
   <span class="caption" id="photo_caption">
-    <%= @photo_description.gsub(/#cnlifespace/i, "") %>   
+   <%= @photo_created.strftime("%d %b") %> - <%= @photo_description.gsub(/#cnlifespace/i, "") %>   
   </span>
   <% end %>
   </h3>
